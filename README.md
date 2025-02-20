@@ -1,5 +1,5 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-
+[![codecov](https://codecov.io/gh/AY2425S2-CS2103T-T15-1a/tp/graph/badge.svg?token=TAIN7ZDEFX)](https://codecov.io/gh/AY2425S2-CS2103T-T15-1a/tp)
 ![Ui](docs/images/Ui.png)
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
