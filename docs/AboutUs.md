@@ -30,5 +30,16 @@ Hi I am year 2 Computer Science student in NUS.
 [[github](https://github.com/zihung20)]
 [[email](mailto:zihung20@gmail.com)]
 
-- Role: student
-- Responsibilities: technical support, integration, documentation
+* Role: student
+* Responsibilities: technical support, integration, documentation
+
+### Jun Heng
+
+<img src="images/jun.png" width="200px">
+
+[[github](http://github.com/junixm)]
+[[portfolio](https://sites.google.com/view/leejunheng)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines.
+  Ensure project deliverables are done on time and in the right format.
