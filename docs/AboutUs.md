@@ -11,11 +11,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Lee Chen Xuan
+
+<img src="images/cxl0l0.png" width="200px">
+
+[[github](https://github.com/CXl0l0)]
+[[email](mailto:leechenxuan234@gmail.com)]
+
+- Role: Developer
+- Responsibilities: Proof-reading
+
 ### Kong Zi Hung
 
 <img src="images/zihung20.png" width="200px"> <br>
 Hi I am year 2 Computer Science student in NUS.
-
 
 [[homepage](https://www.linkedin.com/in/kong-zi-hung-a32ab8288/)]
 [[github](https://github.com/zihung20)]
