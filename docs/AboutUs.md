@@ -11,14 +11,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-<<<<<<< HEAD
-### Jun Heng
-
-<img src="images/jun.png" width="200px">
-
-[[github](http://github.com/junixm)]
-[[portfolio](https://sites.google.com/view/leejunheng)]
-=======
 ### Kong Zi Hung
 
 <img src="images/zihung20.png" width="200px"> <br>
@@ -32,22 +24,12 @@ Hi I am year 2 Computer Science student in NUS.
 * Role: student
 * Responsibilities: technical support, integration, documentation
 
-### Jane Doe
+### Jun Heng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jun.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
->>>>>>> master
+[[github](http://github.com/junixm)]
+[[portfolio](https://sites.google.com/view/leejunheng)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines.
