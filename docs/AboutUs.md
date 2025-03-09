@@ -24,6 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Kong Zi Hung
 
 <img src="images/zihung20.png" width="200px"> <br>
+
 Hi I am year 2 Computer Science student in NUS.
 
 [[homepage](https://www.linkedin.com/in/kong-zi-hung-a32ab8288/)]
@@ -43,3 +44,13 @@ Hi I am year 2 Computer Science student in NUS.
 * Role: Developer
 * Responsibilities: Deliverables and deadlines.
   Ensure project deliverables are done on time and in the right format.
+
+### Corey Siah
+
+<img src="images/coreysiah.png" width="200px">
+
+[[github](http://github.com/coreysiah)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: User story and feature list
