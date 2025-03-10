@@ -36,7 +36,7 @@ Hi I am year 2 Computer Science student in NUS.
 
 ### Jun Heng
 
-<img src="images/jun.png" width="200px">
+<img src="images/junixm.png" width="200px">
 
 [[github](http://github.com/junixm)]
 [[portfolio](https://sites.google.com/view/leejunheng)]
