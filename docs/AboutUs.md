@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 ### Kong Zi Hung
 
 <img src="images/zihung20.png" width="200px"> <br>
-Hi I am year 2 Computer Science student in NUS.
+  Hi I am year 2 Computer Science student in NUS.
 
 [[homepage](https://www.linkedin.com/in/kong-zi-hung-a32ab8288/)]
 [[github](https://github.com/zihung20)]
