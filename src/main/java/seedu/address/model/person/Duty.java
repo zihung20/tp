@@ -14,13 +14,13 @@ public class Duty {
     public static final String MESSAGE_CONSTRAINTS = "Date should not be blank and must follow ISO 8601 format: yyyy-MM-dd";
     public static final String DATE_PATTERN = "yyyy-MM-dd";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
-    private final List<LocalDate> duties;
+    private final List<LocalDate> duty;
 
     /**
      * Constructs a Duty object that has no duty dates at first.
      */
     public Duty() {
-        duties = new ArrayList<>();
+        duty = new ArrayList<>();
     }
 
     /**
@@ -48,12 +48,16 @@ public class Duty {
         if (!isValidDate(dateString)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
-        duties.add(LocalDate.parse(dateString, FORMATTER));
+        duty.add(LocalDate.parse(dateString, FORMATTER));
+    }
+
+    public List<LocalDate> getDuty() {
+        return duty;
     }
 
     @Override
     public String toString() {
-        return duties.toString();
+        return duty.toString();
     }
 
     @Override
@@ -66,11 +70,11 @@ public class Duty {
             return false;
         }
 
-        return Objects.equals(duties, obj.duties);
+        return Objects.equals(duty, obj.duty);
     }
 
     @Override
     public int hashCode() {
-        return duties.hashCode();
+        return duty.hashCode();
     }
 }
