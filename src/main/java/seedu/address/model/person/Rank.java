@@ -15,7 +15,7 @@ public class Rank {
     /*
      * The rank must contain exactly 3 alphanumeric characters.
      */
-    public static final String VALIDATION_REGEX = "[a-zA-Z0-9]{3}";
+    public static final String VALIDATION_REGEX = "[A-Z0-9]{3}";
 
     public final String fullRank;
 
