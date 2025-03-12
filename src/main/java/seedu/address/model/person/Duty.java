@@ -9,6 +9,7 @@ import java.util.Objects;
 
 /**
  * Represents a person's duties history.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Duty {
     public static final String MESSAGE_CONSTRAINTS =
