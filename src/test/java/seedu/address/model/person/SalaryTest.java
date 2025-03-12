@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ public class SalaryTest {
 
     @Test
     public void constructor_invalidSalary_throwsIllegalArgumentException() {
-        int invalidSalary = 99;
+        String invalidSalary = "99";
         assertThrows(IllegalArgumentException.class, () -> new Salary(invalidSalary));
     }
 
@@ -25,21 +25,21 @@ public class SalaryTest {
         assertThrows(NullPointerException.class, () -> Salary.isValidSalary(null));
 
         // invalid salary numbers
-        assertFalse(Salary.isValidSalary(0)); // 0 value
-        assertFalse(Salary.isValidSalary(-100)); // negative value
+        assertFalse(Salary.isValidSalary("0")); // 0 value
+        assertFalse(Salary.isValidSalary("-100")); // negative value
+        assertFalse(Salary.isValidSalary("124293842033123")); // large salary numbers
 
         // valid Salary numbers
-        assertTrue(Salary.isValidSalary(100)); // exactly SGD100
-        assertTrue(Salary.isValidSalary(2500));
-        assertTrue(Salary.isValidSalary(124293842033123)); // large salary numbers
+        assertTrue(Salary.isValidSalary("100")); // exactly SGD100
+        assertTrue(Salary.isValidSalary("2500"));
     }
 
     @Test
     public void equals() {
-        Salary Salary = new Salary(999);
+        Salary Salary = new Salary("999");
 
         // same values -> returns true
-        assertTrue(Salary.equals(new Salary(999)));
+        assertTrue(Salary.equals(new Salary("999")));
 
         // same object -> returns true
         assertTrue(Salary.equals(Salary));
@@ -51,6 +51,6 @@ public class SalaryTest {
         assertFalse(Salary.equals("999"));
 
         // different values -> returns false
-        assertFalse(Salary.equals(new Salary(995)));
+        assertFalse(Salary.equals(new Salary("995")));
     }
 }

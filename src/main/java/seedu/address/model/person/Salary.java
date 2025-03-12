@@ -17,17 +17,26 @@ public class Salary {
      *
      * @param salary A valid salary wage.
      */
-    public Salary(int salary) {
+    public Salary(String salary) {
         requireNonNull(salary);
         checkArgument(isValidSalary(salary), MESSAGE_CONSTRAINTS);
-        value = salary;
+        value = Integer.parseInt(salary);
     }
 
     /**
      * Returns true if a given int is a valid salary.
      */
-    public static boolean isValidSalary(int test) {
-        return test >= 100;
+    public static boolean isValidSalary(String test) {
+        if (test == null) {
+            throw new NullPointerException();
+        }
+
+        try {
+            int parseInt = Integer.parseInt(test);
+            return parseInt >= 100;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
