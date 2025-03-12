@@ -36,7 +36,7 @@ Hi I am year 2 Computer Science student in NUS.
 
 ### Jun Heng
 
-<img src="images/jun.png" width="200px">
+<img src="images/junixm.png" width="200px">
 
 [[github](http://github.com/junixm)]
 [[portfolio](https://sites.google.com/view/leejunheng)]
@@ -50,7 +50,7 @@ Hi I am year 2 Computer Science student in NUS.
 <img src="images/coreysiah.png" width="200px">
 
 [[github](http://github.com/coreysiah)]
-[[portfolio](team/johndoe.md)]
+[[email](mailto:e1427143@u.nus.edu)]
 
 * Role: Developer
 * Responsibilities: User story and feature list
