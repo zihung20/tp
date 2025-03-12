@@ -11,7 +11,8 @@ import java.util.Objects;
  * Represents a person's duties history.
  */
 public class Duty {
-    public static final String MESSAGE_CONSTRAINTS = "Date should not be blank and must follow ISO 8601 format: yyyy-MM-dd";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Date should not be blank and must follow ISO 8601 format: yyyy-MM-dd";
     public static final String DATE_PATTERN = "yyyy-MM-dd";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
     private final List<LocalDate> duty;
@@ -32,9 +33,9 @@ public class Duty {
     public boolean isValidDate(String dateString) {
         try {
             LocalDate.parse(dateString, FORMATTER);
-            return true;  // Valid date
+            return true;
         } catch (DateTimeParseException e) {
-            return false; // Invalid date
+            return false;
         }
     }
 

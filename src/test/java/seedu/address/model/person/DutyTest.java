@@ -1,15 +1,11 @@
 package seedu.address.model.person;
 
-import java.time.LocalDate;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class DutyTest {
 
@@ -24,7 +20,8 @@ public class DutyTest {
         assertThrows(IllegalArgumentException.class, () -> new Duty().assignDuty("2025 11 26"));
         assertThrows(IllegalArgumentException.class, () -> new Duty().assignDuty("26 Nov 2025"));
         assertThrows(IllegalArgumentException.class, () -> new Duty().assignDuty("November 26, 2025"));
-        assertThrows(IllegalArgumentException.class, () -> new Duty().assignDuty("2025-13-40")); // Invalid date
+        //Invalid date
+        assertThrows(IllegalArgumentException.class, () -> new Duty().assignDuty("2025-13-40"));
     }
 
     @Test
