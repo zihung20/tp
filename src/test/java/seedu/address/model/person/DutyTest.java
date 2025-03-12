@@ -2,7 +2,8 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -30,12 +31,26 @@ public class DutyTest {
     }
 
     @Test
+    public void duplicateDate() {
+        Duty duty = new Duty();
+
+        duty.assignDuty("2025-11-26");
+        assertEquals(1, duty.getDuty().size());
+
+        duty.assignDuty("2025-11-27");
+        assertEquals(2, duty.getDuty().size());
+
+        //duplicate date
+        duty.assignDuty("2025-11-26");
+        assertEquals(2, duty.getDuty().size());
+    }
+
+    @Test
     public void testEquals() {
         Duty duty1 = new Duty();
         Duty duty2 = new Duty();
         Duty duty3 = new Duty();
 
-        // Adding valid dates using assignDuty()
         duty1.assignDuty("2025-11-26");
         duty1.assignDuty("2025-11-27");
 
@@ -45,18 +60,14 @@ public class DutyTest {
         duty3.assignDuty("2025-11-26");
         duty3.assignDuty("2025-11-28");
 
-        // Same duties, should be equal
-        assertEquals(duty1, duty2);
+        assertTrue(duty1.equals(duty1));
 
-        // Different duties, should not be equal
-        assertNotEquals(duty1, duty3);
+        assertTrue(duty1.equals(duty2));
 
-        // Comparing with null, should not be equal
-        assertNotEquals(null, duty1);
+        assertFalse(duty1.equals(duty3));
 
-        // Comparing with a different type, should not be equal
-        assertNotEquals("String", duty1);
+        assertFalse(duty1.equals(null));
 
+        assertFalse(duty1.equals("String"));
     }
-
 }

@@ -40,7 +40,7 @@ public class Duty {
     }
 
     /**
-     * Assigns a duty date for this person.
+     * Assigns a duty date for this person, do nothing if the date already existed
      *
      * @param dateString The duty date to assign for this person.
      * @throws IllegalArgumentException If the input is not in the correct format.
@@ -49,7 +49,11 @@ public class Duty {
         if (!isValidDate(dateString)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
-        duty.add(LocalDate.parse(dateString, FORMATTER));
+
+        LocalDate date = LocalDate.parse(dateString, FORMATTER);
+        if (!duty.contains(date)) {
+            duty.add(date);
+        }
     }
 
     public List<LocalDate> getDuty() {
