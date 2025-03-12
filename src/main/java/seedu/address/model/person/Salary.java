@@ -10,6 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Salary {
     public static final String MESSAGE_CONSTRAINTS =
             "Salary should only contain numbers, and it should be >SGD100.";
+    public static final String VALIDATION_REGEX = "^(?:[1-9][0-9]{2,3})$"; // Only accepts value between 100-9999
     public final int value;
 
     /**
@@ -27,16 +28,7 @@ public class Salary {
      * Returns true if a given int is a valid salary.
      */
     public static boolean isValidSalary(String test) {
-        if (test == null) {
-            throw new NullPointerException();
-        }
-
-        try {
-            int parseInt = Integer.parseInt(test);
-            return parseInt >= 100;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
