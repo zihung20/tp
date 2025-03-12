@@ -14,7 +14,7 @@ public class Salary {
 
     /**
      * Consturcts a {@code Salary}
-     * 
+     *
      * @param salary A valid salary wage.
      */
     public Salary(int salary) {
@@ -47,6 +47,6 @@ public class Salary {
         }
 
         Salary otherSalary = (Salary) other;
-        return value == otherSalary.value; 
+        return value == otherSalary.value;
     }
 }
