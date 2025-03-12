@@ -38,10 +38,10 @@ public class CompanyTest {
 
     @Test
     public void equals() {
-        Company company = new Company("Valid Company");
+        Company company = new Company("ValidCompany");
 
         // same values -> returns true
-        assertTrue(company.equals(new Company("Valid Company")));
+        assertTrue(company.equals(new Company("ValidCompany")));
 
         // same object -> returns true
         assertTrue(company.equals(company));
@@ -53,6 +53,6 @@ public class CompanyTest {
         assertFalse(company.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(company.equals(new Company("Other Valid Company")));
+        assertFalse(company.equals(new Company("OtherValidCompany")));
     }
 }

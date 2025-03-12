@@ -15,7 +15,7 @@ public class Company {
     /*
      * The company name must contain only alphabetical characters.
      */
-    public static final String VALIDATION_REGEX = "[a-zA-Z]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]+";
 
     public final String fullCompany;
 

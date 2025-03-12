@@ -29,7 +29,8 @@ public class RankTest {
         assertFalse(Rank.isValidRank(" ")); // spaces only
         assertFalse(Rank.isValidRank("^")); // only non-alphanumeric characters
         assertFalse(Rank.isValidRank("SG*")); // contains non-alphanumeric characters
-        assertFalse(Rank.isValidRank("3SGT")); // number of characters != 3
+        assertFalse(Rank.isValidRank("3SGT")); // More than 3 characters (invalid)
+        assertFalse(Rank.isValidRank("S")); // Less than 3 characters (invalid)
 
         // valid rank
         assertTrue(Rank.isValidRank("CPL")); // alphabets only
@@ -39,10 +40,10 @@ public class RankTest {
 
     @Test
     public void equals() {
-        Rank rank = new Rank("Valid Rank");
+        Rank rank = new Rank("CPL"); // Changed from "Valid Rank" to a valid rank
 
         // same values -> returns true
-        assertTrue(rank.equals(new Rank("Valid Rank")));
+        assertTrue(rank.equals(new Rank("CPL")));
 
         // same object -> returns true
         assertTrue(rank.equals(rank));
@@ -54,6 +55,6 @@ public class RankTest {
         assertFalse(rank.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(rank.equals(new Rank("Other Valid Rank")));
+        assertFalse(rank.equals(new Rank("SGT"))); // Different valid rank
     }
 }
