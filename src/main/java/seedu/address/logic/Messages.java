@@ -39,14 +39,10 @@ public class Messages {
         builder.append(person.getName())
                 .append("; Phone: ")
                 .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Mask NRIC: ")
-                .append(person.getNric())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(person.getNric());
         return builder.toString();
     }
 
