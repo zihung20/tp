@@ -36,21 +36,21 @@ public class SalaryTest {
 
     @Test
     public void equals() {
-        Salary Salary = new Salary("999");
+        Salary salary = new Salary("999");
 
         // same values -> returns true
-        assertTrue(Salary.equals(new Salary("999")));
+        assertTrue(salary.equals(new Salary("999")));
 
         // same object -> returns true
-        assertTrue(Salary.equals(Salary));
+        assertTrue(salary.equals(salary));
 
         // null -> returns false
-        assertFalse(Salary.equals(null));
+        assertFalse(salary.equals(null));
 
         // different types -> returns false
-        assertFalse(Salary.equals("999"));
+        assertFalse(salary.equals("999"));
 
         // different values -> returns false
-        assertFalse(Salary.equals(new Salary("995")));
+        assertFalse(salary.equals(new Salary("995")));
     }
 }
