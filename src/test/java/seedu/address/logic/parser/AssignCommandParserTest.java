@@ -16,5 +16,4 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 public class AssignCommandParserTest {
-    
 }

@@ -37,7 +37,6 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         String duty = ParserUtil.parseDuty(argMultimap.getValue(PREFIX_DUTY).get());
 
         return new AssignCommand(rank, name, company, duty);
-
     }
 
     /**

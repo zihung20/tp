@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Rank;
 
 /**
- * currently only workable for no duplicate entry
+ * Assign a duty to an existing personnel in address book
  */
 public class AssignCommand extends Command {
     public static final String COMMAND_WORD = "assign";
@@ -25,7 +25,7 @@ public class AssignCommand extends Command {
             COMMAND_WORD, CliSyntax.PREFIX_RANK, CliSyntax.PREFIX_NAME,
             CliSyntax.PREFIX_COMPANY, CliSyntax.PREFIX_DUTY);
     public static final String MESSAGE_ASSIGN_DUTY_SUCCESS =
-            "Success! Duty assigned to person%1$s!";
+            "Success! Duty assigned to person %1$s!";
     public static final String MESSAGE_INVALID_PERSON = "Error! Personnel not found!";
 
     private final Rank rank;
@@ -35,8 +35,8 @@ public class AssignCommand extends Command {
 
     /**
      * @param rank the rank of the personnel
-     * @param name the name of the peronnel
-     * @param company the company of ther personnel
+     * @param name the name of the personnel
+     * @param company the company of the personnel
      * @param duty the {@code String} value of the duty date
      */
     public AssignCommand(Rank rank, Name name, Company company, String duty) {
