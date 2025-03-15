@@ -31,7 +31,7 @@ public class Duty {
      * @param dateString The date string to validate.
      * @return True if the date string is valid, false otherwise.
      */
-    public boolean isValidDate(String dateString) {
+    public static boolean isValidDutyDate(String dateString) {
         try {
             LocalDate.parse(dateString, FORMATTER);
             return true;
@@ -47,7 +47,7 @@ public class Duty {
      * @throws IllegalArgumentException If the input is not in the correct format.
      */
     public void assignDuty(String dateString) {
-        if (!isValidDate(dateString)) {
+        if (!isValidDutyDate(dateString)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
 

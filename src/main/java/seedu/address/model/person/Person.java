@@ -20,6 +20,8 @@ public class Person {
     // Data fields
     private final Address address;
 
+    // every person has a new empty duty when created
+    private final Duty duty = new Duty();
     /**
      * Every field must be present and not null.
      */
@@ -29,6 +31,7 @@ public class Person {
         this.phone = phone;
         this.address = address;
         this.nric = nric;
+
     }
 
     public Name getName() {
@@ -45,6 +48,15 @@ public class Person {
 
     public Nric getNric() {
         return nric;
+    }
+
+    public void assignDuty(String duty) {
+        this.duty.assignDuty(duty);
+    }
+
+    //method for determine same person by rank name and company, currently not workable
+    public boolean isSamePerson(Rank rank, Name name, Company company) {
+        return name.equals(this.name);
     }
 
     /**
