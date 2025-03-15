@@ -1,10 +1,15 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Duty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -22,17 +27,20 @@ class JsonAdaptedPerson {
     private final String address;
     private final String nric;
 
+    private final JsonAdaptedDuty duty;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("address") String address,
-            @JsonProperty("nric") String nric) {
+            @JsonProperty("address") String address, @JsonProperty("nric") String nric,
+            @JsonProperty("duty") JsonAdaptedDuty duty) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.nric = nric;
+        this.duty = duty;
     }
 
     /**
@@ -43,6 +51,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         nric = source.getNric().maskNric;
+        duty = new JsonAdaptedDuty(source.getDuty());
     }
 
     /**
@@ -83,7 +92,9 @@ class JsonAdaptedPerson {
         }
         final Nric modelNric = new Nric(nric);
 
-        return new Person(modelName, modelPhone, modelAddress, modelNric);
+        final Duty modelDuty = duty.toModelType();
+
+        return new Person(modelName, modelPhone, modelAddress, modelNric, modelDuty);
     }
 
 }

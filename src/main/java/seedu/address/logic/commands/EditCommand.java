@@ -18,6 +18,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Duty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -93,8 +94,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
+        Duty updatedDuty = personToEdit.getDuty(); // edit command does not allow editing duty
 
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedNric);
+        return new Person(updatedName, updatedPhone, updatedAddress, updatedNric, updatedDuty);
     }
 
     @Override
