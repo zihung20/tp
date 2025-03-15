@@ -1,5 +1,10 @@
 package seedu.address.model.person;
 
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -43,6 +48,24 @@ public class DutyTest {
         //duplicate date
         duty.assignDuty("2025-11-26");
         assertEquals(2, duty.getDuty().size());
+    }
+
+    @Test
+    public void dutiesNumberOfCurrentMonth() {
+        Duty duty = new Duty();
+
+        LocalDate current = LocalDate.now();
+        LocalDate previous = current.minusMonths(1);
+        LocalDate next = current.plusMonths(1);
+
+        duty.assignDuty(current.format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN)));
+        duty.assignDuty(previous.format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN)));
+        duty.assignDuty(next.format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN)));
+        assertEquals(1, duty.getDutyCount());
+        
+        current = current.plusYears(20);
+        duty.assignDuty(current.format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN)));
+        assertEquals(2, duty.getDutyCount());
     }
 
     @Test
