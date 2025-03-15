@@ -12,7 +12,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Rank;
 
-
 /**
  * currently only workable for no duplicate entry
  */
