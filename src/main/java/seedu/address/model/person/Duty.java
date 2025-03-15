@@ -61,6 +61,12 @@ public class Duty {
         return duty;
     }
 
+    public int getDutyCount() {
+        return (int) duty.stream()
+                .filter(date -> date.getMonth() == LocalDate.now().getMonth())
+                .count();
+    }
+
     @Override
     public String toString() {
         return duty.toString();
