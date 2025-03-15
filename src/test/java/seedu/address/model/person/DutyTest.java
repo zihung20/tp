@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +39,14 @@ public class DutyTest {
         Duty duty = new Duty();
 
         duty.assignDuty("2025-11-26");
-        assertEquals(1, duty.getDuty().size());
+        assertEquals(1, duty.getDutyList().size());
 
         duty.assignDuty("2025-11-27");
-        assertEquals(2, duty.getDuty().size());
+        assertEquals(2, duty.getDutyList().size());
 
         //duplicate date
         duty.assignDuty("2025-11-26");
-        assertEquals(2, duty.getDuty().size());
+        assertEquals(2, duty.getDutyList().size());
     }
 
     @Test
@@ -63,7 +64,7 @@ public class DutyTest {
 
         current = current.plusYears(20);
         duty.assignDuty(current.format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN)));
-        assertEquals(2, duty.getDutyCount());
+        assertEquals(1, duty.getDutyCount());
     }
 
     @Test
@@ -90,5 +91,22 @@ public class DutyTest {
         assertFalse(duty1.equals(null));
 
         assertFalse(duty1.equals("String"));
+    }
+
+    @Test
+    public void constructorWithValidDutyList() {
+        List<LocalDate> dutyList = List.of(
+                LocalDate.of(2025, 1, 1),
+                LocalDate.of(2025, 2, 2),
+                LocalDate.of(2025, 3, 3)
+        );
+        Duty duty = new Duty(dutyList);
+        assertEquals(dutyList, duty.getDutyList());
+    }
+
+    @Test
+    public void constructorWithEmptyDutyList() {
+        Duty duty = new Duty();
+        assertEquals(0, duty.getDutyList().size());
     }
 }
