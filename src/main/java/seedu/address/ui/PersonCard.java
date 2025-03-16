@@ -49,6 +49,16 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         nric.setText(person.getNric().maskNric);
-        duty.setText("Days: " + String.valueOf(person.getDuty().getDutyCount()));
+
+        int dutyCount = person.getDuty().getDutyCount();
+        duty.setText("Days: " + dutyCount);
+
+        if (dutyCount < 6) {
+            duty.setStyle("-fx-text-fill: #32CD32;");
+        } else if (dutyCount <= 15) {
+            duty.setStyle("-fx-background-color: yellow;");
+        } else {
+            duty.setStyle("-fx-background-color: red;");
+        }
     }
 }
