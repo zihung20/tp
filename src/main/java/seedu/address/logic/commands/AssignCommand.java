@@ -2,15 +2,14 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import javafx.collections.transformation.FilteredList;
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
-import seedu.address.model.person.Company;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Rank;
 
 /**
  * Assign a duty to an existing personnel in address book
@@ -26,40 +25,34 @@ public class AssignCommand extends Command {
             CliSyntax.PREFIX_COMPANY, CliSyntax.PREFIX_DUTY);
     public static final String MESSAGE_ASSIGN_DUTY_SUCCESS =
             "Success! Duty assigned to person %1$s!";
-    public static final String MESSAGE_INVALID_PERSON = "Error! Personnel not found!";
 
-    private final Rank rank;
-    private final Name name;
-    private final Company company;
+    private final Index index;
     private final String dutyDate;
 
     /**
-     * @param rank the rank of the personnel
-     * @param name the name of the personnel
-     * @param company the company of the personnel
-     * @param duty the {@code String} value of the duty date
+     * @param index the index of the personnel to assign duty
+     * @param dutyDate the string representation of the duty dates
      */
-    public AssignCommand(Rank rank, Name name, Company company, String duty) {
-        requireAllNonNull(rank, name, company, duty);
+    public AssignCommand(Index index, String dutyDate) {
+        requireAllNonNull(index, dutyDate);
 
-        this.rank = rank;
-        this.name = name;
-        this.company = company;
-        this.dutyDate = duty;
+        this.index = index;
+        this.dutyDate = dutyDate;
     }
 
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        FilteredList<Person> persons = model.getAddressBook().getPersonList()
-                .filtered(person -> person.isSamePerson(rank, name, company));
+        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (persons.isEmpty()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToAssign = persons.get(0);
+        Person personToAssign = lastShownList.get(index.getZeroBased());
         personToAssign.assignDuty(dutyDate);
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_ASSIGN_DUTY_SUCCESS, Messages.format(personToAssign)));
     }
 }

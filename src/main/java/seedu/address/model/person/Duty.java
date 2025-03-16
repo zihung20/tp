@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * Represents a person's duties history.
- * Guarantees: immutable; is valid as declared in {@link #isValidDutyDate(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Duty {
     public static final String MESSAGE_CONSTRAINTS =
@@ -55,7 +55,7 @@ public class Duty {
      * @throws IllegalArgumentException If the input is not in the correct format.
      */
     public void assignDuty(String dateString) {
-        if (!isValidDutyDate(dateString)) {
+        if (!isValidDate(dateString)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
 
@@ -69,6 +69,11 @@ public class Duty {
         return duty;
     }
 
+    /**
+     * Gets the duty count for the current month.
+     *
+     * @return The duty count of the personnel for the current month.
+     */
     public int getDutyCount() {
         return (int) duty.stream()
                 .filter(date -> date.getYear() == LocalDate.now().getYear())

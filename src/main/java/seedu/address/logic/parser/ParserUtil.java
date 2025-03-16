@@ -6,12 +6,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Company;
 import seedu.address.model.person.Duty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Rank;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -93,35 +91,6 @@ public class ParserUtil {
         return new Nric(trimmedNric);
     }
 
-    /**
-     * Parses a {@code String rank} into a {@code Rank}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code rank} is invalid.
-     */
-    public static Rank parseRank(String rank) throws ParseException {
-        requireNonNull(rank);
-        String trimmedRank = rank.trim();
-        if (!Rank.isValidRank(trimmedRank)) {
-            throw new ParseException(Rank.MESSAGE_CONSTRAINTS);
-        }
-        return new Rank(trimmedRank);
-    }
-
-    /**
-     * Parses a {@code String company} into a {@code Company}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code company} is invalid.
-     */
-    public static Company parseCompany(String company) throws ParseException {
-        requireNonNull(company);
-        String trimmedCompany = company.trim();
-        if (!Company.isValidCompany(trimmedCompany)) {
-            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
-        }
-        return new Company(trimmedCompany);
-    }
 
     /**
      * Leading and trailing whitespaces will be trimmed in {@code String duty}
@@ -131,7 +100,7 @@ public class ParserUtil {
     public static String parseDuty(String duty) throws ParseException {
         requireNonNull(duty);
         String trimmedDuty = duty.trim();
-        if (!Duty.isValidDutyDate(trimmedDuty)) {
+        if (!Duty.isValidDate(trimmedDuty)) {
             throw new ParseException(Duty.MESSAGE_CONSTRAINTS);
         }
         return trimmedDuty;

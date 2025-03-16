@@ -1,40 +1,31 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Company;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Rank;
-import seedu.address.testutil.PersonBuilder;
 
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 public class AssignCommandTest {
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AssignCommand(null, null, null, null));
+                new AssignCommand(null, null));
         assertThrows(NullPointerException.class, () ->
-                new AssignCommand(null, new Name("name"), null, null));
+                new AssignCommand(null, "duty date"));
         assertThrows(NullPointerException.class, () ->
-                new AssignCommand(null, null, new Company("company"), null));
-        assertThrows(NullPointerException.class, () ->
-                new AssignCommand(null, null, null, "duty date"));
+                new AssignCommand(Index.fromOneBased(1), null));
     }
 
 

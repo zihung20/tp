@@ -49,18 +49,13 @@ public class Person {
         return nric;
     }
 
-<<<<<<< HEAD
     public void assignDuty(String duty) {
         this.duty.assignDuty(duty);
     }
 
-    //method for determine same person by rank name and company, currently not workable
-    public boolean isSamePerson(Rank rank, Name name, Company company) {
-        return name.equals(this.name);
-=======
+
     public Duty getDuty() {
         return duty;
->>>>>>> master
     }
 
     /**
