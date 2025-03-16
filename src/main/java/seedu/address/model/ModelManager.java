@@ -144,7 +144,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<LocalDate> getPersonDutyList() {
-        return FXCollections.observableArrayList(dutyList);
+        return FXCollections.unmodifiableObservableList(FXCollections.observableList(dutyList));
     }
 
     @Override
