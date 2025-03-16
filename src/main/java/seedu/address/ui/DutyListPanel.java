@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
+/**
+ * Panel containing the list of duty dates.
+ */
 public class DutyListPanel extends UiPart<Region> {
 
     private static final String FXML = "DutyListPanel.fxml";
@@ -14,6 +17,9 @@ public class DutyListPanel extends UiPart<Region> {
     @FXML
     private ListView<LocalDate> dutyListView;
 
+    /**
+     * Creates a {@code DutyListPanel} with the given {@code ObservableList}.
+     */
     public DutyListPanel(ObservableList<LocalDate> dutyList) {
         super(FXML);
         dutyListView.setItems(dutyList);
