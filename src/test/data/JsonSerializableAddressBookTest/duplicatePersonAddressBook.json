@@ -3,11 +3,13 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "address": "123, Jurong West Ave 6, #08-111",
-    "nric" : "Txxxx123A"
+    "nric" : "Txxxx123A",
+    "duty" : ["2025-01-01"]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "address": "4th street",
-    "nric" : "Txxxx123A"
+    "nric" : "Txxxx123A",
+    "duty" : ["2025-01-01"]
   } ]
 }

@@ -1,6 +1,10 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Duty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -13,7 +17,6 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NRIC = "Txxxx567A";
 
@@ -21,6 +24,7 @@ public class PersonBuilder {
     private Phone phone;
     private Address address;
     private Nric nric;
+    private Duty duty;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -30,6 +34,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         nric = new Nric(DEFAULT_NRIC);
+        duty = new Duty();
     }
 
     /**
@@ -40,6 +45,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         address = personToCopy.getAddress();
         nric = personToCopy.getNric();
+        duty = personToCopy.getDuty();
     }
 
     /**
@@ -74,8 +80,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Duty} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDuty(List<LocalDate> duty) {
+        this.duty = new Duty(duty);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, address, nric);
+        return new Person(name, phone, address, nric, duty);
     }
 
 }

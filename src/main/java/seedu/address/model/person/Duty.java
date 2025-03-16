@@ -15,7 +15,7 @@ public class Duty {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should not be blank and must follow ISO 8601 format: yyyy-MM-dd";
     public static final String DATE_PATTERN = "yyyy-MM-dd";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
     private final List<LocalDate> duty;
 
     /**
@@ -26,12 +26,20 @@ public class Duty {
     }
 
     /**
+     * Constructs a Duty object with a list of duty dates.
+     */
+    public Duty(List<LocalDate> duty) {
+        this.duty = duty;
+    }
+
+    /**
      * Checks if a given date string is valid according to the specified pattern.
      *
      * @param dateString The date string to validate.
      * @return True if the date string is valid, false otherwise.
      */
-    public static boolean isValidDutyDate(String dateString) {
+
+    public static boolean isValidDate(String dateString) {
         try {
             LocalDate.parse(dateString, FORMATTER);
             return true;
@@ -57,12 +65,13 @@ public class Duty {
         }
     }
 
-    public List<LocalDate> getDuty() {
+    public List<LocalDate> getDutyList() {
         return duty;
     }
 
     public int getDutyCount() {
         return (int) duty.stream()
+                .filter(date -> date.getYear() == LocalDate.now().getYear())
                 .filter(date -> date.getMonth() == LocalDate.now().getMonth())
                 .count();
     }
