@@ -54,7 +54,6 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 PersonCard personCard = new PersonCard(person, getIndex() + 1);
                 setGraphic(personCard.getRoot());
-                
                 setOnMouseClicked(event -> handlePersonCardClick(personCard));
             }
         }
