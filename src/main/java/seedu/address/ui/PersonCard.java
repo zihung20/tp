@@ -56,9 +56,9 @@ public class PersonCard extends UiPart<Region> {
         if (dutyCount < 6) {
             duty.setStyle("-fx-text-fill: #32CD32;");
         } else if (dutyCount <= 15) {
-            duty.setStyle("-fx-background-color: yellow;");
+            duty.setStyle("-fx-text-fill: yellow;");
         } else {
-            duty.setStyle("-fx-background-color: red;");
+            duty.setStyle("-fx-text-fill: red;");
         }
     }
 }

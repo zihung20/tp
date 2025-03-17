@@ -34,6 +34,13 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * Clears the selection in the person list.
+     */
+    public void clearSelection() {
+        personListView.getSelectionModel().clearSelection();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
@@ -47,7 +54,7 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 PersonCard personCard = new PersonCard(person, getIndex() + 1);
                 setGraphic(personCard.getRoot());
-
+                
                 setOnMouseClicked(event -> handlePersonCardClick(personCard));
             }
         }
