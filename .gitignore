@@ -25,3 +25,6 @@ docs/_markbind/logs/
 
 # Bin files
 /bin/
+
+# intellij code coverage report
+/Report/*

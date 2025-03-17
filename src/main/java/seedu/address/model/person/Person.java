@@ -49,6 +49,11 @@ public class Person {
         return nric;
     }
 
+    public void assignDuty(String duty) {
+        this.duty.assignDuty(duty);
+    }
+
+
     public Duty getDuty() {
         return duty;
     }
