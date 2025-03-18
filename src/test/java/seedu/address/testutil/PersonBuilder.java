@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.person.Address;
@@ -22,7 +24,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NRIC = "Txxxx567A";
-    public static final List<LocalDate> DEFAULT_DUTY = List.of(LocalDate.now());
+    public static final List<LocalDate> DEFAULT_DUTY =
+        new ArrayList<>(Arrays.asList(LocalDate.now()));
     public static final String DEFAULT_SALARY = "1000";
     public static final String DEFAULT_COMPANY = "Alpha";
     public static final String DEFAULT_RANK = "3SG";

@@ -15,7 +15,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,8 +41,8 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder()
-            .withDuty(List.of(LocalDate.of(2025, 1, 10),
-                LocalDate.of(2025, 3, 11)))
+            .withDuty(new ArrayList<LocalDate>(Arrays.asList(LocalDate.of(2025, 1, 10),
+                LocalDate.of(2025, 3, 11), LocalDate.of(2025, 3, 19))))
             .build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);

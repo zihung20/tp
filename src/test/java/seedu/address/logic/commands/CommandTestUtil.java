@@ -47,9 +47,9 @@ public class CommandTestUtil {
     public static final String VALID_RANK_AMY = "1SG";
     public static final String VALID_RANK_BOB = "PTE";
     public static final List<LocalDate> VALID_DUTY_AMY =
-            List.of(LocalDate.now());
+            new ArrayList<>(Arrays.asList(LocalDate.now()));
     public static final List<LocalDate> VALID_DUTY_BOB =
-            List.of(LocalDate.now().plusMonths(1));
+            new ArrayList<>(Arrays.asList(LocalDate.now().plusMonths(1)));
     public static final String VALID_DUTY_AMY_STRING =
             LocalDate.now().format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN));
     public static final String VALID_DUTY_BOB_STRING =

@@ -1,7 +1,8 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -21,8 +22,9 @@ import seedu.address.model.person.Salary;
 public class SampleDataUtil {
 
     public static final Duty EMPTY_DUTY = new Duty();
-    public static final Duty SAMPLE_DUTY = new Duty(List.of(LocalDate.parse("2025-03-01"),
-            LocalDate.parse("2024-03-02"), LocalDate.parse("2023-03-03")));
+    public static final Duty SAMPLE_DUTY =
+            new Duty(new ArrayList<LocalDate>(Arrays.asList(LocalDate.parse("2025-03-01"),
+            LocalDate.parse("2024-03-02"), LocalDate.parse("2023-03-03"))));
 
     public static Person[] getSamplePersons() {
         return new Person[] {
