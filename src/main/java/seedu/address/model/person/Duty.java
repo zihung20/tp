@@ -38,6 +38,7 @@ public class Duty {
      * @param dateString The date string to validate.
      * @return True if the date string is valid, false otherwise.
      */
+
     public static boolean isValidDate(String dateString) {
         try {
             LocalDate.parse(dateString, FORMATTER);
@@ -68,6 +69,11 @@ public class Duty {
         return duty;
     }
 
+    /**
+     * Gets the duty count for the current month.
+     *
+     * @return The duty count of the personnel for the current month.
+     */
     public int getDutyCount() {
         return (int) duty.stream()
                 .filter(date -> date.getYear() == LocalDate.now().getYear())

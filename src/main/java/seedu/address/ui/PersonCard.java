@@ -37,6 +37,12 @@ public class PersonCard extends UiPart<Region> {
     private Label nric;
     @FXML
     private Label duty;
+    @FXML
+    private Label salary;
+    @FXML
+    private Label company;
+    @FXML
+    private Label rank;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,5 +56,19 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         nric.setText(person.getNric().maskNric);
         duty.setText("Days: " + String.valueOf(person.getDuty().getDutyCount()));
+        salary.setText("Salary: " + person.getSalary().toString());
+        company.setText(person.getCompany().fullCompany);
+        rank.setText(person.getRank().fullRank);
+
+        int dutyCount = person.getDuty().getDutyCount();
+        duty.setText("Days: " + dutyCount);
+
+        if (dutyCount < 6) {
+            duty.setStyle("-fx-text-fill: #32CD32;");
+        } else if (dutyCount <= 15) {
+            duty.setStyle("-fx-text-fill: yellow;");
+        } else {
+            duty.setStyle("-fx-text-fill: red;");
+        }
     }
 }

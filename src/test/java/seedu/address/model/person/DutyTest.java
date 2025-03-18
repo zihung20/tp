@@ -68,6 +68,43 @@ public class DutyTest {
     }
 
     @Test
+    public void constructorWithValidDutyList() {
+        List<LocalDate> dutyList = List.of(
+                LocalDate.of(2025, 1, 1),
+                LocalDate.of(2025, 2, 2),
+                LocalDate.of(2025, 3, 3)
+        );
+        Duty duty = new Duty(dutyList);
+        assertEquals(dutyList, duty.getDutyList());
+    }
+
+    @Test
+    public void constructorWithEmptyDutyList() {
+        Duty duty = new Duty();
+        assertEquals(0, duty.getDutyList().size());
+    }
+
+    @Test void testToString() {
+        Duty duty1 = new Duty();
+        Duty duty2 = new Duty();
+        Duty duty3 = new Duty();
+        String date1 = LocalDate.now().format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN));
+        String date2 =
+                LocalDate.now().plusMonths(1).format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN));
+
+        duty1.assignDuty(date1);
+        duty1.assignDuty(date2);
+
+        duty2.assignDuty(date1);
+        duty2.assignDuty(date2);
+
+        duty3.assignDuty(date1);
+
+        assertTrue(duty1.toString().equals(duty2.toString()));
+        assertFalse(duty1.toString().equals(duty3.toString()));
+    }
+
+    @Test
     public void testEquals() {
         Duty duty1 = new Duty();
         Duty duty2 = new Duty();
@@ -91,22 +128,5 @@ public class DutyTest {
         assertFalse(duty1.equals(null));
 
         assertFalse(duty1.equals("String"));
-    }
-
-    @Test
-    public void constructorWithValidDutyList() {
-        List<LocalDate> dutyList = List.of(
-                LocalDate.of(2025, 1, 1),
-                LocalDate.of(2025, 2, 2),
-                LocalDate.of(2025, 3, 3)
-        );
-        Duty duty = new Duty(dutyList);
-        assertEquals(dutyList, duty.getDutyList());
-    }
-
-    @Test
-    public void constructorWithEmptyDutyList() {
-        Duty duty = new Duty();
-        assertEquals(0, duty.getDutyList().size());
     }
 }
