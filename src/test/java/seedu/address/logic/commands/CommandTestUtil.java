@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -35,6 +36,12 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "Sxxxx123B";
     public static final String VALID_DUTY_AMY = "2025-01-01";
     public static final String VALID_DUTY_BOB = "2025-01-02";
+    public static final String VALID_SALARY_AMY = "1500";
+    public static final String VALID_SALARY_BOB = "800";
+    public static final String VALID_COMPANY_AMY = "Alpha";
+    public static final String VALID_COMPANY_BOB = "Bravo";
+    public static final String VALID_RANK_AMY = "1SG";
+    public static final String VALID_RANK_BOB = "PTE";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -44,11 +51,20 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String NRIC_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
     public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
+    public static final String SALARY_DESC_AMY = " " + PREFIX_SALARY + VALID_SALARY_AMY;
+    public static final String SALARY_DESC_BOB = " " + PREFIX_SALARY + VALID_SALARY_BOB;
+    public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
+    public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
+    public static final String RANK_DESC_AMY = " " + PREFIX_RANK + VALID_RANK_AMY;
+    public static final String RANK_DESC_BOB = " " + PREFIX_RANK + VALID_RANK_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "Axxxx123A"; // 'A' not allowed in NRIC starting
+    public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "50"; // Salary must be at least 100 and at most 9999
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "0123"; // Company cannot have numbers
+    public static final String INVALID_RANK_DESC = " " + PREFIX_RANK + "ABCD"; // Rank can only have 3 letters
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

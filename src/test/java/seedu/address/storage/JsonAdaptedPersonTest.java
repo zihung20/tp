@@ -24,6 +24,9 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_NRIC = BENSON.getNric().toString();
     private static final JsonAdaptedDuty VALID_JSON_DUTY = new JsonAdaptedDuty(BENSON.getDuty());
+    private static final String VALID_SALARY = BENSON.getSalary().toString();
+    private static final String VALID_COMPANY = BENSON.getCompany().toString();
+    private static final String VALID_RANK = BENSON.getRank().toString();
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
