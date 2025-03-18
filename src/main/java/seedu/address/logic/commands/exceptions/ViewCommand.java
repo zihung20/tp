@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.exceptions;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -9,8 +11,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * View the assigned duties of an existing personnel in address book
