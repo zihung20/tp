@@ -57,7 +57,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "Axxxx123A"; // 'A' not allowed in NRIC starting
-    public static final String INVALID_DUTY_DESC = " " + PREFIX_DUTY + "26/11/2025";
+    public static final String INVALID_DUTY_DESC = " " + PREFIX_DUTY + "26/11/2025"; // valid format is yyyy-mm-dd
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
