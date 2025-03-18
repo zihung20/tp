@@ -60,7 +60,6 @@ public class Person {
         this.duty.assignDuty(duty);
     }
 
-
     public Duty getDuty() {
         return duty;
     }

@@ -1,10 +1,6 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.commons.core.index.Index;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import seedu.address.logic.commands.AssignCommand;
 import static seedu.address.logic.commands.CommandTestUtil.DUTY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DUTY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DUTY_DESC;
@@ -12,9 +8,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_AMY_STRING
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_BOB_STRING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import seedu.address.model.person.Duty;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AssignCommand;
+import seedu.address.model.person.Duty;
 
 public class AssignCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =

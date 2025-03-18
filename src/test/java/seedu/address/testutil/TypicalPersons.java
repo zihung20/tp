@@ -34,7 +34,7 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withPhone("94351253").withNric("Txxxx123A")
             .withDuty(List.of(LocalDate.of(2025, 1, 10),
-                LocalDate.of(2025,3,11)))
+                LocalDate.of(2025, 3, 11)))
             .withSalary("800").withCompany("Support").withRank("3SG")
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
