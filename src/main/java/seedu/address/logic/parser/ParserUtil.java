@@ -7,6 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
+import seedu.address.model.person.Duty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -136,5 +137,19 @@ public class ParserUtil {
             throw new ParseException(Rank.MESSAGE_CONSTRAINTS);
         }
         return new Rank(trimmedRank);
+    }
+
+    /**
+     * Leading and trailing whitespaces will be trimmed in {@code String duty}
+     *
+     * @throws ParseException if the given {@code duty} is invalid.
+     */
+    public static String parseDuty(String duty) throws ParseException {
+        requireNonNull(duty);
+        String trimmedDuty = duty.trim();
+        if (!Duty.isValidDate(trimmedDuty)) {
+            throw new ParseException(Duty.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDuty;
     }
 }

@@ -59,5 +59,16 @@ public class PersonCard extends UiPart<Region> {
         salary.setText("Salary: " + person.getSalary().toString());
         company.setText("Company: " + person.getCompany().fullCompany);
         rank.setText("Rank: " + person.getRank().fullRank);
+
+        int dutyCount = person.getDuty().getDutyCount();
+        duty.setText("Days: " + dutyCount);
+
+        if (dutyCount < 6) {
+            duty.setStyle("-fx-text-fill: #32CD32;");
+        } else if (dutyCount <= 15) {
+            duty.setStyle("-fx-text-fill: yellow;");
+        } else {
+            duty.setStyle("-fx-text-fill: red;");
+        }
     }
 }
