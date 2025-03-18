@@ -57,7 +57,7 @@ public class PersonCard extends UiPart<Region> {
         nric.setText(person.getNric().maskNric);
         duty.setText("Days: " + String.valueOf(person.getDuty().getDutyCount()));
         salary.setText("Salary: " + person.getSalary().toString());
-        company.setText(person.getCompany().fullCompany);
-        rank.setText(person.getRank().fullRank);
+        company.setText("Company: " + person.getCompany().fullCompany);
+        rank.setText("Rank: " + person.getRank().fullRank);
     }
 }
