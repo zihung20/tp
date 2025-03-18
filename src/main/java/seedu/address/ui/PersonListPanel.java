@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -16,6 +18,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private DutyListPanel dutyListPanel;
 
     @FXML
     private ListView<Person> personListView;
@@ -23,10 +26,18 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, DutyListPanel dutyListPanel) {
         super(FXML);
+        this.dutyListPanel = dutyListPanel;
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    /**
+     * Clears the selection in the person list.
+     */
+    public void clearSelection() {
+        personListView.getSelectionModel().clearSelection();
     }
 
     /**
@@ -41,8 +52,17 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                PersonCard personCard = new PersonCard(person, getIndex() + 1);
+                setGraphic(personCard.getRoot());
+                setOnMouseClicked(event -> handlePersonCardClick(personCard));
             }
+        }
+
+        private void handlePersonCardClick(PersonCard personCard) {
+            Person clickedPerson = personCard.person;
+            logger.info("Clicked on " + clickedPerson.getName().fullName);
+            ObservableList<LocalDate> dutyList = FXCollections.observableList(clickedPerson.getDuty().getDutyList());
+            dutyListPanel.updateDutyList(dutyList);
         }
     }
 

@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -37,9 +34,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label nric;
     @FXML
-    private FlowPane tags;
+    private Label duty;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,9 +48,17 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        nric.setText(person.getNric().maskNric);
+
+        int dutyCount = person.getDuty().getDutyCount();
+        duty.setText("Days: " + dutyCount);
+
+        if (dutyCount < 6) {
+            duty.setStyle("-fx-text-fill: #32CD32;");
+        } else if (dutyCount <= 15) {
+            duty.setStyle("-fx-text-fill: yellow;");
+        } else {
+            duty.setStyle("-fx-text-fill: red;");
+        }
     }
 }
