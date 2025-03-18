@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.Messages;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.AddCommand;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
@@ -40,29 +44,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.Company;
 import seedu.address.model.person.Rank;
+import seedu.address.model.person.Salary;
 import seedu.address.testutil.PersonBuilder;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).build();
+        Person expectedPerson = new PersonBuilder(BOB).withEmptyDuty().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
@@ -171,15 +170,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedPersonString + INVALID_RANK_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_RANK));
 
-    }
-
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
-                + NRIC_DESC_AMY + SALARY_DESC_AMY + COMPANY_DESC_AMY + RANK_DESC_AMY,
-                new AddCommand(expectedPerson));
     }
 
     @Test

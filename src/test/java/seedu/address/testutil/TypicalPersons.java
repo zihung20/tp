@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import java.time.LocalDate;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
@@ -19,6 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RANK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,44 +33,45 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withPhone("94351253").withNric("Txxxx123A")
-            .withDuty(List.of(LocalDate.of(2025, 1, 1)))
-            .withSalary("600").withCompany("Alpha").withRank("PTE")
+            .withDuty(List.of(LocalDate.of(2025, 1, 10),
+                LocalDate.of(2025,3,11)))
+            .withSalary("800").withCompany("Support").withRank("3SG")
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withPhone("98765432").withNric("Txxxx123B")
-            .withDuty(List.of(LocalDate.of(2025, 1, 2)))
-            .withSalary("700").withCompany("Bravo").withRank("REC")
+            .withDuty(List.of(LocalDate.of(2025, 3, 10)))
+            .withSalary("1500").withCompany("HQ").withRank("CPT")
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withAddress("wall street").withNric("Txxxx123C")
-            .withDuty(List.of(LocalDate.of(2025, 1, 3)))
-            .withSalary("800").withCompany("Charlie").withRank("CPL")
+            .withEmptyDuty()
+            .withSalary("1100").withCompany("Bravo").withRank("1SG")
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533")
             .withAddress("10th street").withNric("Txxxx123D")
-            .withDuty(List.of(LocalDate.of(2025, 1, 4)))
-            .withSalary("900").withCompany("HQ").withRank("MAJ")
+            .withDuty(List.of(LocalDate.of(2025, 3, 11)))
+            .withSalary("2000").withCompany("Alpha").withRank("LTA")
             .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224")
             .withAddress("michegan ave").withNric("Txxxx123E")
             .withDuty(List.of(LocalDate.of(2025, 1, 5)))
-            .withSalary("1000").withCompany("Support").withRank("CPT")
+            .withSalary("1300").withCompany("Charlie").withRank("COL")
             .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427")
             .withAddress("little tokyo").withNric("Txxxx123F")
-            .withDuty(List.of(LocalDate.of(2025, 1, 6)))
-            .withSalary("1100").withCompany("Alpha").withRank("2SG")
+            .withDuty(List.of(LocalDate.of(2025, 4, 3)))
+            .withSalary("1700").withCompany("Charlie").withRank("CWO")
             .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withPhone("9482442")
             .withAddress("4th street").withNric("Txxxx123G")
-            .withDuty(List.of(LocalDate.of(2025, 1, 7)))
-            .withSalary("1200").withCompany("Bravo").withRank("1SG")
+            .withDuty(List.of(LocalDate.of(2025, 2, 5)))
+            .withSalary("600").withCompany("Bravo").withRank("REC")
             .build();
 
     // Manually added

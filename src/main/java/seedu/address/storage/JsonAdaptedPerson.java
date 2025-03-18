@@ -107,7 +107,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Salary.class.getSimpleName()));
         }
         if (!Salary.isValidSalary(salary)) {
-            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
         final Salary modelSalary = new Salary(salary);
 

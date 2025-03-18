@@ -97,6 +97,15 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Duty} of the {@code Person} that we are building,
+     * with an empty duty list.
+     */
+    public PersonBuilder withEmptyDuty() {
+        this.duty = new Duty();
+        return this;
+    }
+
+    /**
      * Sets the {@code Duty} of the {@code Person} that we are building.
      */
     public PersonBuilder withDuty(List<LocalDate> duty) {

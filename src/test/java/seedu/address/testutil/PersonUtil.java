@@ -34,7 +34,6 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_NRIC + person.getNric().maskNric + " ");
-        sb.append(PREFIX_DUTY + person.getDuty().getDutyList().toString() + " ");
         sb.append(PREFIX_SALARY + person.getSalary().toString() + " ");
         sb.append(PREFIX_COMPANY + person.getCompany().fullCompany + " ");
         sb.append(PREFIX_RANK + person.getRank().fullRank + " ");
