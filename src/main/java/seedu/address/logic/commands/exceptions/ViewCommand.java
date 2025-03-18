@@ -23,7 +23,7 @@ public class ViewCommand extends Command {
                     + "Example: view 1",
             COMMAND_WORD);
     public static final String MESSAGE_VIEW_SUCCESS =
-            "Success! Personnel duty found!";
+            "Success! Personnel duty found! Their duty date(s) are located at the bottom right side!";
 
     private final Index index;
 
@@ -48,7 +48,7 @@ public class ViewCommand extends Command {
         Person personToView = lastShownList.get(index.getZeroBased());
         model.viewPerson(personToView);
 
-        return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, Messages.format(personToView)));
+        return new CommandResult(MESSAGE_VIEW_SUCCESS);
     }
 
     @Override
