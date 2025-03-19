@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AssignCommand;
 import seedu.address.model.person.Duty;
 
@@ -71,18 +72,16 @@ public class AssignCommandParserTest {
 
     @Test
     public void parse_multiple_duty() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DUTY_DESC_AMY + DUTY_DESC_BOB;
-        AssignCommand expectedCommand = new AssignCommand(targetIndex, VALID_DUTY_BOB);
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + DUTY_DESC_AMY + DUTY_DESC_BOB;
 
         //only record the last appearance of duty date
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput,
+                Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_DUTY));
 
-        Index secondTargetIndex = INDEX_SECOND_PERSON;
-        String secondUserInput = secondTargetIndex.getOneBased() + DUTY_DESC_BOB + DUTY_DESC_AMY;
-        AssignCommand secondExpectedCommand = new AssignCommand(secondTargetIndex, VALID_DUTY_AMY);
+        String secondUserInput = INDEX_SECOND_PERSON.getOneBased() + DUTY_DESC_BOB + DUTY_DESC_AMY;
 
         //only record the last appearance of duty date
-        assertParseSuccess(parser, secondUserInput, secondExpectedCommand);
+        assertParseFailure(parser, secondUserInput,
+                Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_DUTY));
     }
 }

@@ -28,6 +28,8 @@ public class AssignCommandParser implements Parser<AssignCommand> {
                     AssignCommand.MESSAGE_USAGE), ive);
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DUTY);
+
         if (argMultimap.getValue(PREFIX_DUTY).isPresent()) {
             String dutyDate = ParserUtil.parseDuty(argMultimap.getValue(PREFIX_DUTY).get());
             return new AssignCommand(index, dutyDate);
