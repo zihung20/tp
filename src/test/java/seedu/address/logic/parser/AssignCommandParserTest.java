@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DUTY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DUTY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DUTY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
