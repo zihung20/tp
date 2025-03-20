@@ -48,7 +48,7 @@ public class AssignCommandTest {
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        
+
         Person temp = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         temp.assignDuty(currentMonthDateString);
 
