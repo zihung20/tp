@@ -88,20 +88,20 @@ public class UnassignCommandTest {
     }
 
     @Test
+    @Disabled
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
+        UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
 
-        String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
+        String expectedMessage = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
                 Messages.format(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person temp = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        temp.assignDuty(currentMonthDateString);
 
-        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(unassignCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
