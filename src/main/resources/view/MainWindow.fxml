@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="600" onCloseRequest="#handleExit" title="HRQuickAccess" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="650" onCloseRequest="#handleExit" title="HRQuickAccess" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -39,21 +39,21 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="105" minHeight="105" prefHeight="105" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
         <HBox VBox.vgrow="ALWAYS">
-          <VBox fx:id="personList" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="personList" minWidth="340" HBox.hgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
 
-          <VBox fx:id="dutyList" minWidth="170" VBox.vgrow="ALWAYS">
+          <VBox fx:id="dutyList" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
