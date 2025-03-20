@@ -47,13 +47,13 @@ public class AssignCommandTest {
         Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
 
-        String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
-                Messages.format(personToAssign));
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
+        
         Person temp = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         temp.assignDuty(currentMonthDateString);
+
+        String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
+                Messages.format(personToAssign));
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
