@@ -137,6 +137,14 @@
     -fx-text-fill: #010504;
 }
 
+.fixed_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-min-width: 65;
+    -fx-max-height: 65;
+}
+
 .stack-pane {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: derive(#1d1d1d, 10%);
@@ -147,7 +155,7 @@
 .pane-with-border {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-opacity: 0.9;
-
+    -fx-border-color: black;
 }
 
 .status-bar {
@@ -343,8 +351,6 @@
 #resultDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
-    -fx-border-color: black;
-    -fx-border-width: 1px;
 }
 
 #dutyListView .list-cell {
@@ -352,4 +358,3 @@
     -fx-font-size: 14px;
     -fx-padding: 10px 10px 10px 10px;
 }
-
