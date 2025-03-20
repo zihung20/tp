@@ -3,13 +3,19 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "address": "123, Jurong West Ave 6, #08-111",
-    "nric" : "Txxxx123A",
-    "duty" : ["2025-01-01"]
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "address": "4th street",
-    "nric" : "Txxxx123A",
-    "duty" : ["2025-01-01"]
+    "address": "123, Jurong West Ave 6, #08-111",
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
   } ]
 }

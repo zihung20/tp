@@ -2,9 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -24,12 +27,18 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_NRIC + "MASKED NRIC \n"
+            + PREFIX_NRIC + "MASKED NRIC "
+            + PREFIX_SALARY + "SALARY "
+            + PREFIX_COMPANY + "COMPANY "
+            + PREFIX_RANK + "RANK \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_NRIC + "Sxxxx123A ";
+            + PREFIX_NRIC + "Sxxxx123A "
+            + PREFIX_SALARY + "1000 "
+            + PREFIX_COMPANY + "ALPHA "
+            + PREFIX_RANK + "3SG ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
