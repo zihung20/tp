@@ -70,6 +70,30 @@ public class DutyTest {
     }
 
     @Test
+    public void testUnassignDuty() {
+        LocalDate currentMonth = LocalDate.now();
+        LocalDate nextMonth = LocalDate.now().plusMonths(1);
+        String currentMonthString = currentMonth.format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN));
+        String nextMonthString = nextMonth.format(DateTimeFormatter.ofPattern(Duty.DATE_PATTERN));
+
+        List<LocalDate> dutyList = new ArrayList<>();
+        dutyList.add(currentMonth);
+        dutyList.add(nextMonth);
+
+        Duty duty = new Duty(dutyList);
+        //unassign one date
+        duty.unassignDuty(currentMonthString);
+        assertEquals(1, duty.getDutyList().size());
+
+        duty.unassignDuty(nextMonthString);
+        assertEquals(0, duty.getDutyList().size());
+
+        // Unassign non-existent date
+        assertFalse(duty.unassignDuty(currentMonthString));
+        assertFalse(duty.unassignDuty(nextMonthString));
+    }
+
+    @Test
     public void constructorWithValidDutyList() {
         List<LocalDate> dutyList = new ArrayList<>(Arrays.asList(
                 LocalDate.of(2025, 1, 1),

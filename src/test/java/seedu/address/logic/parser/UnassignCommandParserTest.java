@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_DUTY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_AMY_STRING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
@@ -14,13 +15,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AssignCommand;
+import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.model.person.Duty;
 
-public class AssignCommandParserTest {
+public class UnassignCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE);
-    private final AssignCommandParser parser = new AssignCommandParser();
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.MESSAGE_USAGE);
+    private final UnassignCommandParser parser = new UnassignCommandParser();
+
+    @Test
+    public void parse_null_failure() {
+        assertThrows(NullPointerException.class, () -> parser.parse(null));
+    }
 
     @Test
     public void parse_missingParts_failure() {
@@ -59,13 +65,13 @@ public class AssignCommandParserTest {
     public void parse_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + DUTY_DESC_AMY;
-        AssignCommand expectedCommand = new AssignCommand(targetIndex, VALID_DUTY_AMY_STRING);
+        UnassignCommand expectedCommand = new UnassignCommand(targetIndex, VALID_DUTY_AMY_STRING);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         Index secondTargetIndex = INDEX_SECOND_PERSON;
         String secondUserInput = secondTargetIndex.getOneBased() + DUTY_DESC_AMY;
-        AssignCommand secondExpectedCommand = new AssignCommand(secondTargetIndex, VALID_DUTY_AMY_STRING);
+        UnassignCommand secondExpectedCommand = new UnassignCommand(secondTargetIndex, VALID_DUTY_AMY_STRING);
         assertParseSuccess(parser, secondUserInput, secondExpectedCommand);
     }
 
