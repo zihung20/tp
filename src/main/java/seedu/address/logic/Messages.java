@@ -42,7 +42,15 @@ public class Messages {
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Mask NRIC: ")
-                .append(person.getNric());
+                .append(person.getNric())
+                .append("; Duty: ")
+                .append(person.getDuty())
+                .append("; Salary: ")
+                .append(person.getSalary())
+                .append("; Company: ")
+                .append(person.getCompany())
+                .append("; Rank: ")
+                .append(person.getRank());
         return builder.toString();
     }
 

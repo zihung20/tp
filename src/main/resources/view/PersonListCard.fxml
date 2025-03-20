@@ -31,6 +31,9 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
       <Label fx:id="duty" styleClass="cell_small_label" text="\$duty" />
+      <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
+      <Label fx:id="company" styleClass="cell_small_label" text="\$company" />
+      <Label fx:id="rank" styleClass="cell_small_label" text="\$rank" />
     </VBox>
   </GridPane>
 </HBox>
