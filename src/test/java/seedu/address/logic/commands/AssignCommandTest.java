@@ -51,7 +51,8 @@ public class AssignCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        Person assignedPerson = new PersonBuilder(personToAssign).withDuty(List.of(LocalDate.parse(currentMonthDateString))).build();
+        Person assignedPerson =
+                new PersonBuilder(personToAssign).withDuty(List.of(LocalDate.parse(currentMonthDateString))).build();
 
         String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
                 Messages.format(assignedPerson));
@@ -78,7 +79,8 @@ public class AssignCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        Person assignedPerson = new PersonBuilder(personToAssign).withDuty(List.of(LocalDate.parse(currentMonthDateString))).build();
+        Person assignedPerson =
+                new PersonBuilder(personToAssign).withDuty(List.of(LocalDate.parse(currentMonthDateString))).build();
 
         String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
                 Messages.format(assignedPerson));
