@@ -32,8 +32,8 @@ public class UnassignCommand extends Command {
     private final String dutyDate;
 
     /**
-     * @param index the index of the personnel to assign duty
-     * @param dutyDate the string representation of the duty dates to delete
+     * @param index the index of the personnel to unassign duty from
+     * @param dutyDate the string representation of the duty date to unassign
      */
     public UnassignCommand(Index index, String dutyDate) {
         requireAllNonNull(index, dutyDate);
@@ -41,6 +41,7 @@ public class UnassignCommand extends Command {
         this.index = index;
         this.dutyDate = dutyDate;
     }
+
 
 
     @Override
