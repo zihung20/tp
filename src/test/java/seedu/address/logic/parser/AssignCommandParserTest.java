@@ -5,6 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DUTY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DUTY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DUTY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_AMY_STRING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DUTY_BOB_STRING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -59,25 +61,37 @@ public class AssignCommandParserTest {
     public void parse_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + DUTY_DESC_AMY;
-        AssignCommand expectedCommand = new AssignCommand(targetIndex, VALID_DUTY_AMY);
+        AssignCommand expectedCommand = new AssignCommand(targetIndex, VALID_DUTY_AMY_STRING);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         Index secondTargetIndex = INDEX_SECOND_PERSON;
         String secondUserInput = secondTargetIndex.getOneBased() + DUTY_DESC_AMY;
-        AssignCommand secondExpectedCommand = new AssignCommand(secondTargetIndex, VALID_DUTY_AMY);
+        AssignCommand secondExpectedCommand = new AssignCommand(secondTargetIndex, VALID_DUTY_AMY_STRING);
         assertParseSuccess(parser, secondUserInput, secondExpectedCommand);
     }
 
     @Test
     public void parse_multiple_duty() {
+<<<<<<< HEAD
         String userInput = INDEX_FIRST_PERSON.getOneBased() + DUTY_DESC_AMY + DUTY_DESC_BOB;
+=======
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + DUTY_DESC_AMY + DUTY_DESC_BOB;
+        AssignCommand expectedCommand = new AssignCommand(targetIndex, VALID_DUTY_BOB_STRING);
+>>>>>>> master
 
         //only record the last appearance of duty date
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_DUTY));
 
+<<<<<<< HEAD
         String secondUserInput = INDEX_SECOND_PERSON.getOneBased() + DUTY_DESC_BOB + DUTY_DESC_AMY;
+=======
+        Index secondTargetIndex = INDEX_SECOND_PERSON;
+        String secondUserInput = secondTargetIndex.getOneBased() + DUTY_DESC_BOB + DUTY_DESC_AMY;
+        AssignCommand secondExpectedCommand = new AssignCommand(secondTargetIndex, VALID_DUTY_AMY_STRING);
+>>>>>>> master
 
         //only record the last appearance of duty date
         assertParseFailure(parser, secondUserInput,
