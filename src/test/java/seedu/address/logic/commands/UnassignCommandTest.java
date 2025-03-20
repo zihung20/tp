@@ -95,24 +95,20 @@ public class UnassignCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToUnassign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        personToUnassign.assignDuty(currentMonthDateString);
 
-        UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
+        UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, nextMonthDateString);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         List<LocalDate> dutyList = new ArrayList<>();
         dutyList.addAll(personToUnassign.getDuty().getDutyList());
-        dutyList.remove(LocalDate.parse(currentMonthDateString));
+        dutyList.remove(LocalDate.parse(nextMonthDateString));
         Person unassignedPerson = new PersonBuilder(personToUnassign).withDuty(dutyList).build();
 
         String expectedMessage = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
                 Messages.format(unassignedPerson));
 
         expectedModel.setPerson(personToUnassign, unassignedPerson);
-
-        System.out.println(personToUnassign);
-        System.out.println(unassignedPerson);
 
         assertCommandSuccess(unassignCommand, model, expectedMessage, expectedModel);
     }
