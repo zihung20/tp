@@ -61,9 +61,6 @@ public class AssignCommandParserTest {
         String userInput = targetIndex.getOneBased() + DUTY_DESC_AMY;
         AssignCommand expectedCommand = new AssignCommand(targetIndex, VALID_DUTY_AMY_STRING);
 
-        System.out.println(userInput);
-        System.out.println(expectedCommand);
-
         assertParseSuccess(parser, userInput, expectedCommand);
 
         Index secondTargetIndex = INDEX_SECOND_PERSON;

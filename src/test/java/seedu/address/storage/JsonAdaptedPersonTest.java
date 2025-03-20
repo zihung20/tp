@@ -114,7 +114,6 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidSalary_throwsIllegalValueException() {
-        System.out.println(VALID_NRIC);
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_NRIC, VALID_JSON_DUTY,
                 INVALID_SALARY, VALID_COMPANY, VALID_RANK);
