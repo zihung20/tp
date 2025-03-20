@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "NRIC should start with S or T, followed by xxx, 3 digit number and ends with an alphabet"
+            "NRIC should start with S or T, followed by xxxx, 3 digit number and ends with an alphabet"
                     + " and it should not be blank";
 
     /*
