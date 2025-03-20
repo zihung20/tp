@@ -65,6 +65,23 @@ public class Duty {
         }
     }
 
+    /**
+     * Removes a duty from the duty list using its string representation, returning true if successfully removed.
+     *
+     * @param dateString the dateString to be removed
+     * @return true if successfully removed, false otherwise
+     * @throws IllegalArgumentException if the dateString is not in the correct format
+     */
+    public boolean unassignDuty(String dateString) {
+        if (!isValidDate(dateString)) {
+            //should not reach here as parse handle
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+
+        LocalDate date = LocalDate.parse(dateString, FORMATTER);
+        return duty.remove(date);
+    }
+
     public List<LocalDate> getDutyList() {
         return duty;
     }

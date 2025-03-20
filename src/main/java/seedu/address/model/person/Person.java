@@ -53,6 +53,9 @@ public class Person {
         this.duty.assignDuty(duty);
     }
 
+    public boolean unassignDuty(String duty) {
+        return this.duty.unassignDuty(duty);
+    }
 
     public Duty getDuty() {
         return duty;
