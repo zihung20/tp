@@ -10,8 +10,8 @@
   * Find entry: Used to find a personnel from the application contact list based on their name.
   * View entry: Used to view a personnel’s duty entries.
   * Assign Duty: Used to assign a personnel’s duty in the application contact list
-  * Unassign duty; Used to unassign a personnel’s duty in the application contact list
-  
+  * Unassign duty: Used to unassign a personnel’s duty in the application contact list
+
 * The project is used for quick, efficient access to troop details for streamlined communication and duty scheduling.
   * It is **written in OOP fashion**.
   * It contains **user and developer documentation**.
