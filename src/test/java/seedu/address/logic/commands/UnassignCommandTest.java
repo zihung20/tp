@@ -32,10 +32,13 @@ public class UnassignCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final LocalDate currentMonthDate = LocalDate.now();
     private final LocalDate nextMonthDate = LocalDate.now().plusMonths(1);
+    private final LocalDate nextTwoMonthDate = LocalDate.now().plusMonths(2);
     private final String currentMonthDateString =
             currentMonthDate.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
     private final String nextMonthDateString =
             nextMonthDate.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
+    private final String nextTwoMonthDateString =
+            nextTwoMonthDate.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
 
 
     @Test
@@ -66,7 +69,43 @@ public class UnassignCommandTest {
 
         expectedModel.setPerson(personToUnassign, unassignedPerson);
 
+        System.out.println(personToUnassign);
+        System.out.println(unassignedPerson);
+
         assertCommandSuccess(unassignCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validMultipleIndexUnfilteredList_success() {
+        // This is to undo execute_validMultipleIndexUnfilteredList_success() in assignCommandTest
+        // This is to ensure jsonSerializableAddressBookTest will not fail
+        Person personToUnassignFirst = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToAssignSecond = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+
+        UnassignCommand unassignCommandFirst = new UnassignCommand(INDEX_FIRST_PERSON, nextTwoMonthDateString);
+        UnassignCommand unassignCommandSecond = new UnassignCommand(INDEX_SECOND_PERSON, nextTwoMonthDateString);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        List<LocalDate> dutyListFirst = new ArrayList<>();
+        List<LocalDate> dutyListSecond = new ArrayList<>();
+        dutyListFirst.addAll(personToUnassignFirst.getDuty().getDutyList());
+        dutyListSecond.addAll(personToAssignSecond.getDuty().getDutyList());
+        dutyListFirst.remove(nextTwoMonthDate);
+        dutyListSecond.remove(nextTwoMonthDate);
+        Person unassignedPersonFirst= new PersonBuilder(personToUnassignFirst).withDuty(dutyListFirst).build();
+        Person unassignedPersonSecond = new PersonBuilder(personToAssignSecond).withDuty(dutyListSecond).build();
+
+        String expectedMessageFirst = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
+                Messages.format(unassignedPersonFirst));
+        String expectedMessageSecond = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
+                Messages.format(unassignedPersonSecond));
+
+        expectedModel.setPerson(personToUnassignFirst, unassignedPersonFirst);
+        assertCommandSuccess(unassignCommandFirst, model, expectedMessageFirst, expectedModel);
+
+        expectedModel.setPerson(personToAssignSecond, unassignedPersonSecond);
+        assertCommandSuccess(unassignCommandSecond, model, expectedMessageSecond, expectedModel);
     }
 
     @Test

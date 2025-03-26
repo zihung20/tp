@@ -93,7 +93,7 @@ public class AddressBookParserTest {
         AssignCommand command = (AssignCommand) parser.parseCommand(
                 AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                         + CliSyntax.PREFIX_DUTY + validDate);
-        assertEquals(new AssignCommand(INDEX_FIRST_PERSON, validDate), command);
+        assertEquals(new AssignCommand(List.of(INDEX_FIRST_PERSON), validDate), command);
     }
 
     @Test public void parseCommand_unassign() throws Exception {
