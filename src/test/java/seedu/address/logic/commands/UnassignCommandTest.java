@@ -14,8 +14,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -24,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class UnassignCommandTest {
 
@@ -47,21 +49,22 @@ public class UnassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_validIndexUnfilteredList_success() {
         Person personToUnassign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        //access internal data to add duty
-        personToUnassign.getDuty().getDutyList().add(currentMonthDate);
 
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
 
-        String expectedMessage = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
-                Messages.format(personToUnassign));
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        Person temp = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        temp.unassignDuty(currentMonthDateString);
+        List<LocalDate> dutyList = new ArrayList<>();
+        dutyList.addAll(personToUnassign.getDuty().getDutyList());
+        dutyList.remove(LocalDate.parse(currentMonthDateString));
+        Person unassignedPerson = new PersonBuilder(personToUnassign).withDuty(dutyList).build();
+
+        String expectedMessage = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
+                Messages.format(unassignedPerson));
+
+        expectedModel.setPerson(personToUnassign, unassignedPerson);
 
         assertCommandSuccess(unassignCommand, model, expectedMessage, expectedModel);
     }
@@ -88,18 +91,24 @@ public class UnassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
+        Person personToUnassign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, nextMonthDateString);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        List<LocalDate> dutyList = new ArrayList<>();
+        dutyList.addAll(personToUnassign.getDuty().getDutyList());
+        dutyList.remove(LocalDate.parse(nextMonthDateString));
+        Person unassignedPerson = new PersonBuilder(personToUnassign).withDuty(dutyList).build();
 
         String expectedMessage = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
-                Messages.format(personToDelete));
+                Messages.format(unassignedPerson));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        Person temp = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        expectedModel.setPerson(personToUnassign, unassignedPerson);
 
         assertCommandSuccess(unassignCommand, model, expectedMessage, expectedModel);
     }
