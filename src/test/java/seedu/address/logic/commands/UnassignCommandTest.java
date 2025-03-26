@@ -93,7 +93,7 @@ public class UnassignCommandTest {
         dutyListSecond.addAll(personToAssignSecond.getDuty().getDutyList());
         dutyListFirst.remove(nextTwoMonthDate);
         dutyListSecond.remove(nextTwoMonthDate);
-        Person unassignedPersonFirst= new PersonBuilder(personToUnassignFirst).withDuty(dutyListFirst).build();
+        Person unassignedPersonFirst = new PersonBuilder(personToUnassignFirst).withDuty(dutyListFirst).build();
         Person unassignedPersonSecond = new PersonBuilder(personToAssignSecond).withDuty(dutyListSecond).build();
 
         String expectedMessageFirst = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
