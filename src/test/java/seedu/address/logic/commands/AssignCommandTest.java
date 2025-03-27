@@ -34,6 +34,8 @@ public class AssignCommandTest {
             LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_PATTERN));
     private final String nextMonthDateString =
             LocalDate.now().plusMonths(1).format(DateTimeFormatter.ofPattern(DATE_PATTERN));
+    private final String nextTwoMonthDateString =
+            LocalDate.now().plusMonths(2).format(DateTimeFormatter.ofPattern(DATE_PATTERN));
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -42,13 +44,15 @@ public class AssignCommandTest {
         assertThrows(NullPointerException.class, () ->
                 new AssignCommand(null, "duty date"));
         assertThrows(NullPointerException.class, () ->
-                new AssignCommand(Index.fromOneBased(1), null));
+                new AssignCommand(List.of(Index.fromOneBased(1)), null));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
+
+        List<Index> indexList = List.of(INDEX_FIRST_PERSON);
+        AssignCommand assignCommand = new AssignCommand(indexList, currentMonthDateString);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -66,9 +70,38 @@ public class AssignCommandTest {
     }
 
     @Test
+    public void execute_validMultipleIndexUnfilteredList_success() {
+        Person personToAssignFirst = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToAssignSecond = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+
+        List<Index> indexList = List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        AssignCommand assignCommand = new AssignCommand(indexList, nextTwoMonthDateString);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        List<LocalDate> dutyListFirst = new ArrayList<>();
+        List<LocalDate> dutyListSecond = new ArrayList<>();
+        dutyListFirst.addAll(personToAssignFirst.getDuty().getDutyList());
+        dutyListSecond.addAll(personToAssignSecond.getDuty().getDutyList());
+        dutyListFirst.add(LocalDate.parse(nextTwoMonthDateString));
+        dutyListSecond.add(LocalDate.parse(nextTwoMonthDateString));
+        Person assignedPersonFirst = new PersonBuilder(personToAssignFirst).withDuty(dutyListFirst).build();
+        Person assignedPersonSecond = new PersonBuilder(personToAssignSecond).withDuty(dutyListSecond).build();
+
+        String expectedMessage = String.format(AssignCommand.MESSAGE_MASS_ASSIGN_DUTY_SUCCESS,
+                indexList.size());
+
+        expectedModel.setPerson(personToAssignFirst, assignedPersonFirst);
+        expectedModel.setPerson(personToAssignSecond, assignedPersonSecond);
+
+        assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, currentMonthDateString);
+        List<Index> indexList = List.of(outOfBoundIndex);
+        AssignCommand assignCommand = new AssignCommand(indexList, currentMonthDateString);
 
         assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -78,7 +111,9 @@ public class AssignCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, nextMonthDateString);
+
+        List<Index> indexList = List.of(INDEX_FIRST_PERSON);
+        AssignCommand assignCommand = new AssignCommand(indexList, nextMonthDateString);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -103,21 +138,22 @@ public class AssignCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, currentMonthDateString);
+        List<Index> indexList = List.of(outOfBoundIndex);
+        AssignCommand assignCommand = new AssignCommand(indexList, currentMonthDateString);
 
         assertCommandFailure(assignCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        AssignCommand assignFirstCommand = new AssignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
-        AssignCommand assignSecondCommand = new AssignCommand(INDEX_SECOND_PERSON, currentMonthDateString);
-        AssignCommand assignDifferentDateCommand = new AssignCommand(INDEX_FIRST_PERSON, nextMonthDateString);
+        AssignCommand assignFirstCommand = new AssignCommand(List.of(INDEX_FIRST_PERSON), currentMonthDateString);
+        AssignCommand assignSecondCommand = new AssignCommand(List.of(INDEX_SECOND_PERSON), currentMonthDateString);
+        AssignCommand assignDifferentDateCommand = new AssignCommand(List.of(INDEX_FIRST_PERSON), nextMonthDateString);
         // same object -> returns true
         assertTrue(assignFirstCommand.equals(assignFirstCommand));
 
         // same values -> returns true
-        AssignCommand assignFirstCommandCopy = new AssignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
+        AssignCommand assignFirstCommandCopy = new AssignCommand(List.of(INDEX_FIRST_PERSON), currentMonthDateString);
         assertTrue(assignFirstCommand.equals(assignFirstCommandCopy));
 
         //different date -> returns false;
@@ -137,9 +173,10 @@ public class AssignCommandTest {
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
-        AssignCommand assignCommand = new AssignCommand(targetIndex, currentMonthDateString);
+        List<Index> indexList = List.of(targetIndex);
+        AssignCommand assignCommand = new AssignCommand(indexList, currentMonthDateString);
         String expected = AssignCommand.class.getCanonicalName()
-                + "{targetIndex=" + targetIndex
+                + "{targetIndex=" + indexList
                 + ", dutyDate=" + currentMonthDateString + "}";
 
         assertEquals(expected, assignCommand.toString());

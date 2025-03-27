@@ -17,26 +17,27 @@ import seedu.address.model.person.Person;
  */
 public class AssignCommand extends Command {
     public static final String COMMAND_WORD = "assign";
-    public static final String MESSAGE_USAGE = String.format(
-            "%s: Assign a duty date to personnel by specifying the identity of the personnel. "
+    public static final String MESSAGE_USAGE = String.format("%s: Assign a duty date to personnel(s) identified "
+                    + "by the index number used in the displayed person list. "
                     + "Duplicate dates will be considered the same.\n"
-                    + "Parameters: INDEX, %sDUTY_DATE\n"
-                    + "Example: assign 1 d/2025-04-15",
+                    + "Parameters: INDEX(S), %sDUTY_DATE\n"
+                    + "Example: assign 1 d/2025-04-15\n"
+                    + "Example: assign 1 2 3 d/2025-04-15",
             COMMAND_WORD, CliSyntax.PREFIX_DUTY);
-    public static final String MESSAGE_ASSIGN_DUTY_SUCCESS =
-            "Success! Duty assigned to person %1$s!";
+    public static final String MESSAGE_ASSIGN_DUTY_SUCCESS = "Success! Duty assigned to person %1$s!";
+    public static final String MESSAGE_MASS_ASSIGN_DUTY_SUCCESS = "Success! Duty assigned to %1$s persons!";
 
-    private final Index index;
+    private final List<Index> indexList;
     private final String dutyDate;
 
     /**
      * @param index The index of the personnel to assign duty
      * @param dutyDate The string representation of the duty dates
      */
-    public AssignCommand(Index index, String dutyDate) {
-        requireAllNonNull(index, dutyDate);
+    public AssignCommand(List<Index> indexList, String dutyDate) {
+        requireAllNonNull(indexList, dutyDate);
 
-        this.index = index;
+        this.indexList = indexList;
         this.dutyDate = dutyDate;
     }
 
@@ -45,14 +46,29 @@ public class AssignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Index index : indexList) {
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
         }
 
-        Person personToAssign = lastShownList.get(index.getZeroBased());
-        personToAssign.assignDuty(dutyDate);
+        for (Index index : indexList) {
+            lastShownList = model.getFilteredPersonList();
+            Person personToAssign = lastShownList.get(index.getZeroBased());
+            personToAssign.assignDuty(dutyDate);
+        }
+
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
+        if (indexList.size() > 1) {
+            long size = indexList.stream()
+                    .map(Index::getOneBased)
+                    .distinct()
+                    .count();
+            return new CommandResult(String.format(MESSAGE_MASS_ASSIGN_DUTY_SUCCESS, size));
+        }
+
+        Person personToAssign = lastShownList.get(indexList.get(0).getZeroBased());
         return new CommandResult(String.format(MESSAGE_ASSIGN_DUTY_SUCCESS, Messages.format(personToAssign)));
     }
 
@@ -66,14 +82,14 @@ public class AssignCommand extends Command {
         if (!(other instanceof AssignCommand temp)) {
             return false;
         } else {
-            return index.equals(temp.index) && dutyDate.equals(temp.dutyDate);
+            return indexList.equals(temp.indexList) && dutyDate.equals(temp.dutyDate);
         }
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetIndex", index)
+                .add("targetIndex", indexList.toString())
                 .add("dutyDate", dutyDate)
                 .toString();
     }
