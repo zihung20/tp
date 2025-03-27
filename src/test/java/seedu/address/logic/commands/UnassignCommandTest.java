@@ -68,10 +68,7 @@ public class UnassignCommandTest {
                 Messages.format(unassignedPerson));
 
         expectedModel.setPerson(personToUnassign, unassignedPerson);
-
-        System.out.println(personToUnassign);
-        System.out.println(unassignedPerson);
-
+        
         assertCommandSuccess(unassignCommand, model, expectedMessage, expectedModel);
     }
 
