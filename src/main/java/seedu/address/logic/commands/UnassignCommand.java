@@ -26,7 +26,7 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_UNASSIGN_DUTY_SUCCESS =
             "Success! Deleted personnel's duty %1$s!";
     public static final String MESSAGE_UNASSIGN_DUTY_FAILED =
-            "Failed! The personnel's duty cannot found! %1$s";
+            "Failed! The personnel's duty cannot be found! %1$s";
 
     private final Index index;
     private final String dutyDate;
