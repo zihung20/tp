@@ -95,3 +95,4 @@ public interface Model {
     /** Returns an unmodifiable view of the selected person duty list */
     ObservableList<LocalDate> getPersonDutyList();
 }
+
