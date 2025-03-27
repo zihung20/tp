@@ -30,8 +30,8 @@ public class AssignCommand extends Command {
     private final String dutyDate;
 
     /**
-     * @param index the index of the personnel to assign duty
-     * @param dutyDate the string representation of the duty dates
+     * @param index The index of the personnel to assign duty
+     * @param dutyDate The string representation of the duty dates
      */
     public AssignCommand(Index index, String dutyDate) {
         requireAllNonNull(index, dutyDate);

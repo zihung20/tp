@@ -11,6 +11,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_SALARY = new Prefix("s/");
     public static final Prefix PREFIX_DUTY = new Prefix("d/");
+    public static final Prefix PREFIX_NEW_DUTY = new Prefix("/nd");
     public static final Prefix PREFIX_NRIC = new Prefix("nr/");
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
     public static final Prefix PREFIX_RANK = new Prefix("r/");
