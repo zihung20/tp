@@ -1,20 +1,20 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DUTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_DUTY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.address.logic.commands.ReassignCommand;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DUTY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_DUTY;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new ReassignCommand object
  */
 public class ReassignCommandParser implements Parser<ReassignCommand> {
-    
+
     @Override
     public ReassignCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);

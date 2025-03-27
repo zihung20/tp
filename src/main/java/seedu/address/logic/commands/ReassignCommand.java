@@ -18,13 +18,12 @@ import seedu.address.model.person.Person;
 public class ReassignCommand extends Command {
     public static final String COMMAND_WORD = "reassign";
     public static final String MESSAGE_USAGE = String.format(
-        "%s: Reassign a duty date to personnel by specifying the identity of the personnel. "
-                    + "Duplicate dates will be considered the same.\n"
+        "%s: Reassign a duty date to personnel by specifying the identity of the personnel. \n"
                     + "Old duty date shouldn't be the same as new duty date.\n"
                     + "Parameters: INDEX, %sDUTY_DATE_TO_BE_CHANGED, %sNEW_DUTY_DATE\n"
                     + "Example: reassign 1 d/2025-04-15 nd/2025-04-26",
             COMMAND_WORD, CliSyntax.PREFIX_DUTY, CliSyntax.PREFIX_NEW_DUTY);
-    public static final String MESSAGE_REASSIGN_DUTY_SUCCESS = 
+    public static final String MESSAGE_REASSIGN_DUTY_SUCCESS =
         "Success! Duty reassigned to person %1$s!";
     public static final String MESSAGE_REASSIGN_DUTY_FAILED_DUTY_NOT_FOUND =
         "Failed! The personnel's old duty cannot be found! %1$s";
@@ -59,7 +58,8 @@ public class ReassignCommand extends Command {
         Person personToReassign = lastShownList.get(index.getZeroBased());
 
         if (oldDutyDate.equals(newDutyDate)) {
-            throw new CommandException(String.format(MESSAGE_REASSIGN_DUTY_FAILED_SAME_DATE, Messages.format(personToReassign)));
+            throw new CommandException(String.format(MESSAGE_REASSIGN_DUTY_FAILED_SAME_DATE,
+                Messages.format(personToReassign)));
         }
 
         if (personToReassign.unassignDuty(oldDutyDate)) {
