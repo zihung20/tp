@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class AssignCommandTest {
 
@@ -49,11 +52,15 @@ public class AssignCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        Person temp = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        temp.assignDuty(currentMonthDateString);
+        List<LocalDate> dutyList = new ArrayList<>();
+        dutyList.addAll(personToAssign.getDuty().getDutyList());
+        dutyList.add(LocalDate.parse(currentMonthDateString));
+        Person assignedPerson = new PersonBuilder(personToAssign).withDuty(dutyList).build();
 
         String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
-                Messages.format(personToAssign));
+                Messages.format(assignedPerson));
+
+        expectedModel.setPerson(personToAssign, assignedPerson);
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
@@ -70,15 +77,20 @@ public class AssignCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, currentMonthDateString);
-
-        String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
-                Messages.format(personToDelete));
+        Person personToAssign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, nextMonthDateString);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        Person temp = expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        temp.assignDuty(currentMonthDateString);
+
+        List<LocalDate> dutyList = new ArrayList<>();
+        dutyList.addAll(personToAssign.getDuty().getDutyList());
+        dutyList.add(LocalDate.parse(nextMonthDateString));
+        Person assignedPerson = new PersonBuilder(personToAssign).withDuty(dutyList).build();
+
+        String expectedMessage = String.format(AssignCommand.MESSAGE_ASSIGN_DUTY_SUCCESS,
+                Messages.format(assignedPerson));
+
+        expectedModel.setPerson(personToAssign, assignedPerson);
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
