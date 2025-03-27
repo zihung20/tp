@@ -52,7 +52,7 @@ public class NameContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
-        
+
         //partial matching
         predicate = new NameContainsKeywordsPredicate(List.of("Ali"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
