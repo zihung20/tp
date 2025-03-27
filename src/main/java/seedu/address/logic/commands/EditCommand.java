@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
-            + "[" + PREFIX_RANK + "RANK] "
+            + "[" + PREFIX_RANK + "RANK] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Jane Doe "
             + PREFIX_PHONE + "91234567";

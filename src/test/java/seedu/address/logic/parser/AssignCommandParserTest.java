@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -43,10 +45,16 @@ public class AssignCommandParserTest {
         assertParseFailure(parser, "0" + DUTY_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string" + DUTY_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string" + DUTY_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // invalid indexes
+        assertParseFailure(parser, "1 0" + DUTY_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // commas in indexes
+        assertParseFailure(parser, "1, 2" + DUTY_DESC_AMY, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -57,15 +65,15 @@ public class AssignCommandParserTest {
 
     @Test
     public void parse_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DUTY_DESC_AMY;
-        AssignCommand expectedCommand = new AssignCommand(targetIndex, VALID_DUTY_AMY_STRING);
+        List<Index> targetIndexList = List.of(INDEX_FIRST_PERSON);
+        String userInput = INDEX_FIRST_PERSON.getOneBased() + DUTY_DESC_AMY;
+        AssignCommand expectedCommand = new AssignCommand(targetIndexList, VALID_DUTY_AMY_STRING);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        Index secondTargetIndex = INDEX_SECOND_PERSON;
-        String secondUserInput = secondTargetIndex.getOneBased() + DUTY_DESC_AMY;
-        AssignCommand secondExpectedCommand = new AssignCommand(secondTargetIndex, VALID_DUTY_AMY_STRING);
+        targetIndexList = List.of(INDEX_SECOND_PERSON);
+        String secondUserInput = INDEX_SECOND_PERSON.getOneBased() + DUTY_DESC_AMY;
+        AssignCommand secondExpectedCommand = new AssignCommand(targetIndexList, VALID_DUTY_AMY_STRING);
         assertParseSuccess(parser, secondUserInput, secondExpectedCommand);
     }
 

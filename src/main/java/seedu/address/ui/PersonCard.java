@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -93,9 +94,27 @@ public class PersonCard extends UiPart<Region> {
      * @param fileName the file name of the image, e.g., "Txxxx123A"
      */
     private void setImage(String fileName) {
+        Path dataDir = Paths.get("data");
+        Path imagesDir = dataDir.resolve("images");
+
+        try {
+            if (!Files.exists(dataDir)) {
+                Files.createDirectories(dataDir);
+                logger.info("Created directory: data");
+            }
+
+            if (!Files.exists(imagesDir)) {
+                Files.createDirectories(imagesDir);
+                logger.info("Created directory: images");
+            }
+        } catch (IOException e) {
+            logger.severe("An error occurred while creating directories: " + e);
+            return;
+        }
+
         for (String format : AVAILABLE_IMAGE_FORMATS) {
             try {
-                Path imagePath = Paths.get("data", "images", fileName + "." + format);
+                Path imagePath = imagesDir.resolve(fileName + "." + format);
                 if (Files.exists(imagePath)) {
                     Image image = new Image(imagePath.toUri().toString());
                     personnelImage.setImage(image);
