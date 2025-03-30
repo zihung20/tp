@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+hide footbox
+skinparam sequenceReferenceBackgroundColor #f7807c
+
+actor User
+
+participant ":User" as User #EE82EE
+participant ":UI" as Ui UI_COLOR
+participant ":ReassignCommand" as ReassignCommand LOGIC_COLOR
+participant ":Person" as Person MODEL_COLOR
+
+User -> Ui : "reassign..."
+activate Ui UI_COLOR
+
+Ui -> ReassignCommand : execute("reassign...")
+activate ReassignCommand LOGIC_COLOR
+
+ReassignCommand -> Person : unassignDuty(oldDutyDate)
+activate Person MODEL_COLOR
+
+Person --> ReassignCommand
+ReassignCommand -> Person : assignDuty(newDutyDate)
+Person --> ReassignCommand
+deactivate Person
+
+ReassignCommand --> Ui
+deactivate
+
+Ui --> User : Show updated entry
+
+@enduml
