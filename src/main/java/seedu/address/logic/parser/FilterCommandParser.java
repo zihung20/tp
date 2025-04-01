@@ -22,6 +22,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY);
 
+        System.out.println("DEBUG - Preamble: '" + argMultimap.getPreamble() + "'");
+        System.out.println("DEBUG - Company Value Present: " + argMultimap.getValue(PREFIX_COMPANY).isPresent());
+        System.out.println("DEBUG - Company Value: '" + argMultimap.getValue(PREFIX_COMPANY).orElse("null") + "'");
+
+
         if (!argMultimap.getValue(PREFIX_COMPANY).isPresent()
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
