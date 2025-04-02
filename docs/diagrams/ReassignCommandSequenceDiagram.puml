@@ -29,5 +29,6 @@ ReassignCommand --> Ui
 deactivate
 
 Ui --> User : Show updated entry
+deactivate Ui
 
 @enduml
