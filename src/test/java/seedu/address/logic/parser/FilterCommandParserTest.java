@@ -38,7 +38,7 @@ public class FilterCommandParserTest {
 
     @Test
     public void parse_success() {
-        String userInput = "c/Alpha Bravo";
+        String userInput = " c/Alpha Bravo";
         FilterCommand expectedCommand =
                 new FilterCommand(new CompanyContainsKeywordsPredicate(Arrays.asList("Alpha", "Bravo")));
 
