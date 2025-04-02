@@ -59,7 +59,7 @@ public class UnassignCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        
+
         Person personToUnassign = lastShownList.get(index.getZeroBased());
 
         if (personToUnassign.containsDutyDate(dutyDate)) {

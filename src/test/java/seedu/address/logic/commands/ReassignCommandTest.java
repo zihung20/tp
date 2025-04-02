@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.model.person.Duty.DATE_PATTERN;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIFTH_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
@@ -218,7 +217,7 @@ public class ReassignCommandTest {
             oldDutyDateFirstString, newDutyDateFirstString);
         String expected = ReassignCommand.class.getCanonicalName()
                 + "{targetIndex=" + targetIndex
-                + ", oldDutyDate=" + oldDutyDateFirstString 
+                + ", oldDutyDate=" + oldDutyDateFirstString
                 + ", newDutyDate=" + newDutyDateFirstString + "}";
 
         assertEquals(expected, reassignCommand.toString());

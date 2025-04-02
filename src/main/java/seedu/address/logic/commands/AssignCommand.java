@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
-import java.time.LocalDate;
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

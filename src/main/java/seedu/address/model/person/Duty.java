@@ -85,6 +85,12 @@ public class Duty {
         return duty.remove(date);
     }
 
+    /**
+     * Returns a boolean which indicates if the given date is in the duty list.
+     *
+     * @param dateString the dateString to be checked.
+     * @return true if duty list contains said date.
+     */
     public boolean containsDutyDate(String dateString) {
         if (!isValidDate(dateString)) {
             //should not reach here as parse handle
