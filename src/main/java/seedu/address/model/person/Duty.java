@@ -85,6 +85,16 @@ public class Duty {
         return duty.remove(date);
     }
 
+    public boolean containsDutyDate(String dateString) {
+        if (!isValidDate(dateString)) {
+            //should not reach here as parse handle
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+
+        LocalDate date = LocalDate.parse(dateString, FORMATTER);
+        return duty.contains(date);
+    }
+
     public List<LocalDate> getDutyList() {
         return duty;
     }

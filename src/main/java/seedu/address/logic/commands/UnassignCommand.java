@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -10,7 +12,15 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Duty;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Salary;
 
 /**
  * Unassign a personnel duty date using the index specify in address book
@@ -42,8 +52,6 @@ public class UnassignCommand extends Command {
         this.dutyDate = dutyDate;
     }
 
-
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -51,16 +59,39 @@ public class UnassignCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        
         Person personToUnassign = lastShownList.get(index.getZeroBased());
 
-        if (model.unassignDutyFromPerson(personToUnassign, dutyDate)) {
+        if (personToUnassign.containsDutyDate(dutyDate)) {
+            Person unassignedPerson = createUnassignedPerson(personToUnassign, dutyDate);
+            model.setPerson(personToUnassign, unassignedPerson);
+
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_UNASSIGN_DUTY_SUCCESS, Messages.format(personToUnassign)));
+
+            return new CommandResult(String.format(MESSAGE_UNASSIGN_DUTY_SUCCESS, Messages.format(unassignedPerson)));
         } else {
             throw new CommandException(String.format(MESSAGE_UNASSIGN_DUTY_FAILED, Messages.format(personToUnassign)));
         }
+    }
 
+    private static Person createUnassignedPerson(Person personToUnassign, String dutyDate) {
+        assert personToUnassign != null;
+
+        List<LocalDate> oldDutyList = personToUnassign.getDuty().getDutyList();
+        List<LocalDate> cloneDutyList = new ArrayList<>(oldDutyList);
+
+        Duty newDuty = new Duty(cloneDutyList);
+        newDuty.unassignDuty(dutyDate);
+
+        Name name = personToUnassign.getName();
+        Phone phone = personToUnassign.getPhone();
+        Address address = personToUnassign.getAddress();
+        Nric nric = personToUnassign.getNric();
+        Salary salary = personToUnassign.getSalary();
+        Company company = personToUnassign.getCompany();
+        Rank rank = personToUnassign.getRank();
+
+        return new Person(name, phone, address, nric, newDuty, salary, company, rank);
     }
 
     @Override
