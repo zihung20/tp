@@ -168,6 +168,16 @@ public class AddCommandTest {
         public ObservableList<LocalDate> getPersonDutyList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void assignDutyToPerson(Person target, String dutyDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean unassignDutyFromPerson(Person target, String dutyDate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

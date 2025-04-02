@@ -148,6 +148,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void assignDutyToPerson(Person target, String dutyDate) {
+        requireAllNonNull(target, dutyDate);
+        target.assignDuty(dutyDate);
+    }
+
+    @Override
+    public boolean unassignDutyFromPerson(Person target, String dutyDate) {
+        requireAllNonNull(target, dutyDate);
+        return target.unassignDuty(dutyDate);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

@@ -31,7 +31,7 @@ public class AssignCommand extends Command {
     private final String dutyDate;
 
     /**
-     * @param index The index of the personnel to assign duty
+     * @param indexList The index of the personnel to assign duty
      * @param dutyDate The string representation of the duty dates
      */
     public AssignCommand(List<Index> indexList, String dutyDate) {
@@ -55,7 +55,7 @@ public class AssignCommand extends Command {
         for (Index index : indexList) {
             lastShownList = model.getFilteredPersonList();
             Person personToAssign = lastShownList.get(index.getZeroBased());
-            personToAssign.assignDuty(dutyDate);
+            model.assignDutyToPerson(personToAssign, dutyDate);
         }
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
