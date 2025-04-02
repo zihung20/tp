@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,17 +161,64 @@ public class ParserUtil {
         return new Rank(trimmedRank);
     }
 
+    //helper method generate by claude
     /**
+     * Parses a date string and validates it exists.
      * Leading and trailing whitespaces will be trimmed in {@code String duty}
      *
-     * @throws ParseException if the given {@code duty} is invalid.
+     * @param duty The date string to parse
+     * @return The trimmed duty string
+     * @throws ParseException if the given {@code duty} has invalid format, or not exist date
      */
     public static String parseDuty(String duty) throws ParseException {
         requireNonNull(duty);
         String trimmedDuty = duty.trim();
-        if (!Duty.isValidDate(trimmedDuty)) {
-            throw new ParseException(Duty.MESSAGE_CONSTRAINTS);
+        if (!Duty.DATE_REGEX_PATTERN.matcher(trimmedDuty).matches()) {
+            throw new ParseException(String.format(Duty.MESSAGE_CONSTRAINTS));
         }
-        return trimmedDuty;
+        try {
+            String[] components = trimmedDuty.split("-");
+            int year = Integer.parseInt(components[0]);
+            int month = Integer.parseInt(components[1]);
+            int day = Integer.parseInt(components[2]);
+
+            if (month < 1 || month > 12) {
+                throw new ParseException(String.format(Duty.MESSAGE_DATE_NOT_EXISTS, trimmedDuty));
+            }
+
+            int maxDays = getMaxDaysInMonth(year, month);
+            if (day < 1 || day > maxDays) {
+                throw new ParseException(String.format(Duty.MESSAGE_DATE_NOT_EXISTS, trimmedDuty));
+            }
+            return trimmedDuty;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(String.format(Duty.MESSAGE_DATE_NOT_EXISTS, trimmedDuty));
+        }
+    }
+
+    /**
+     * Helper method to get the maximum number of days in a month
+     *
+     * @param year The year
+     * @param month The month (1-12)
+     * @return The maximum days in the month
+     */
+    private static int getMaxDaysInMonth(int year, int month) {
+        return switch (month) {
+        case 4, 6, 9, 11 -> 30;
+        case 2 ->
+                isLeapYear(year) ? 29 : 28;
+        default -> 31;
+        };
+    }
+
+    /**
+     * Determines if the given year is a leap year
+     *
+     * @param year The year to check
+     * @return true if it's a leap year, false otherwise
+     */
+    private static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class AssignCommand extends Command {
     private final String dutyDate;
 
     /**
-     * @param index The index of the personnel to assign duty
+     * @param indexList The index of the personnel to assign duty
      * @param dutyDate The string representation of the duty dates
      */
     public AssignCommand(List<Index> indexList, String dutyDate) {
@@ -44,6 +45,7 @@ public class AssignCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         for (Index index : indexList) {
@@ -55,7 +57,7 @@ public class AssignCommand extends Command {
         for (Index index : indexList) {
             lastShownList = model.getFilteredPersonList();
             Person personToAssign = lastShownList.get(index.getZeroBased());
-            personToAssign.assignDuty(dutyDate);
+            model.assignDutyToPerson(personToAssign, dutyDate);
         }
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);

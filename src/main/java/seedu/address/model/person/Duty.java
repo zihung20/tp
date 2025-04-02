@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * Represents a person's duties history.
@@ -15,6 +16,8 @@ public class Duty {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should not be blank and must follow ISO 8601 format: yyyy-MM-dd";
     public static final String DATE_PATTERN = "yyyy-MM-dd";
+    public static final Pattern DATE_REGEX_PATTERN = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    public static final String MESSAGE_DATE_NOT_EXISTS = "The input date %s does not exist.";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
     private final List<LocalDate> duty;
 
