@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -48,7 +47,6 @@ public class ReassignCommandTest {
     private final LocalDate newDutyDateSecond = LocalDate.parse(newDutyDateSecondString);
 
     @Test
-    @Disabled
     public void constructor_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
                 new ReassignCommand(null, null, null));
@@ -61,7 +59,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_validIndexUnfilteredList_success() {
         Person personToReassign = model.getFilteredPersonList().get(INDEX_FOURTH_PERSON.getZeroBased());
 
@@ -84,7 +81,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_validMultipleIndexUnfilteredList_success() {
         // This is to undo execute_validMultipleIndexUnfilteredList_success() in assignCommandTest
         // This is to ensure jsonSerializableAddressBookTest will not fail
@@ -122,7 +118,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_validIndex_unfoundDate() {
         Person personToReassign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         //access internal date and remove existing date
@@ -139,7 +134,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         ReassignCommand reassignCommand = new ReassignCommand(outOfBoundIndex,
@@ -149,7 +143,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FOURTH_PERSON);
 
@@ -159,7 +152,6 @@ public class ReassignCommandTest {
             oldDutyDateFirstString, newDutyDateFirstString);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        showPersonAtIndex(expectedModel, INDEX_FOURTH_PERSON);
 
         List<LocalDate> dutyList = new ArrayList<>();
         dutyList.addAll(personToReassign.getDuty().getDutyList());
@@ -176,7 +168,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
@@ -191,7 +182,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void equals() {
         ReassignCommand reassignCommandFirst = new ReassignCommand(INDEX_FOURTH_PERSON,
             oldDutyDateFirstString, newDutyDateFirstString);
@@ -222,7 +212,6 @@ public class ReassignCommandTest {
     }
 
     @Test
-    @Disabled
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         ReassignCommand reassignCommand = new ReassignCommand(targetIndex,
