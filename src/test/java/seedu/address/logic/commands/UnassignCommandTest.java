@@ -76,7 +76,7 @@ public class UnassignCommandTest {
         // This is to undo execute_validMultipleIndexUnfilteredList_success() in assignCommandTest
         // This is to ensure jsonSerializableAddressBookTest will not fail
         Person personToUnassignFirst = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person personToAssignSecond = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personToUnassignSecond = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
         UnassignCommand unassignCommandFirst = new UnassignCommand(INDEX_FIRST_PERSON, nextTwoMonthDateString);
         UnassignCommand unassignCommandSecond = new UnassignCommand(INDEX_SECOND_PERSON, nextTwoMonthDateString);
@@ -86,11 +86,11 @@ public class UnassignCommandTest {
         List<LocalDate> dutyListFirst = new ArrayList<>();
         List<LocalDate> dutyListSecond = new ArrayList<>();
         dutyListFirst.addAll(personToUnassignFirst.getDuty().getDutyList());
-        dutyListSecond.addAll(personToAssignSecond.getDuty().getDutyList());
+        dutyListSecond.addAll(personToUnassignSecond.getDuty().getDutyList());
         dutyListFirst.remove(nextTwoMonthDate);
         dutyListSecond.remove(nextTwoMonthDate);
         Person unassignedPersonFirst = new PersonBuilder(personToUnassignFirst).withDuty(dutyListFirst).build();
-        Person unassignedPersonSecond = new PersonBuilder(personToAssignSecond).withDuty(dutyListSecond).build();
+        Person unassignedPersonSecond = new PersonBuilder(personToUnassignSecond).withDuty(dutyListSecond).build();
 
         String expectedMessageFirst = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
                 Messages.format(unassignedPersonFirst));
@@ -100,7 +100,7 @@ public class UnassignCommandTest {
         expectedModel.setPerson(personToUnassignFirst, unassignedPersonFirst);
         assertCommandSuccess(unassignCommandFirst, model, expectedMessageFirst, expectedModel);
 
-        expectedModel.setPerson(personToAssignSecond, unassignedPersonSecond);
+        expectedModel.setPerson(personToUnassignSecond, unassignedPersonSecond);
         assertCommandSuccess(unassignCommandSecond, model, expectedMessageSecond, expectedModel);
     }
 
