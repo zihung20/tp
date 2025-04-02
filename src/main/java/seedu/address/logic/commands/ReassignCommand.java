@@ -62,8 +62,8 @@ public class ReassignCommand extends Command {
                 Messages.format(personToReassign)));
         }
 
-        if (personToReassign.unassignDuty(oldDutyDate)) {
-            personToReassign.assignDuty(newDutyDate);
+        if (model.unassignDutyFromPerson(personToReassign, oldDutyDate)) {
+            model.assignDutyToPerson(personToReassign, newDutyDate);
             return new CommandResult(String.format(MESSAGE_REASSIGN_DUTY_SUCCESS, Messages.format(personToReassign)));
         } else {
             throw new CommandException(String.format(MESSAGE_REASSIGN_DUTY_FAILED_DUTY_NOT_FOUND,

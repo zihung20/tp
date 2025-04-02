@@ -94,5 +94,20 @@ public interface Model {
 
     /** Returns an unmodifiable view of the selected person duty list */
     ObservableList<LocalDate> getPersonDutyList();
+
+    /**
+     * Assigns a duty to the personnel. If the duty already exists, it does nothing.
+     * @param target the person to assign
+     * @param dutyDate the duty date
+     */
+    void assignDutyToPerson(Person target, String dutyDate);
+
+    /**
+     * Unassigns a duty from a personnel using the index specified in the address book.
+     * @param target the person to unassign
+     * @param dutyDate the date to unassign
+     * @return true if successfully removed, false otherwise
+     */
+    boolean unassignDutyFromPerson(Person target, String dutyDate);
 }
 

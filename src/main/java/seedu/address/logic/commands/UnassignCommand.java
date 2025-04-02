@@ -54,7 +54,7 @@ public class UnassignCommand extends Command {
 
         Person personToUnassign = lastShownList.get(index.getZeroBased());
 
-        if (personToUnassign.unassignDuty(dutyDate)) {
+        if (model.unassignDutyFromPerson(personToUnassign, dutyDate)) {
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_UNASSIGN_DUTY_SUCCESS, Messages.format(personToUnassign)));
         } else {
