@@ -5,8 +5,8 @@
 
 # HRQuickAccess
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/ay2425s2-cs2103t-t15-1a/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2425S2-CS2103T-T15-1a/tp/actions)
+[![codecov](https://codecov.io/gh/ay2425s2-cs2103t-t15-1a/tp/branch/master/graph/badge.svg)](https://app.codecov.io/gh/AY2425S2-CS2103T-T15-1a/tp)
 
 ![Ui](images/Ui.png)
 
