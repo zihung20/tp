@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -31,4 +32,10 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
+    @Test
+    public void parse_invalidArgs() {
+        // some names include numerical values
+        assertParseFailure(parser, " \n Ali23ce \n \t Bob  \t", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " invalid123 George ", Name.MESSAGE_CONSTRAINTS);
+    }
 }

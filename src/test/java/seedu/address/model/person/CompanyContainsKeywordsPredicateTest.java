@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
@@ -44,28 +43,23 @@ public class CompanyContainsKeywordsPredicateTest {
     }
 
     @Test
-    @Disabled
     public void test_companyContainsKeywords_returnsTrue() {
         // One keyword
         CompanyContainsKeywordsPredicate predicate =
                 new CompanyContainsKeywordsPredicate(Collections.singletonList("Alpha"));
-        assertTrue(predicate.test(new PersonBuilder().withCompany("Alpha Bravo").build()));
+        assertTrue(predicate.test(new PersonBuilder().withCompany("Alpha").build()));
 
-        // Multiple keywords
+        // Multiple keywords, one match
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("Alpha", "Bravo"));
-        assertTrue(predicate.test(new PersonBuilder().withCompany("Alpha Bravo").build()));
-
-        // Only one matching keyword
-        predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("Bravo", "Charlie"));
-        assertTrue(predicate.test(new PersonBuilder().withCompany("Alpha Charlie").build()));
+        assertTrue(predicate.test(new PersonBuilder().withCompany("Alpha").build()));
+        assertTrue(predicate.test(new PersonBuilder().withCompany("Bravo").build()));
 
         // Mixed-case keywords
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("aLPha", "bRAVO"));
-        assertTrue(predicate.test(new PersonBuilder().withCompany("Alpha Bravo").build()));
+        assertTrue(predicate.test(new PersonBuilder().withCompany("Bravo").build()));
     }
 
     @Test
-    @Disabled
     public void test_companyDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         CompanyContainsKeywordsPredicate predicate =
@@ -74,7 +68,7 @@ public class CompanyContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("Charlie"));
-        assertFalse(predicate.test(new PersonBuilder().withCompany("Alpha Bravo").build()));
+        assertFalse(predicate.test(new PersonBuilder().withCompany("Alpha").build()));
 
         // Keywords match other fields but not company
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));

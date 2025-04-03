@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
@@ -14,22 +13,39 @@ import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 
 public class FilterCommandParserTest {
 
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE);
+
     private final FilterCommandParser parser = new FilterCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+    public void parse_missingPrefix_failure() {
+        // No prefix at all
+        assertParseFailure(parser, "Alpha Bravo", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
-    @Disabled
-    public void parse_validArgs_returnsFilterCommand() {
-        // no leading and trailing whitespaces
-        FilterCommand expectedFilterCommand =
-                new FilterCommand(new CompanyContainsKeywordsPredicate(Arrays.asList("Alpha", "Bravo")));
-        assertParseSuccess(parser, "Alpha Bravo", expectedFilterCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alpha \n \t Bravo  \t", expectedFilterCommand);
+    public void parse_missingArguments_failure() {
+        // Only prefix, no company
+        assertParseFailure(parser, "c/", MESSAGE_INVALID_FORMAT);
     }
+
+    @Test
+    public void parse_invalidPreamble_failure() {
+        // Invalid preamble before prefix
+        assertParseFailure(parser, "invalid c/Alpha", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_success() {
+        String userInput = " c/Alpha Bravo";
+        FilterCommand expectedCommand =
+                new FilterCommand(new CompanyContainsKeywordsPredicate(Arrays.asList("Alpha", "Bravo")));
+
+        System.out.println(userInput);
+        System.out.println(expectedCommand);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+
 }
