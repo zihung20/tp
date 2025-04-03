@@ -13,7 +13,7 @@ HRQuickAccess is a desktop application designed for S1 Branch HR staff to manage
 <!-- * Table of Contents -->
 - Quick start
 - Features
-   - Viewing help : help
+  - Viewing help : help
   - Listing All Personnel : list
   - Adding a Personnel Entry : add
   - Deleting a Personnel Entry : delete
