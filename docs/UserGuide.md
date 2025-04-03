@@ -115,6 +115,11 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 - **Salary:** 100–9999 SGD
 - **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., T1234Z)
 
+> **Important:**  
+> **Duplicate Entry:** You cannot add a duplicate person. A person is considered a duplicate if the **Name** and **Masked NRIC** are the same as an existing person.
+
+[See considerations for more details](#considerations)
+
 ---
 
 ### Deleting a Personnel Entry: `delete`
@@ -210,7 +215,7 @@ assign 1 2 3 d/2025-04-15
 ```
 
 **Validation:**
-- INDEX must be valid
+- INDEX must be valid, the sequence need not be sorted.
 - Date must follow ISO format `YYYY-MM-DD`
 
 ---
