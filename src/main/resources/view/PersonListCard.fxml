@@ -28,7 +28,12 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="rank" styleClass="cell_big_label" text="\$rank" />
+        <Label fx:id="rank" styleClass="cell_big_label" text="\$rank">
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+        </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <HBox alignment="CENTER_LEFT">
