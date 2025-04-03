@@ -61,7 +61,8 @@ public class PersonListPanel extends UiPart<Region> {
         private void handlePersonCardClick(PersonCard personCard) {
             Person clickedPerson = personCard.person;
             logger.info("Clicked on " + clickedPerson.getName().fullName);
-            ObservableList<LocalDate> dutyList = FXCollections.observableList(clickedPerson.getDuty().getDutyList());
+            ObservableList<LocalDate> dutyList =
+                    FXCollections.observableList(clickedPerson.getDuty().getReverseOrderDutyList());
             dutyListPanel.updateDutyList(dutyList);
         }
     }

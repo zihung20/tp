@@ -28,7 +28,7 @@ public class JsonAdaptedDuty {
      * Converts a given {@code Duty} into this class for Jackson use.
      */
     public JsonAdaptedDuty(Duty source) {
-        dutyList = source.getDutyList().stream()
+        dutyList = source.getReverseOrderDutyList().stream()
                 .map(date -> date.format(Duty.FORMATTER))
                 .collect(Collectors.toList());
     }
