@@ -164,10 +164,45 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Reassign Command
 
-### FEATURE
+**API**: [`ReassignCommand.java`](https://github.com/AY2425S2-CS2103T-T15-1a/tp/blob/master/src/main/java/seedu/address/logic/commands/ReassignCommand.java)
 
-_{Explain here how the data archiving feature will be implemented}_
+<puml src="diagrams/ReassignCommandSequenceDiagram.puml" />
+
+The `Reassign` feature, allows the reassigning of personnel's duties.
+1. Command input entered by the user is passed through the UI component.
+2. The UI component calls the execute function in the class `ReassignCommand`.
+3. `ReassignCommand` will then unassign the old duty and then assign the new duty to the target personnel.
+4. `ReassignCommand` returns the command execution result back to UI.
+5. Finally, the UI component shows the updated entry to the user.
+
+### Edit Command
+
+**API**: [`EditCommand.java`](https://github.com/AY2425S2-CS2103T-T15-1a/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java)
+
+<puml src="diagrams/EditCommandObjectDiagram.puml" />
+
+The `Edit` feature, allows user to edit existing personnel's entry information.
+
+During the process of an edit command, a **personToEdit** `Person` object would be referenced to store the attributes of the target entry.
+Additionally, an **updatedPerson** `Person` object would be created which represents the new `Person` object to replace **personToEdit**.
+
+The **updatedPerson** objects will have the new updated attributes indicated by the user, while the rest of the attributes which are not edited would be storing **personToEdit** original attribute.
+
+In the given UML diagram example, it can be seen that the **updatedPerson**'s `Duty` object is still the same as the `Duty` object from **personToEdit**, while updated attributes such as `Rank`, `Company`, `Address` and `Name` are different objects.
+
+### Filter Command
+
+**API**: [`FilterCommand.java`](https://github.com/AY2425S2-CS2103T-T15-1a/tp/blob/master/src/main/java/seedu/address/logic/commands/FilterCommand.java)
+
+<puml src="diagrams/FilterCommand.puml" />
+
+The `Filter` feature, allows user to filter personnel's entry according to their `Company` attribute.
+
+`FilterCommand` uses the class `CompanyContainsKeywordsPredicate` which in turn tests a given `Person` object to find out whether they fit the keyword given.
+
+This way, the feature is able to filter out entries that are not from the intended `Company`.
 
 ---
 
