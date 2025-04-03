@@ -3,11 +3,73 @@
     "name": "Valid Person",
     "phone": "9482424",
     "address": "4th street",
-    "nric": "Txxxx123A"
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "address": "4th street",
-    "nric": "Axxxx123A"
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
+  }, {
+    "name": "Person With Invalid Address Field",
+    "phone": "9482424",
+    "address": "",
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
+  }, {
+    "name": "Person With Invalid NRIC Field",
+    "phone": "9482424",
+    "address": "4th street",
+    "nric": "Axxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
+  }, {
+    "name": "Person With Invalid Duty Field",
+    "phone": "9482424",
+    "address": "4th street",
+    "nric": "Txxxx123A",
+    "duty": ["01-01-2025"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
+  }, {
+    "name": "Person With Invalid Salary Field",
+    "phone": "9482424",
+    "address": "4th street",
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "99",
+    "company": "Alpha",
+    "rank": "3SG"
+  }, {
+    "name": "Person With Invalid Company Field",
+    "phone": "9482424",
+    "address": "4th street",
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "012",
+    "rank": "3SG"
+  }, {
+    "name": "Person With Invalid Rank Field",
+    "phone": "9482424",
+    "address": "4th street",
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "ABCD"
   } ]
 }

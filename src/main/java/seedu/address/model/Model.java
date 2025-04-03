@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -76,6 +77,12 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * View the selected person. duty list
+     * The person must exist in the address book.
+     */
+    void viewPerson(Person target);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +91,23 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the selected person duty list */
+    ObservableList<LocalDate> getPersonDutyList();
+
+    /**
+     * Assigns a duty to the personnel. If the duty already exists, it does nothing.
+     * @param target the person to assign
+     * @param dutyDate the duty date
+     */
+    void assignDutyToPerson(Person target, String dutyDate);
+
+    /**
+     * Unassigns a duty from a personnel using the index specified in the address book.
+     * @param target the person to unassign
+     * @param dutyDate the date to unassign
+     * @return true if successfully removed, false otherwise
+     */
+    boolean unassignDutyFromPerson(Person target, String dutyDate);
 }
+

@@ -6,9 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RANK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +53,18 @@ public class EditPersonDescriptorTest {
         // different nric -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNric(VALID_NRIC_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different salary -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSalary(VALID_SALARY_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different company -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withCompany(VALID_COMPANY_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different rank -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withRank(VALID_RANK_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
     }
 
     @Test
@@ -59,7 +74,10 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", nric="
-                + editPersonDescriptor.getNric().orElse(null) + "}";
+                + editPersonDescriptor.getNric().orElse(null) + ", salary="
+                + editPersonDescriptor.getSalary().orElse(null) + ", company="
+                + editPersonDescriptor.getCompany().orElse(null) + ", rank="
+                + editPersonDescriptor.getRank().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }
