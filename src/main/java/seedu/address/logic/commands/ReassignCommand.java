@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -10,7 +12,15 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Duty;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Salary;
 
 /**
  * Changes the assigned duty date to a new duty date.
@@ -62,13 +72,38 @@ public class ReassignCommand extends Command {
                 Messages.format(personToReassign)));
         }
 
-        if (model.unassignDutyFromPerson(personToReassign, oldDutyDate)) {
-            model.assignDutyToPerson(personToReassign, newDutyDate);
-            return new CommandResult(String.format(MESSAGE_REASSIGN_DUTY_SUCCESS, Messages.format(personToReassign)));
+        if (personToReassign.containsDutyDate(oldDutyDate)) {
+            Person reassignedPerson = createReassignedPerson(personToReassign, oldDutyDate, newDutyDate);
+
+            model.setPerson(personToReassign, reassignedPerson);
+
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_REASSIGN_DUTY_SUCCESS, Messages.format(reassignedPerson)));
         } else {
             throw new CommandException(String.format(MESSAGE_REASSIGN_DUTY_FAILED_DUTY_NOT_FOUND,
             Messages.format(personToReassign)));
         }
+    }
+
+    private static Person createReassignedPerson(Person personToUnassign, String oldDutyDate, String newDutyDate) {
+        assert personToUnassign != null;
+
+        List<LocalDate> oldDutyList = personToUnassign.getDuty().getDutyList();
+        List<LocalDate> cloneDutyList = new ArrayList<>(oldDutyList);
+
+        Duty newDuty = new Duty(cloneDutyList);
+        newDuty.unassignDuty(oldDutyDate);
+        newDuty.assignDuty(newDutyDate);
+
+        Name name = personToUnassign.getName();
+        Phone phone = personToUnassign.getPhone();
+        Address address = personToUnassign.getAddress();
+        Nric nric = personToUnassign.getNric();
+        Salary salary = personToUnassign.getSalary();
+        Company company = personToUnassign.getCompany();
+        Rank rank = personToUnassign.getRank();
+
+        return new Person(name, phone, address, nric, newDuty, salary, company, rank);
     }
 
     @Override
