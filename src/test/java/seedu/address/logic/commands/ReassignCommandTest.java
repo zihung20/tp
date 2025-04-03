@@ -81,8 +81,6 @@ public class ReassignCommandTest {
 
     @Test
     public void execute_validMultipleIndexUnfilteredList_success() {
-        // This is to undo execute_validMultipleIndexUnfilteredList_success() in assignCommandTest
-        // This is to ensure jsonSerializableAddressBookTest will not fail
         Person personToReassignFirst = model.getFilteredPersonList().get(INDEX_FOURTH_PERSON.getZeroBased());
         Person personToReassignSecond = model.getFilteredPersonList().get(INDEX_FIFTH_PERSON.getZeroBased());
 

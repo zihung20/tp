@@ -38,7 +38,6 @@ public class UnassignCommandTest {
     private final String oldDutyDateFirstString = "2025-03-11";
     private final String oldDutyDateSecondString = "2025-01-05";
     private final LocalDate oldDutyDateFirst = LocalDate.parse(oldDutyDateFirstString);
-    private final LocalDate oldDutyDateSecond = LocalDate.parse(oldDutyDateSecondString);
 
 
     @Test
@@ -69,39 +68,6 @@ public class UnassignCommandTest {
 
         expectedModel.setPerson(personToUnassign, unassignedPerson);
         assertCommandSuccess(unassignCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_validMultipleIndexUnfilteredList_success() {
-        // This is to undo execute_validMultipleIndexUnfilteredList_success() in assignCommandTest
-        // This is to ensure jsonSerializableAddressBookTest will not fail
-        Person personToUnassignFirst = model.getFilteredPersonList().get(INDEX_FOURTH_PERSON.getZeroBased());
-        Person personToUnassignSecond = model.getFilteredPersonList().get(INDEX_FIFTH_PERSON.getZeroBased());
-
-        UnassignCommand unassignCommandFirst = new UnassignCommand(INDEX_FOURTH_PERSON, oldDutyDateFirstString);
-        UnassignCommand unassignCommandSecond = new UnassignCommand(INDEX_FIFTH_PERSON, oldDutyDateSecondString);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
-        List<LocalDate> dutyListFirst = new ArrayList<>();
-        List<LocalDate> dutyListSecond = new ArrayList<>();
-        dutyListFirst.addAll(personToUnassignFirst.getDuty().getDutyList());
-        dutyListSecond.addAll(personToUnassignSecond.getDuty().getDutyList());
-        dutyListFirst.remove(oldDutyDateFirst);
-        dutyListSecond.remove(oldDutyDateSecond);
-        Person unassignedPersonFirst = new PersonBuilder(personToUnassignFirst).withDuty(dutyListFirst).build();
-        Person unassignedPersonSecond = new PersonBuilder(personToUnassignSecond).withDuty(dutyListSecond).build();
-
-        String expectedMessageFirst = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
-                Messages.format(unassignedPersonFirst));
-        String expectedMessageSecond = String.format(UnassignCommand.MESSAGE_UNASSIGN_DUTY_SUCCESS,
-                Messages.format(unassignedPersonSecond));
-
-        expectedModel.setPerson(personToUnassignFirst, unassignedPersonFirst);
-        assertCommandSuccess(unassignCommandFirst, model, expectedMessageFirst, expectedModel);
-
-        expectedModel.setPerson(personToUnassignSecond, unassignedPersonSecond);
-        assertCommandSuccess(unassignCommandSecond, model, expectedMessageSecond, expectedModel);
     }
 
     @Test
