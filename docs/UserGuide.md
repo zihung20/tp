@@ -8,9 +8,26 @@
 
 ## Introducing: **HRQuickAccess**
 
-Built for the unique constraints of SAF-issued laptops, HRQuickAccess eliminates the need for internet connectivity by operating on a secure, local database. It offers a superior alternative to Microsoft Excel, reducing human errors while enabling quick lookups, seamless updates, and a clean, efficient workflow tailored for typing-focused users.
+HRQuickAccess is a desktop application designed for S1 Branch HR staff to manage trooper information efficiently. It provides fast, keyboard-focused access to personnel records, including contact details and duty dates, while ensuring offline functionality in compliance with SAF security constraints. The application is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
 
 <!-- * Table of Contents -->
+- Quick start
+- Features
+   - Viewing help : help
+  - Listing All Personnel : list
+  - Adding a Personnel Entry : add
+  - Deleting a Personnel Entry : delete
+  - Editing a Personnel Entry : edit
+  - Find a Personnel's Details : find
+  - Viewing a Personnel's Duty Date(s) : view
+  - Assigning Duty : assign
+  - Unassigning Duty : unassign
+  - Clearing all entries : clear
+  - Exiting the program : exit
+  - Saving and Editing data
+- FAQ
+- Known issues
+- Command summary
 <page-nav-print />
 
 ---

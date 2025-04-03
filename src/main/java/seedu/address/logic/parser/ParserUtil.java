@@ -2,14 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Duty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Salary;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -29,6 +36,24 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a space-separated {@code oneBasedIndexes} into a list of {@code Index} objects and returns it.
+     * Leading and trailing whitespaces will be trimmed. Each individual index in the string will be validated and
+     * parsed using the {@link #parseIndex(String)} method.
+     *
+     * @param oneBasedIndexes A string containing one or more space-separated one-based indexes to be parsed.
+     * @return A list of {@code Index} objects corresponding to the parsed one-based indexes.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integers).
+     */
+    public static List<Index> parseIndexList(String oneBasedIndexes) throws ParseException {
+        List<String> indexArray = List.of(oneBasedIndexes.trim().split("\\s+"));
+        List<Index> indexList = new ArrayList<>();
+        for (String index : indexArray) {
+            indexList.add(parseIndex(index));
+        }
+        return List.copyOf(indexList);
     }
 
     /**
@@ -91,18 +116,109 @@ public class ParserUtil {
         return new Nric(trimmedNric);
     }
 
+    /**
+     * Parses a {@code String salary} into a {@code Salary}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code salary} is invalid.
+     */
+    public static Salary parseSalary(String salary) throws ParseException {
+        requireNonNull(salary);
+        String trimmedSalary = salary.trim();
+        if (!Salary.isValidSalary(salary)) {
+            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
+        }
+        return new Salary(trimmedSalary);
+    }
 
     /**
+     * Parses a {@code String company} into a {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(company)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String rank} into a {@code Rank}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rank} is invalid.
+     */
+    public static Rank parseRank(String rank) throws ParseException {
+        requireNonNull(rank);
+        String trimmedRank = rank.trim();
+        if (!Rank.isValidRank(rank)) {
+            throw new ParseException(Rank.MESSAGE_CONSTRAINTS);
+        }
+        return new Rank(trimmedRank);
+    }
+
+    //helper method generate by claude
+    /**
+     * Parses a date string and validates it exists.
      * Leading and trailing whitespaces will be trimmed in {@code String duty}
      *
-     * @throws ParseException if the given {@code duty} is invalid.
+     * @param duty The date string to parse
+     * @return The trimmed duty string
+     * @throws ParseException if the given {@code duty} has invalid format, or not exist date
      */
     public static String parseDuty(String duty) throws ParseException {
         requireNonNull(duty);
         String trimmedDuty = duty.trim();
-        if (!Duty.isValidDate(trimmedDuty)) {
-            throw new ParseException(Duty.MESSAGE_CONSTRAINTS);
+        if (!Duty.DATE_REGEX_PATTERN.matcher(trimmedDuty).matches()) {
+            throw new ParseException(String.format(Duty.MESSAGE_CONSTRAINTS));
         }
-        return trimmedDuty;
+        try {
+            String[] components = trimmedDuty.split("-");
+            int year = Integer.parseInt(components[0]);
+            int month = Integer.parseInt(components[1]);
+            int day = Integer.parseInt(components[2]);
+
+            if (month < 1 || month > 12) {
+                throw new ParseException(String.format(Duty.MESSAGE_DATE_NOT_EXISTS, trimmedDuty));
+            }
+
+            int maxDays = getMaxDaysInMonth(year, month);
+            if (day < 1 || day > maxDays) {
+                throw new ParseException(String.format(Duty.MESSAGE_DATE_NOT_EXISTS, trimmedDuty));
+            }
+            return trimmedDuty;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(String.format(Duty.MESSAGE_DATE_NOT_EXISTS, trimmedDuty));
+        }
+    }
+
+    /**
+     * Helper method to get the maximum number of days in a month
+     *
+     * @param year The year
+     * @param month The month (1-12)
+     * @return The maximum days in the month
+     */
+    private static int getMaxDaysInMonth(int year, int month) {
+        return switch (month) {
+        case 4, 6, 9, 11 -> 30;
+        case 2 ->
+                isLeapYear(year) ? 29 : 28;
+        default -> 31;
+        };
+    }
+
+    /**
+     * Determines if the given year is a leap year
+     *
+     * @param year The year to check
+     * @return true if it's a leap year, false otherwise
+     */
+    private static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
     }
 }

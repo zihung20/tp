@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * Represents a person's duties history.
@@ -15,6 +16,8 @@ public class Duty {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should not be blank and must follow ISO 8601 format: yyyy-MM-dd";
     public static final String DATE_PATTERN = "yyyy-MM-dd";
+    public static final Pattern DATE_REGEX_PATTERN = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    public static final String MESSAGE_DATE_NOT_EXISTS = "The input date %s does not exist.";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
     private final List<LocalDate> duty;
 
@@ -63,6 +66,39 @@ public class Duty {
         if (!duty.contains(date)) {
             duty.add(date);
         }
+    }
+
+    /**
+     * Removes a duty from the duty list using its string representation, returning true if successfully removed.
+     *
+     * @param dateString the dateString to be removed
+     * @return true if successfully removed, false otherwise
+     * @throws IllegalArgumentException if the dateString is not in the correct format
+     */
+    public boolean unassignDuty(String dateString) {
+        if (!isValidDate(dateString)) {
+            //should not reach here as parse handle
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+
+        LocalDate date = LocalDate.parse(dateString, FORMATTER);
+        return duty.remove(date);
+    }
+
+    /**
+     * Returns a boolean which indicates if the given date is in the duty list.
+     *
+     * @param dateString the dateString to be checked.
+     * @return true if duty list contains said date.
+     */
+    public boolean containsDutyDate(String dateString) {
+        if (!isValidDate(dateString)) {
+            //should not reach here as parse handle
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+
+        LocalDate date = LocalDate.parse(dateString, FORMATTER);
+        return duty.contains(date);
     }
 
     public List<LocalDate> getDutyList() {

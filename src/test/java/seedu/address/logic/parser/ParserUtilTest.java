@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,6 +47,35 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndexList_invalidInput_throwsParseException() {
+        // Parse 1 valid index and 1 invalid index
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList("10 a"));
+
+        // Parse 1 invalid index
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList("a"));
+
+        // Parse 2 valid with commas
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList("1, 2"));
+    }
+
+    @Test
+    public void parseIndexList_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndexList(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseIndexList_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON),
+                ParserUtil.parseIndexList("1 2"));
+
+        // Leading and trailing whitespaces
+        assertEquals(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON),
+                ParserUtil.parseIndexList("  1  2    "));
     }
 
     @Test
@@ -136,5 +168,64 @@ public class ParserUtilTest {
         String nricWithWhitespace = WHITESPACE + VALID_NRIC + WHITESPACE;
         Nric expectedNric = new Nric(VALID_NRIC);
         assertEquals(expectedNric, ParserUtil.parseNric(nricWithWhitespace));
+    }
+
+    @Test
+    public void parseDuty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDuty(null));
+    }
+
+    @Test
+    public void parseDuty_invalidFormat_throwsParseException() {
+        //Invalid format, should be yyyy-mm-dd
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023/01/01"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("01-01-2023"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-1-1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("20230101"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("abcd-ef-gh"));
+    }
+
+    @Test
+    public void parseDuty_invalidDateValues_throwsParseException() {
+        // Invalid month values
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-00-01"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-13-01"));
+
+        // Invalid day values
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-01-00"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-01-32"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-04-31")); // April has 30 days
+
+        // Invalid February dates
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-02-29")); // Non-leap year
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuty("2023-02-30"));
+    }
+
+    @Test
+    public void parseDuty_validLeapYearDate_success() throws Exception {
+        // 2024 is a leap year, so February 29 is valid
+        String validLeapDate = "2024-02-29";
+        assertEquals(validLeapDate, ParserUtil.parseDuty(validLeapDate));
+    }
+
+    @Test
+    public void parseDuty_validValueWithoutWhitespace_returnsDuty() throws Exception {
+        String validDate = "2023-01-15";
+        assertEquals(validDate, ParserUtil.parseDuty(validDate));
+
+        // Test for month with 30 days
+        validDate = "2023-04-30";
+        assertEquals(validDate, ParserUtil.parseDuty(validDate));
+
+        // Test for month with 31 days
+        validDate = "2023-05-31";
+        assertEquals(validDate, ParserUtil.parseDuty(validDate));
+    }
+
+    @Test
+    public void parseDuty_validValueWithWhitespace_returnsTrimmedDuty() throws Exception {
+        String dutyWithWhitespace = WHITESPACE + "2023-01-15" + WHITESPACE;
+        String expectedDuty = "2023-01-15";
+        assertEquals(expectedDuty, ParserUtil.parseDuty(dutyWithWhitespace));
     }
 }

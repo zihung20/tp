@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.model.person.Name.MESSAGE_CONSTRAINTS;
+import static seedu.address.model.person.Name.VALIDATION_REGEX;
 
 import java.util.Arrays;
 
@@ -26,7 +28,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
-
+        for (String keyword : nameKeywords) {
+            if (!keyword.matches(VALIDATION_REGEX)) {
+                throw new ParseException(MESSAGE_CONSTRAINTS);
+            }
+        }
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 

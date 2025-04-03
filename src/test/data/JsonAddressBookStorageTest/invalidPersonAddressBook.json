@@ -2,7 +2,11 @@
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "nric": "Txxxx123A",
+    "duty": ["2025-01-01"],
+    "salary": "1200",
+    "company": "Alpha",
+    "rank": "3SG"
   } ]
 }

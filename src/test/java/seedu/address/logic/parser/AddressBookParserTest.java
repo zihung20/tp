@@ -26,6 +26,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -92,7 +93,16 @@ public class AddressBookParserTest {
         AssignCommand command = (AssignCommand) parser.parseCommand(
                 AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                         + CliSyntax.PREFIX_DUTY + validDate);
-        assertEquals(new AssignCommand(INDEX_FIRST_PERSON, validDate), command);
+        assertEquals(new AssignCommand(List.of(INDEX_FIRST_PERSON), validDate), command);
+    }
+
+    @Test public void parseCommand_unassign() throws Exception {
+        String validDate = LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_PATTERN));
+        UnassignCommand command = (UnassignCommand) parser.parseCommand(
+                UnassignCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + CliSyntax.PREFIX_DUTY + validDate);
+        assertEquals(new UnassignCommand(INDEX_FIRST_PERSON, validDate), command);
+
     }
 
     @Test
