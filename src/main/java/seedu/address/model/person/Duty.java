@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -101,9 +101,15 @@ public class Duty {
         return duty.contains(date);
     }
 
-    public List<LocalDate> getDutyList() {
-        return duty;
+    /**
+     * Retrieves the list of duty dates in reverse chronological order.
+     *
+     * @return a list of duty dates sorted in descending order
+     */
+    public List<LocalDate> getReverseOrderDutyList() {
+        return new ArrayList<>(duty.stream().sorted(Comparator.reverseOrder()).toList());
     }
+
 
     /**
      * Gets the duty count for the current month.
@@ -131,8 +137,7 @@ public class Duty {
         if (!(other instanceof Duty obj)) {
             return false;
         }
-
-        return Objects.equals(duty, obj.duty);
+        return duty.equals(obj.duty);
     }
 
     @Override

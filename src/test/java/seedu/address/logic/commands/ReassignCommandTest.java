@@ -67,7 +67,7 @@ public class ReassignCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         List<LocalDate> dutyList = new ArrayList<>();
-        dutyList.addAll(personToReassign.getDuty().getDutyList());
+        dutyList.addAll(personToReassign.getDuty().getReverseOrderDutyList());
         dutyList.remove(oldDutyDateFirst);
         dutyList.add(newDutyDateFirst);
         Person reassignedPerson = new PersonBuilder(personToReassign).withDuty(dutyList).build();
@@ -93,8 +93,8 @@ public class ReassignCommandTest {
 
         List<LocalDate> dutyListFirst = new ArrayList<>();
         List<LocalDate> dutyListSecond = new ArrayList<>();
-        dutyListFirst.addAll(personToReassignFirst.getDuty().getDutyList());
-        dutyListSecond.addAll(personToReassignSecond.getDuty().getDutyList());
+        dutyListFirst.addAll(personToReassignFirst.getDuty().getReverseOrderDutyList());
+        dutyListSecond.addAll(personToReassignSecond.getDuty().getReverseOrderDutyList());
         dutyListFirst.remove(oldDutyDateFirst);
         dutyListSecond.remove(oldDutyDateSecond);
         dutyListFirst.add(newDutyDateFirst);
@@ -118,7 +118,7 @@ public class ReassignCommandTest {
     public void execute_validIndex_unfoundDate() {
         Person personToReassign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         //access internal date and remove existing date
-        personToReassign.getDuty().getDutyList().remove(oldDutyDateFirst);
+        personToReassign.getDuty().getReverseOrderDutyList().remove(oldDutyDateFirst);
 
         ReassignCommand reassignCommand = new ReassignCommand(INDEX_FIRST_PERSON,
             oldDutyDateFirstString, newDutyDateFirstString);
@@ -151,7 +151,7 @@ public class ReassignCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         List<LocalDate> dutyList = new ArrayList<>();
-        dutyList.addAll(personToReassign.getDuty().getDutyList());
+        dutyList.addAll(personToReassign.getDuty().getReverseOrderDutyList());
         dutyList.remove(oldDutyDateFirst);
         dutyList.add(newDutyDateFirst);
         Person reassignedPerson = new PersonBuilder(personToReassign).withDuty(dutyList).build();

@@ -89,7 +89,7 @@ public class ReassignCommand extends Command {
     private static Person createReassignedPerson(Person personToUnassign, String oldDutyDate, String newDutyDate) {
         assert personToUnassign != null;
 
-        List<LocalDate> oldDutyList = personToUnassign.getDuty().getDutyList();
+        List<LocalDate> oldDutyList = personToUnassign.getDuty().getReverseOrderDutyList();
         List<LocalDate> cloneDutyList = new ArrayList<>(oldDutyList);
 
         Duty newDuty = new Duty(cloneDutyList);
