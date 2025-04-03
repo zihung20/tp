@@ -16,7 +16,7 @@ public class Name {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
 
     public final String fullName;
 
@@ -36,6 +36,17 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Checks if the given keyword is contained within the full name,
+     * ignoring case differences.
+     *
+     * @param keyword the keyword to search for in the full name
+     * @return {@code true} if the full name contains the keyword (case-insensitive), {@code false} otherwise
+     */
+    public boolean isCaseInsensitveSameName(String keyword) {
+        return fullName.toLowerCase().contains(keyword);
     }
 
 

@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -10,7 +13,15 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
+import seedu.address.model.person.Duty;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rank;
+import seedu.address.model.person.Salary;
 
 /**
  * Assign a duty to an existing personnel in address book
@@ -31,7 +42,7 @@ public class AssignCommand extends Command {
     private final String dutyDate;
 
     /**
-     * @param index The index of the personnel to assign duty
+     * @param indexList The index of the personnel to assign duty
      * @param dutyDate The string representation of the duty dates
      */
     public AssignCommand(List<Index> indexList, String dutyDate) {
@@ -44,6 +55,7 @@ public class AssignCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         for (Index index : indexList) {
@@ -55,7 +67,8 @@ public class AssignCommand extends Command {
         for (Index index : indexList) {
             lastShownList = model.getFilteredPersonList();
             Person personToAssign = lastShownList.get(index.getZeroBased());
-            personToAssign.assignDuty(dutyDate);
+            Person assignedPerson = createAssignedPerson(personToAssign, dutyDate);
+            model.setPerson(personToAssign, assignedPerson);
         }
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
@@ -70,6 +83,26 @@ public class AssignCommand extends Command {
 
         Person personToAssign = lastShownList.get(indexList.get(0).getZeroBased());
         return new CommandResult(String.format(MESSAGE_ASSIGN_DUTY_SUCCESS, Messages.format(personToAssign)));
+    }
+
+    private static Person createAssignedPerson(Person personToAssign, String dutyDate) {
+        assert personToAssign != null;
+
+        List<LocalDate> oldDutyList = personToAssign.getDuty().getDutyList();
+        List<LocalDate> cloneDutyList = new ArrayList<>(oldDutyList);
+
+        Duty newDuty = new Duty(cloneDutyList);
+        newDuty.assignDuty(dutyDate);
+
+        Name name = personToAssign.getName();
+        Phone phone = personToAssign.getPhone();
+        Address address = personToAssign.getAddress();
+        Nric nric = personToAssign.getNric();
+        Salary salary = personToAssign.getSalary();
+        Company company = personToAssign.getCompany();
+        Rank rank = personToAssign.getRank();
+
+        return new Person(name, phone, address, nric, newDuty, salary, company, rank);
     }
 
     @Override

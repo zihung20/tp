@@ -83,6 +83,7 @@ The `UI` component,
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 - depends on some classes in the `Logic` component, as it displays the `Duty` object residing in the `Model`.
+- handles user-triggered events such as command submissions and button clicks from the GUI.
 
 ### Logic component
 
@@ -104,10 +105,11 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. Returns a `CommandResult` which also carries UI instructions (e.g. show help, exit, or display person detail).
+5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -149,6 +151,7 @@ The `Storage` component,
 
 - can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 - inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- stores data in a local JSON file located at `/data/addressbook.json`.
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -403,6 +406,7 @@ _{More to be added}_
 4.  Error messages should avoid jargons that non-technical users may not understand, while omitting explanations of military jargon, as they are already familiar with them.
 5.  Entries’ data should be stored locally.
 6.  Given n is number of all data entries, search algorithm for looking up entries should be O(n) bounded.
+7.  The application should remain usable without internet access at all times.
 
 _{More to be added}_
 
@@ -418,6 +422,8 @@ _{More to be added}_
 - **Branch Staff**: Personnel responsible for managing human resources within a battalion or across the army. They handle administrative tasks, maintain personnel entries, and coordinate manpower for military operations.
 - **Personnel**: Refers to all individuals serving in the military, including recruits, soldiers, and other service members in Singapore who are either fulfilling National Service requirements or serving voluntarily.
 - **National Service (NS)**: A mandatory service program for eligible Singaporean citizens and permanent residents, involving military training and service in the Singapore Armed Forces.
+- **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities.
+
 
 ---
 
