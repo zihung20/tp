@@ -28,9 +28,10 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withNric(VALID_NRIC_BOB)
+        // same name and masked nric
+        // all other attributes different -> returns true
+        Person editedAlice = new PersonBuilder(ALICE)
+            .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
             .withDuty(VALID_DUTY_BOB).withSalary(VALID_SALARY_BOB)
             .withCompany(VALID_COMPANY_BOB).withRank(VALID_RANK_BOB)
             .build();
@@ -48,6 +49,10 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
+
+        // different nric, all other attributes same -> returns false
+        editedAlice = new PersonBuilder(ALICE).withNric(VALID_NRIC_BOB).build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
     }
 
     @Test
