@@ -38,6 +38,17 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Checks if the given keyword is contained within the full name,
+     * ignoring case differences.
+     *
+     * @param keyword the keyword to search for in the full name
+     * @return {@code true} if the full name contains the keyword (case-insensitive), {@code false} otherwise
+     */
+    public boolean isCaseInsensitveSameName(String keyword) {
+        return fullName.toLowerCase().contains(keyword);
+    }
+
 
     @Override
     public String toString() {
