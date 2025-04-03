@@ -28,9 +28,10 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, nric, address and phone number,
+        // same name and masked nric
         // all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE)
+            .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
             .withDuty(VALID_DUTY_BOB).withSalary(VALID_SALARY_BOB)
             .withCompany(VALID_COMPANY_BOB).withRank(VALID_RANK_BOB)
             .build();
