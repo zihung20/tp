@@ -47,7 +47,7 @@ public class ReassignCommandTest {
         Person personToReassign = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         String oldDutyDate = currentMonthDateString;
         String newDutyDate = "2025-03-20";
-        ReassignCommand ReassignCommand = new ReassignCommand(INDEX_FIRST_PERSON, oldDutyDate, newDutyDate);
+        ReassignCommand reassignCommand = new ReassignCommand(INDEX_FIRST_PERSON, oldDutyDate, newDutyDate);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
@@ -61,6 +61,6 @@ public class ReassignCommandTest {
 
         expectedModel.setPerson(personToReassign, reassignedPerson);
 
-        assertCommandSuccess(ReassignCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(reassignCommand, model, expectedMessage, expectedModel);
     }
 }
