@@ -81,8 +81,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name, masked nric, address
-     * and phone number.
+     * Returns true if both persons have the same name and masked nric.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -92,9 +91,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && otherPerson.getNric().equals(getNric())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getPhone().equals(getPhone());
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
