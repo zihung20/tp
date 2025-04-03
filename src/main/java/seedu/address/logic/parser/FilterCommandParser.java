@@ -23,6 +23,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY);
 
         if (!argMultimap.getValue(PREFIX_COMPANY).isPresent()
+                || argMultimap.getValue(PREFIX_COMPANY).get().trim().isEmpty()
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
