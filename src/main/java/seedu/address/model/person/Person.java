@@ -68,6 +68,10 @@ public class Person {
         return duty;
     }
 
+    public boolean containsDutyDate(String dutyDate) {
+        return duty.containsDutyDate(dutyDate);
+    }
+
     public Salary getSalary() {
         return salary;
     }
