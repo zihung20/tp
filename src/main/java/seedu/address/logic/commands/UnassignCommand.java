@@ -65,6 +65,7 @@ public class UnassignCommand extends Command {
         if (personToUnassign.containsDutyDate(dutyDate)) {
             Person unassignedPerson = createUnassignedPerson(personToUnassign, dutyDate);
             model.setPerson(personToUnassign, unassignedPerson);
+            model.viewPerson(unassignedPerson);
 
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 

@@ -69,6 +69,7 @@ public class AssignCommand extends Command {
             Person personToAssign = lastShownList.get(index.getZeroBased());
             Person assignedPerson = createAssignedPerson(personToAssign, dutyDate);
             model.setPerson(personToAssign, assignedPerson);
+            model.viewPerson(assignedPerson);
         }
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
