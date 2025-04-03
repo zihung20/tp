@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final List<LocalDate> dutyList;
+    private Person selectedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -120,6 +121,12 @@ public class ModelManager implements Model {
     public void viewPerson(Person target) {
         dutyList.clear();
         dutyList.addAll(target.getDuty().getDutyList());
+        selectedPerson = target;
+    }
+
+    @Override
+    public Person getSelectedPerson() {
+        return selectedPerson;
     }
 
     //=========== Filtered Person List Accessors =============================================================

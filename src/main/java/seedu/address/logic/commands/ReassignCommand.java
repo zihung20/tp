@@ -30,8 +30,7 @@ public class ReassignCommand extends Command {
     public static final String MESSAGE_USAGE = String.format(
         "%s: Reassign a duty date to personnel by specifying the identity of the personnel. \n"
                     + "Old duty date shouldn't be the same as new duty date.\n"
-                    + "Parameters: INDEX (must be a positive integer), "
-                    + "%sDUTY_DATE_TO_BE_CHANGED, %sNEW_DUTY_DATE\n"
+                    + "Parameters: INDEX, %sDUTY_DATE_TO_BE_CHANGED, %sNEW_DUTY_DATE\n"
                     + "Example: reassign 1 d/2025-04-15 nd/2025-04-26",
             COMMAND_WORD, CliSyntax.PREFIX_DUTY, CliSyntax.PREFIX_NEW_DUTY);
     public static final String MESSAGE_REASSIGN_DUTY_SUCCESS =
@@ -77,6 +76,7 @@ public class ReassignCommand extends Command {
             Person reassignedPerson = createReassignedPerson(personToReassign, oldDutyDate, newDutyDate);
 
             model.setPerson(personToReassign, reassignedPerson);
+            model.viewPerson(reassignedPerson);
 
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_REASSIGN_DUTY_SUCCESS, Messages.format(reassignedPerson)));

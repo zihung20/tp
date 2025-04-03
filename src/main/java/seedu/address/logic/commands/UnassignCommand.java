@@ -30,7 +30,7 @@ public class UnassignCommand extends Command {
     public static final String MESSAGE_USAGE = String.format(
             "%s: unassign a personnel duty date by specifying the identity of the personnel. "
                     + "Duplicate dates will be considered the same.\n"
-                    + "Parameters: INDEX (must be a positive integer), %sDUTY_DATE\n"
+                    + "Parameters: INDEX, %sDUTY_DATE\n"
                     + "Example: unassign 1 d/2025-04-15",
             COMMAND_WORD, CliSyntax.PREFIX_DUTY);
     public static final String MESSAGE_UNASSIGN_DUTY_SUCCESS =
@@ -65,6 +65,7 @@ public class UnassignCommand extends Command {
         if (personToUnassign.containsDutyDate(dutyDate)) {
             Person unassignedPerson = createUnassignedPerson(personToUnassign, dutyDate);
             model.setPerson(personToUnassign, unassignedPerson);
+            model.viewPerson(unassignedPerson);
 
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 

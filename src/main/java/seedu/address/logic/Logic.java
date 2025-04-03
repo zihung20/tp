@@ -51,4 +51,7 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the duty list */
     ObservableList<LocalDate> getPersonDutyList();
+
+    /** Returns the selected person */
+    Person getPerson();
 }

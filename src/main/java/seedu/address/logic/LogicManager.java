@@ -91,4 +91,9 @@ public class LogicManager implements Logic {
     public ObservableList<LocalDate> getPersonDutyList() {
         return model.getPersonDutyList();
     }
+
+    @Override
+    public Person getPerson() {
+        return model.getSelectedPerson();
+    }
 }

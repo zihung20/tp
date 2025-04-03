@@ -31,7 +31,7 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_USAGE = String.format("%s: Assign a duty date to personnel(s) identified "
                     + "by the index number used in the displayed person list. "
                     + "Duplicate dates will be considered the same.\n"
-                    + "Parameters: INDEX(S) (must be a positive integer), %sDUTY_DATE\n"
+                    + "Parameters: INDEX(S), %sDUTY_DATE\n"
                     + "Example: assign 1 d/2025-04-15\n"
                     + "Example: assign 1 2 3 d/2025-04-15",
             COMMAND_WORD, CliSyntax.PREFIX_DUTY);
@@ -69,6 +69,7 @@ public class AssignCommand extends Command {
             Person personToAssign = lastShownList.get(index.getZeroBased());
             Person assignedPerson = createAssignedPerson(personToAssign, dutyDate);
             model.setPerson(personToAssign, assignedPerson);
+            model.viewPerson(assignedPerson);
         }
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
