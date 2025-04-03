@@ -59,7 +59,7 @@ public class UnassignCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         List<LocalDate> dutyList = new ArrayList<>();
-        dutyList.addAll(personToUnassign.getDuty().getDutyList());
+        dutyList.addAll(personToUnassign.getDuty().getReverseOrderDutyList());
         dutyList.remove(oldDutyDateFirst);
         Person unassignedPerson = new PersonBuilder(personToUnassign).withDuty(dutyList).build();
 
@@ -100,7 +100,7 @@ public class UnassignCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         List<LocalDate> dutyList = new ArrayList<>();
-        dutyList.addAll(personToUnassign.getDuty().getDutyList());
+        dutyList.addAll(personToUnassign.getDuty().getReverseOrderDutyList());
         dutyList.remove(oldDutyDateFirst);
         Person unassignedPerson = new PersonBuilder(personToUnassign).withDuty(dutyList).build();
 

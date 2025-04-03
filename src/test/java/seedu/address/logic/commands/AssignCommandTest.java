@@ -57,7 +57,7 @@ public class AssignCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         List<LocalDate> dutyList = new ArrayList<>();
-        dutyList.addAll(personToAssign.getDuty().getDutyList());
+        dutyList.addAll(personToAssign.getDuty().getReverseOrderDutyList());
         dutyList.add(LocalDate.parse(currentMonthDateString));
         Person assignedPerson = new PersonBuilder(personToAssign).withDuty(dutyList).build();
 
@@ -81,8 +81,8 @@ public class AssignCommandTest {
 
         List<LocalDate> dutyListFirst = new ArrayList<>();
         List<LocalDate> dutyListSecond = new ArrayList<>();
-        dutyListFirst.addAll(personToAssignFirst.getDuty().getDutyList());
-        dutyListSecond.addAll(personToAssignSecond.getDuty().getDutyList());
+        dutyListFirst.addAll(personToAssignFirst.getDuty().getReverseOrderDutyList());
+        dutyListSecond.addAll(personToAssignSecond.getDuty().getReverseOrderDutyList());
         dutyListFirst.add(LocalDate.parse(nextTwoMonthDateString));
         dutyListSecond.add(LocalDate.parse(nextTwoMonthDateString));
         Person assignedPersonFirst = new PersonBuilder(personToAssignFirst).withDuty(dutyListFirst).build();
@@ -118,7 +118,7 @@ public class AssignCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         List<LocalDate> dutyList = new ArrayList<>();
-        dutyList.addAll(personToAssign.getDuty().getDutyList());
+        dutyList.addAll(personToAssign.getDuty().getReverseOrderDutyList());
         dutyList.add(LocalDate.parse(nextMonthDateString));
         Person assignedPerson = new PersonBuilder(personToAssign).withDuty(dutyList).build();
 

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -41,14 +42,14 @@ public class DutyTest {
         Duty duty = new Duty();
 
         duty.assignDuty("2025-11-26");
-        assertEquals(1, duty.getDutyList().size());
+        assertEquals(1, duty.getReverseOrderDutyList().size());
 
         duty.assignDuty("2025-11-27");
-        assertEquals(2, duty.getDutyList().size());
+        assertEquals(2, duty.getReverseOrderDutyList().size());
 
         //duplicate date
         duty.assignDuty("2025-11-26");
-        assertEquals(2, duty.getDutyList().size());
+        assertEquals(2, duty.getReverseOrderDutyList().size());
     }
 
     @Test
@@ -83,10 +84,10 @@ public class DutyTest {
         Duty duty = new Duty(dutyList);
         //unassign one date
         duty.unassignDuty(currentMonthString);
-        assertEquals(1, duty.getDutyList().size());
+        assertEquals(1, duty.getReverseOrderDutyList().size());
 
         duty.unassignDuty(nextMonthString);
-        assertEquals(0, duty.getDutyList().size());
+        assertEquals(0, duty.getReverseOrderDutyList().size());
 
         // Unassign non-existent date
         assertFalse(duty.unassignDuty(currentMonthString));
@@ -101,13 +102,13 @@ public class DutyTest {
                 LocalDate.of(2025, 3, 3))
         );
         Duty duty = new Duty(dutyList);
-        assertEquals(dutyList, duty.getDutyList());
+        assertEquals(dutyList.stream().sorted(Comparator.reverseOrder()).toList(), duty.getReverseOrderDutyList());
     }
 
     @Test
     public void constructorWithEmptyDutyList() {
         Duty duty = new Duty();
-        assertEquals(0, duty.getDutyList().size());
+        assertEquals(0, duty.getReverseOrderDutyList().size());
     }
 
     @Test void testToString() {

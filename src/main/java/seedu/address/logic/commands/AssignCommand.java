@@ -89,7 +89,7 @@ public class AssignCommand extends Command {
     private static Person createAssignedPerson(Person personToAssign, String dutyDate) {
         assert personToAssign != null;
 
-        List<LocalDate> oldDutyList = personToAssign.getDuty().getDutyList();
+        List<LocalDate> oldDutyList = personToAssign.getDuty().getReverseOrderDutyList();
         List<LocalDate> cloneDutyList = new ArrayList<>(oldDutyList);
 
         Duty newDuty = new Duty(cloneDutyList);

@@ -120,7 +120,7 @@ public class ModelManager implements Model {
     @Override
     public void viewPerson(Person target) {
         dutyList.clear();
-        dutyList.addAll(target.getDuty().getDutyList());
+        dutyList.addAll(target.getDuty().getReverseOrderDutyList());
         selectedPerson = target;
     }
 
