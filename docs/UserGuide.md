@@ -14,19 +14,19 @@ HRQuickAccess is a **desktop application** designed for **S1 Branch HR staff** t
 - [Quick start](#quick-start)
 - [Features](#features)
     - [Notes about Command Format](#notes-about-command-format)
-    - [Viewing help : help](#viewing-help--help)
-    - [Listing All Personnel : list](#listing-all-personnel--list)
-    - [Adding a Personnel Entry : add](#adding-a-personnel-entry--add)
-    - [Deleting a Personnel Entry : delete](#deleting-a-personnel-entry--delete)
-    - [Editing a Personnel Entry : edit](#editing-a-personnel-entry--edit)
-    - [Find a Personnel's Details : find](#find-a-personnels-details--find)
-    - [Filter personnel entries : filter](#filter-personnel-entries--filter)
-    - [Viewing a Personnel's Duty Date(s) : view](#viewing-a-personnels-duty-dates--view)
-    - [Assigning Duty : assign](#assigning-duty--assign)
-    - [Unassigning Duty : unassign](#unassigning-duty--unassign)
-    - [Reassigning Duty : reassign](#reassigning-duty--reassign)
-    - [Clearing all entries : clear](#clearing-all-entries--clear)
-    - [Exiting the program : exit](#exiting-the-program--exit)
+    - [Viewing help: help](#viewing-help-help)
+    - [Listing All Personnel: list](#listing-all-personnel-list)
+    - [Adding a Personnel Entry: add](#adding-a-personnel-entry-add)
+    - [Deleting a Personnel Entry: delete](#deleting-a-personnel-entry-delete)
+    - [Editing a Personnel Entry: edit](#editing-a-personnel-entry-edit)
+    - [Find a Personnel's Details: find](#finding-a-personnel-find)
+    - [Filter personnel entries: filter](#filtering-by-company-filter)
+    - [Viewing a Personnel's Duty Date(s): view](#viewing-duty-dates-view)
+    - [Assigning Duty: assign](#assigning-duty-assign)
+    - [Unassigning Duty: unassign](#unassigning-duty-unassign)
+    - [Reassigning Duty: reassign](#reassigning-duty-reassign)
+    - [Clearing all entries: clear](#clearing-all-entries-clear)
+    - [Exiting the program: exit](#exiting-the-program-exit)
     - [Saving and Editing data](#saving-and-editing-data)
     - [FAQ](#faq)
 - [Known issues](#known-issues)
@@ -36,7 +36,7 @@ HRQuickAccess is a **desktop application** designed for **S1 Branch HR staff** t
 
 ---
 
-## 📦 Quick Start
+## Quick Start
 
 1. Ensure **Java 17 or above** is installed on your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
@@ -63,7 +63,7 @@ Refer to the [Features](#features) section below for full command details.
 
 ---
 
-## ⚙️ Features
+## Features
 
 ### Notes about Command Format
 - Words in `UPPER_CASE` are parameters **you supply**.<br>
@@ -74,7 +74,7 @@ Refer to the [Features](#features) section below for full command details.
 
 ---
 
-### 📖 Viewing Help: `help`
+### Viewing Help: `help`
 Displays information on how to access the help page.
 
 **Format:**
@@ -84,7 +84,7 @@ help
 
 ---
 
-### 📋 Listing All Personnel: `list`
+### Listing All Personnel: `list`
 Shows all personnel in the HR database.
 
 **Format:**
@@ -94,7 +94,7 @@ list
 
 ---
 
-### ➕ Adding a Personnel Entry: `add`
+### Adding a Personnel Entry: `add`
 Adds a trooper to the system.
 
 **Format:**
@@ -117,7 +117,7 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 
 ---
 
-### 🗑️ Deleting a Personnel Entry: `delete`
+### Deleting a Personnel Entry: `delete`
 Removes a personnel entry by index.
 
 **Format:**
@@ -132,7 +132,7 @@ delete 2
 
 ---
 
-### ✏️ Editing a Personnel Entry: `edit`
+### Editing a Personnel Entry: `edit`
 Updates a personnel's info.
 
 **Format:**
@@ -148,7 +148,7 @@ edit 1 n/Jane Doe p/91234567
 
 ---
 
-### 🔍 Finding a Personnel: `find`
+### Finding a Personnel: `find`
 Searches personnel by name.
 
 **Format:**
@@ -164,7 +164,7 @@ find Corey
 
 ---
 
-### 🔎 Filtering by Company: `filter`
+### Filtering by Company: `filter`
 Filters personnel by company name(s).
 
 **Format:**
@@ -181,7 +181,7 @@ filter c/BRAVO CHARLIE
 
 ---
 
-### 🗓️ Viewing Duty Dates: `view`
+### Viewing Duty Dates: `view`
 Displays duty dates assigned to a personnel.
 
 **Format:**
@@ -197,7 +197,7 @@ view 2
 
 ---
 
-### ✅ Assigning Duty: `assign`
+### Assigning Duty: `assign`
 Assigns a duty date to one or more personnel. Ignores duplicate dates.
 
 **Format:**
@@ -215,7 +215,7 @@ assign 1 2 3 d/2025-04-15
 
 ---
 
-### ❌ Unassigning Duty: `unassign`
+### Unassigning Duty: `unassign`
 Removes a duty date from one or more personnel.
 
 **Format:**
@@ -231,7 +231,7 @@ unassign 1 d/2025-04-15
 
 ---
 
-### 🔁 Reassigning Duty: `reassign`
+### Reassigning Duty: `reassign`
 Replaces one duty date with another for a specific personnel.
 
 **Format:**
@@ -247,7 +247,7 @@ reassign 1 d/2025-04-15 nd/2025-04-25
 
 ---
 
-### 🧹 Clearing All Entries: `clear`
+### Clearing All Entries: `clear`
 Removes all personnel entries.
 
 **Format:**
@@ -257,7 +257,7 @@ clear
 
 ---
 
-### 🚪 Exiting the Program: `exit`
+### Exiting the Program: `exit`
 Closes the application.
 
 **Format:**
@@ -267,7 +267,7 @@ exit
 
 ---
 
-## 💾 Saving and Editing Data
+## Saving and Editing Data
 - Data is saved automatically after each change.
 - Stored locally at: `[JAR folder]/data/hrquickaccess.json`
 
@@ -275,14 +275,14 @@ exit
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 **Q:** _How do I transfer my HRQuickAccess data to another computer?_  
 **A:** Install the app on the new computer and replace its `addressbook.json` file with your backup.
 
 ---
 
-## 🐞 Known Issues
+## Known Issues
 
 1. **GUI opens off-screen** after disconnecting a secondary monitor.  
    _Fix_: Delete `preferences.json`.
@@ -291,7 +291,7 @@ exit
 
 ---
 
-## ⚠️ Considerations
+## Considerations
 
 1. Company and rank allows for alphabetical and alphanumeric characters respectively instead of using enumeration for flexibility, as different services and battalions have different naming styles.
 2. Masked NRICs are not unique, so unique personnel are determined by 2 features: Name and Masked NRIC. If they are unique to another personnel, they will be determined as separate entities.
@@ -301,7 +301,7 @@ exit
 
 ---
 
-## 📘 Command Summary
+## Command Summary
 
 | Action             | Format & Example                                                                 |
 |--------------------|----------------------------------------------------------------------------------|
