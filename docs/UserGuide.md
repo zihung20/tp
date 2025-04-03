@@ -8,221 +8,314 @@
 
 ## Introducing: **HRQuickAccess**
 
-HRQuickAccess is a desktop application designed for S1 Branch HR staff to manage trooper information efficiently. It provides fast, keyboard-focused access to personnel records, including contact details and duty dates, while ensuring offline functionality in compliance with SAF security constraints. The application is optimized for use via a Command Line Interface (CLI) while retaining the benefits of a Graphical User Interface (GUI).
+HRQuickAccess is a **desktop application** designed for **S1 Branch HR staff** to manage trooper information efficiently. It provides **fast, keyboard-focused access** to personnel records, including **contact details and duty dates**, while ensuring **offline functionality** in compliance with **SAF security constraints**. The application is optimized for use via a **Command Line Interface (CLI)** while retaining the benefits of a **Graphical User Interface (GUI)**.
 
 <!-- * Table of Contents -->
-- Quick start
-- Features
-   - Viewing help : help
-  - Listing All Personnel : list
-  - Adding a Personnel Entry : add
-  - Deleting a Personnel Entry : delete
-  - Editing a Personnel Entry : edit
-  - Find a Personnel's Details : find
-  - Viewing a Personnel's Duty Date(s) : view
-  - Assigning Duty : assign
-  - Unassigning Duty : unassign
-  - Clearing all entries : clear
-  - Exiting the program : exit
-  - Saving and Editing data
-- FAQ
-- Known issues
-- Command summary
-<page-nav-print />
+- [Quick start](#quick-start)
+- [Features](#features)
+    - [Notes about Command Format](#notes-about-command-format)
+    - [Viewing help: help](#viewing-help-help)
+    - [Listing All Personnel: list](#listing-all-personnel-list)
+    - [Adding a Personnel Entry: add](#adding-a-personnel-entry-add)
+    - [Deleting a Personnel Entry: delete](#deleting-a-personnel-entry-delete)
+    - [Editing a Personnel Entry: edit](#editing-a-personnel-entry-edit)
+    - [Find a Personnel's Details: find](#finding-a-personnel-find)
+    - [Filter personnel entries: filter](#filtering-by-company-filter)
+    - [Viewing a Personnel's Duty Date(s): view](#viewing-duty-dates-view)
+    - [Assigning Duty: assign](#assigning-duty-assign)
+    - [Unassigning Duty: unassign](#unassigning-duty-unassign)
+    - [Reassigning Duty: reassign](#reassigning-duty-reassign)
+    - [Clearing all entries: clear](#clearing-all-entries-clear)
+    - [Exiting the program: exit](#exiting-the-program-exit)
+    - [Saving and Editing data](#saving-and-editing-data)
+    - [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Considerations](#considerations)
+- [Command summary](#command-summary)
+
 
 ---
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Ensure **Java 17 or above** is installed on your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+2. Download the latest `.jar` file from [Here](https://github.com/AY2425S2-CS2103T-T15-1a/tp/releases/tag/V1.4).
+3. Copy the file to the folder you want to use as the **home folder** for HRQuickAccess.
+4. Open a **command terminal**, navigate (`cd`) to the folder where you placed the .jar file.
+5. Run the application with the command:
+   ```bash
+   java -jar HRQuickAccess.jar
+   ```
+5. A GUI similar to the one below should appear in a few seconds, with some **sample data preloaded**.
+   ![img.png](img.png)
+6. Type a **command** in the command box and press **Enter** to execute it.
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+### Example Commands
+- `help` — Opens the help window.
+- `list` — Lists all personnel.
+- `add n/Corey p/91234567 a/123 Orchard Road, #03-45 nr/Txxxx123A s/800 c/Alpha r/PTE` — Adds a new personnel entry.
+- `delete 2` — Deletes the 2nd personnel in the list.
+- `clear` — Clears all personnel entries.
+- `exit` — Exits the application.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   - `list` : Lists all contacts.
-
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   - `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   - `clear` : Deletes all contacts.
-
-   - `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) section below for full command details.
 
 ---
 
 ## Features
 
-<box type="info" seamless>
+### Notes about Command Format
+- Words in `UPPER_CASE` are parameters **you supply**.<br>
+  `Example: add n/NAME] p/[PHONE] a/[ADDRESS] nr/[MASKED NRIC] s/[SALARY] c/[COMPANY] r/[RANK]`
+- **Parameters can appear in any order** (unless stated).
+- **Optional repeated fields** use `...`, e.g., `[INDEX]...`.
+- **Commands with incorrect formats** will return error messages with explanations.
 
-**Notes about the command format:**<br>
+---
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+### Viewing Help: `help`
+Displays information on how to access the help page.
 
-- Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+**Format:**
+```
+help
+```
 
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+---
 
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+### Listing All Personnel: `list`
+Shows all personnel in the HR database.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+**Format:**
+```
+list
+```
 
-- If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-  </box>
+---
 
-### Viewing help : `help`
+### Adding a Personnel Entry: `add`
+Adds a trooper to the system.
 
-Shows a message explaning how to access the help page.
+**Format:**
+```
+add n/NAME p/PHONE a/ADDRESS nr/MASKED_NRIC s/SALARY c/COMPANY r/RANK
+```
+**Example:**
+```
+add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
+```
 
-![help message](images/helpMessage.png)
+**Validation:**
+- **Name:** Alphabets & spaces only
+- **Phone:** 8-digit, starts with 8 or 9
+- **Address:** Alphanumeric & spaces
+- **Company:** HQ, Alpha, Bravo, Charlie, Support
+- **Rank:** Uppercase (e.g., CPL, 2LT)
+- **Salary:** 100–9999 SGD
+- **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., T1234Z)
 
-Format: `help`
+---
 
-### Adding a person: `add`
+### Deleting a Personnel Entry: `delete`
+Removes a personnel entry by index.
 
-Adds a person to the address book.
+**Format:**
+```
+delete INDEX
+```
+**Example:**
+```
+delete 2
+```
+**Validation:** Index must be a valid positive integer.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+---
 
-<box type="tip" seamless>
+### Editing a Personnel Entry: `edit`
+Updates a personnel's info.
 
-**Tip:** A person can have any number of tags (including 0)
-</box>
+**Format:**
+```
+edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [nr/MASKED_NRIC] [s/SALARY] [c/COMPANY] [r/RANK]
+```
+**Example:**
+```
+edit 1 n/Jane Doe p/91234567
+```
 
-Examples:
+**Validation:** Same rules as `add`. Index must be valid.
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+---
 
-### Listing all persons : `list`
+### Finding a Personnel: `find`
+Searches personnel by name.
 
-Shows a list of all persons in the address book.
+**Format:**
+```
+find NAME [NAME]...
+```
+**Example:**
+```
+find Corey
+```
 
-Format: `list`
+**Validation:** Alphabets and spaces only. Case-insensitive.
 
-### Editing a person : `edit`
+---
 
-Edits an existing person in the address book.
+### Filtering by Company: `filter`
+Filters personnel by company name(s).
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Format:**
+```
+filter c/COMPANY [COMPANY]...
+```
+**Examples:**
+```
+filter c/ALPHA
+filter c/BRAVO CHARLIE
+```
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
+**Validation:** Alphabets and spaces only. Case-insensitive.
 
-Examples:
+---
 
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+### Viewing Duty Dates: `view`
+Displays duty dates assigned to a personnel.
 
-### Locating persons by name: `find`
+**Format:**
+```
+view INDEX
+```
+**Example:**
+```
+view 2
+```
 
-Finds persons whose names contain any of the given keywords.
+**Validation:** Index must be a valid positive integer.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+---
 
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+### Assigning Duty: `assign`
+Assigns a duty date to one or more personnel. Ignores duplicate dates.
 
-Examples:
+**Format:**
+```
+assign INDEX... d/YYYY-MM-DD
+```
+**Example:**
+```
+assign 1 2 3 d/2025-04-15
+```
 
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+**Validation:**
+- INDEX must be valid
+- Date must follow ISO format `YYYY-MM-DD`
 
-### Deleting a person : `delete`
+---
 
-Deletes the specified person from the address book.
+### Unassigning Duty: `unassign`
+Removes a duty date from one or more personnel.
 
-Format: `delete INDEX`
+**Format:**
+```
+unassign INDEX... d/YYYY-MM-DD
+```
+**Example:**
+```
+unassign 1 d/2025-04-15
+```
 
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …​
+**Validation:** Date must exist and follow ISO format.
 
-Examples:
+---
 
-- `list` followed by `delete 2` deletes the 2nd person in the address book.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+### Reassigning Duty: `reassign`
+Replaces one duty date with another for a specific personnel.
 
-### Clearing all entries : `clear`
+**Format:**
+```
+reassign INDEX d/OLD_DATE nd/NEW_DATE
+```
+**Example:**
+```
+reassign 1 d/2025-04-15 nd/2025-04-25
+```
 
-Clears all entries from the address book.
+**Validation:** Both dates must be valid ISO-formatted.
 
-Format: `clear`
+---
 
-### Exiting the program : `exit`
+### Clearing All Entries: `clear`
+Removes all personnel entries.
 
-Exits the program.
+**Format:**
+```
+clear
+```
 
-Format: `exit`
+---
 
-### Saving the data
+### Exiting the Program: `exit`
+Closes the application.
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+**Format:**
+```
+exit
+```
 
-### Editing the data file
+---
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+## Saving and Editing Data
+- Data is saved automatically after each change.
+- Stored locally at: `[JAR folder]/data/hrquickaccess.json`
 
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</box>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+> ⚠️ **Caution**: Manual edits to the JSON file may corrupt data. Always back up first.
 
 ---
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q:** _How do I transfer my HRQuickAccess data to another computer?_  
+**A:** Install the app on the new computer and replace its `addressbook.json` file with your backup.
 
 ---
 
-## Known issues
+## Known Issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+1. **GUI opens off-screen** after disconnecting a secondary monitor.  
+   _Fix_: Delete `preferences.json`.
+2. **Help Window doesn't reappear** if previously minimized.  
+   _Fix_: Manually restore the minimized window.
 
 ---
 
-## Command summary
+## Considerations
 
-| Action     | Format, Examples                                                                                                                                                      |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+1. Company and rank allows for alphabetical and alphanumeric characters respectively instead of using enumeration for flexibility, as different services and battalions have different naming styles.
+2. Masked NRICs are not unique, so unique personnel are determined by 2 features: Name and Masked NRIC. If they are unique to another personnel, they will be determined as separate entities.
+3. Mass assigning duty dates to multiple personnel results in the last index to be highlighted (e.g. if you "assign 3 1 2 d/2025-05-06", the personnel with index 2 is highlighted).
+4. To add a personnel profile photo, the photo will have to be renamed as `[NAME]_[NRIC].png/jpeg/jpg` (e.g. Corey Siah_Txxxx123A.png), and placed in `./docs/images/`.
+5. Do not attempt to manually amend `addressbook.json` as it may result in data corruption.
+
+---
+
+## Command Summary
+
+| Action             | Format & Example                                                                 |
+|--------------------|----------------------------------------------------------------------------------|
+| **Help**           | `help`                                                                           |
+| **List**           | `list`                                                                           |
+| **Add**            | `add n/Corey p/91234567 a/... nr/... s/... c/... r/...`                          |
+| **Delete**         | `delete INDEX` <br> e.g., `delete 2`                                              |
+| **Edit**           | `edit INDEX [fields]` <br> e.g., `edit 1 n/Jane Doe p/91234567`                  |
+| **Find**           | `find NAME [NAME]...` <br> e.g., `find Corey`                                     |
+| **Filter**         | `filter c/COMPANY [COMPANY]...` <br> e.g., `filter c/ALPHA BRAVO`                |
+| **View**           | `view INDEX` <br> e.g., `view 3`                                                  |
+| **Assign**         | `assign INDEX... d/YYYY-MM-DD` <br> e.g., `assign 1 2 d/2025-04-15`               |
+| **Unassign**       | `unassign INDEX... d/YYYY-MM-DD` <br> e.g., `unassign 1 d/2025-04-15`             |
+| **Reassign**       | `reassign INDEX d/OLD nd/NEW` <br> e.g., `reassign 1 d/2025-04-15 nd/2025-04-25`  |
+| **Clear**          | `clear`                                                                          |
+| **Exit**           | `exit`                                                                           |
+
