@@ -186,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             dutyListPanel.updateDutyList(logic.getPersonDutyList());
             personListPanel.clearSelection();
+            personListPanel.highlightSelectedPerson(logic.getPerson());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -41,6 +41,17 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * Highlights the selected person in person list.
+     */
+    public void highlightSelectedPerson(Person person) {
+        int index = personListView.getItems().indexOf(person);
+        if (index != -1) {
+            personListView.scrollTo(index);
+            personListView.getSelectionModel().select(index);
+        }
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
@@ -61,7 +72,8 @@ public class PersonListPanel extends UiPart<Region> {
         private void handlePersonCardClick(PersonCard personCard) {
             Person clickedPerson = personCard.person;
             logger.info("Clicked on " + clickedPerson.getName().fullName);
-            ObservableList<LocalDate> dutyList = FXCollections.observableList(clickedPerson.getDuty().getDutyList());
+            ObservableList<LocalDate> dutyList =
+                    FXCollections.observableList(clickedPerson.getDuty().getReverseOrderDutyList());
             dutyListPanel.updateDutyList(dutyList);
         }
     }

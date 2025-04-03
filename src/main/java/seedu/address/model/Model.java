@@ -109,5 +109,8 @@ public interface Model {
      * @return true if successfully removed, false otherwise
      */
     boolean unassignDutyFromPerson(Person target, String dutyDate);
+
+    /** Returns the selected person */
+    Person getSelectedPerson();
 }
 

@@ -77,6 +77,7 @@ public class ReassignCommand extends Command {
             Person reassignedPerson = createReassignedPerson(personToReassign, oldDutyDate, newDutyDate);
 
             model.setPerson(personToReassign, reassignedPerson);
+            model.viewPerson(reassignedPerson);
 
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_REASSIGN_DUTY_SUCCESS, Messages.format(reassignedPerson)));
@@ -89,7 +90,7 @@ public class ReassignCommand extends Command {
     private static Person createReassignedPerson(Person personToUnassign, String oldDutyDate, String newDutyDate) {
         assert personToUnassign != null;
 
-        List<LocalDate> oldDutyList = personToUnassign.getDuty().getDutyList();
+        List<LocalDate> oldDutyList = personToUnassign.getDuty().getReverseOrderDutyList();
         List<LocalDate> cloneDutyList = new ArrayList<>(oldDutyList);
 
         Duty newDuty = new Duty(cloneDutyList);

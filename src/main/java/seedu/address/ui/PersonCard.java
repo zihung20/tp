@@ -75,7 +75,9 @@ public class PersonCard extends UiPart<Region> {
         rank.setText(person.getRank().fullRank + " ");
         int dutyCount = person.getDuty().getDutyCount();
         duty.setText(String.valueOf(dutyCount));
-        setImage(person.getNric().maskNric);
+
+        String photoName = person.getName().fullName + "_" + person.getNric().maskNric;
+        setImage(photoName);
 
         if (dutyCount < 6) {
             duty.setStyle("-fx-text-fill: #32CD32;");

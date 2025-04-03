@@ -65,6 +65,7 @@ public class UnassignCommand extends Command {
         if (personToUnassign.containsDutyDate(dutyDate)) {
             Person unassignedPerson = createUnassignedPerson(personToUnassign, dutyDate);
             model.setPerson(personToUnassign, unassignedPerson);
+            model.viewPerson(unassignedPerson);
 
             model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
@@ -77,7 +78,7 @@ public class UnassignCommand extends Command {
     private static Person createUnassignedPerson(Person personToUnassign, String dutyDate) {
         assert personToUnassign != null;
 
-        List<LocalDate> oldDutyList = personToUnassign.getDuty().getDutyList();
+        List<LocalDate> oldDutyList = personToUnassign.getDuty().getReverseOrderDutyList();
         List<LocalDate> cloneDutyList = new ArrayList<>(oldDutyList);
 
         Duty newDuty = new Duty(cloneDutyList);
