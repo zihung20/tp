@@ -215,7 +215,7 @@ assign 1 2 3 d/2025-04-15
 ```
 
 **Validation:**
-- Index must be valid, the sequence need not be sorted.
+- INDEX must be valid, the sequence need not be sorted.
 - Date must follow ISO format `YYYY-MM-DD`
 
 ---
