@@ -100,7 +100,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
         final Nric modelNric = new Nric(nric);
-
+ 
+         if (duty == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Duty.class.getSimpleName()));
+        }
+        for (String date : duty.getDutyList()) {
+            if (!Duty.isValidDate(date)) {
+                throw new IllegalValueException(Duty.MESSAGE_CONSTRAINTS);
+            }
+        }
         final Duty modelDuty = duty.toModelType();
 
         if (salary == null) {
