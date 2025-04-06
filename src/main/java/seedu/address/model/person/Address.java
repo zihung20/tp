@@ -9,7 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Addresses can contain alphanumeric characters "
+            + "and basic symbols (,.'-#()), and must not be blank or only spaces.";
 
     /**
      * General address regex: alphanumeric characters, spaces,

@@ -25,14 +25,16 @@ public class AddressTest {
         // valid addresses with #, although not appropriate
         assertTrue(Address.isValidAddress("123 Main St ##"));
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
-
         //valid address with - only, although not appropriate
         assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Apt (4B) #202")); // address with parentheses and hashtag
-        assertTrue(Address.isValidAddress("123 Main St, Apt 4B")); // address with alphanumeric and common symbols
-        assertTrue(Address.isValidAddress("42nd Ave, NYC (Unit 3)")); // address with numbers, spaces, parentheses
-        assertTrue(Address.isValidAddress("123 #Street Name, Building 2A")); // address with symbols and alphanumeric
-        assertTrue(Address.isValidAddress("123 Elm St. #10")); // address with period and hashtag
+        // address with parentheses and hashtag
+        assertTrue(Address.isValidAddress("Apt (4B) #202"));
+        // address with . and ,
+        assertTrue(Address.isValidAddress("123 Main St. Street, Apt 4B"));
+        // address with numbers, spaces, parentheses
+        assertTrue(Address.isValidAddress("42nd Ave, NYC (Unit 3)"));
+        // address with ' and -
+        assertTrue(Address.isValidAddress("123 #Street's Name, Building 2-A"));
     }
 
     @Test
