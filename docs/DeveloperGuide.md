@@ -128,7 +128,7 @@ How the parsing works:
 The `Model` component,
 
 - stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -227,31 +227,31 @@ S1 Branch staff (i.e. Human resource) for an Army Battalion, responsible for man
 
 1. HRQuickAccess provides HR personnel with fast, keyboard-focused access to essential troop information, including contact details and duty dates
 
-   **Rational**: The Singapore Armed Forces (SAF) primarily issue and utilize laptops with security cards within army camps; as such, tech accessories such as mouses and additional monitors are less common and applicable. Through command line interface (CLI) interface, we can overcome this constraint
+   **Rationale**: The Singapore Armed Forces (SAF) primarily issue and utilize laptops with security cards within army camps; as such, tech accessories such as mouses and additional monitors are less common and applicable. Through command line interface (CLI) interface, we can overcome this constraint
 
 2. HRQuickAccess does not require internet access to operate, as all its data is stored locally instead of remotely
 
-   **Rational**: SAF-issued laptops cannot be connected to the internet (less INET laptops) for security reasons. By having a local database, we can work around this constraint
+   **Rationale**: SAF-issued laptops cannot be connected to the internet (less INET laptops) for security reasons. By having a local database, we can work around this constraint
 
 3. HRQuickAccess offers a better alternative to the current system of using Microsoft Excel, which is prone to human errors, by offering ease of use, quick lookups, and smooth updates, as well as a clean interface
 
-   **Rational**: There are currently no better alternatives for HR staff who prefer a fast, typing-focused workflow, leaving many to rely on Microsoft Excel. However, Excel is prone to human error, inefficient for quick lookups, and cumbersome for regular updates
+   **Rationale**: There are currently no better alternatives for HR staff who prefer a fast, typing-focused workflow, leaving many to rely on Microsoft Excel. However, Excel is prone to human error, inefficient for quick lookups, and cumbersome for regular updates
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​                            | I want to …​                                                 | So that I can…​                                                           |
-| -------- | ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------- |
-| `* * *`  | S1 Branch Staff                       | add entries                                                  | add contacts into the address book                                        |
-| `* * *`  | S1 Branch Staff                       | delete entries                                               | remove contacts into the address book                                     |
-| `* * *`  | S1 Branch Staff                       | view entries                                                 | see a personnel details                                                   |
-| `* * *`  | S1 Branch Staff                       | assign duties                                                | assign more duties to a personnel                                         |
-| `* *`    | S1 Branch Staff                       | have a cleaner GUI (i.e concise, minimalistic)               | not get tired looking at the app all day.                                 |
-| `* * *`  | S1 Branch Staff                       | be able to add pictures to profile entries                   | recognize the entries easily.                                             |
-| `* *`    | S1 Branch Staff                       | have a quick search function using partial names or keywords | find personnels even if I don’t remember their full details               |
-| `* *`    | S1 Branch Staff                       | quickly access and update the duty dates of troops           | efficiently manage scheduling, deployments, and rotations without delays. |
-| `* *`    | Expert S1 Branch Staff of the product | have a global filter feature                                 | so that I can execute commands while excluding unrelated entries.         |
+| Priority | As a/an …​              | I want to …​                                                 | So that I can…​                                                           |
+| -------- |-------------------------|--------------------------------------------------------------| ------------------------------------------------------------------------- |
+| `* * *`  | S1 Branch Staff         | add entries                                                  | add contacts into the address book                                        |
+| `* * *`  | S1 Branch Staff         | delete entries                                               | remove contacts into the address book                                     |
+| `* * *`  | S1 Branch Staff         | view entries                                                 | see a personnel details                                                   |
+| `* * *`  | S1 Branch Staff         | assign duties                                                | assign more duties to a personnel                                         |
+| `* *`    | S1 Branch Staff         | have a cleaner GUI (i.e concise, minimalistic)               | not get tired looking at the app all day.                                 |
+| `* * *`  | S1 Branch Staff         | be able to add pictures to profile entries                   | recognize the entries easily.                                             |
+| `* *`    | S1 Branch Staff         | have a quick search function using partial names or keywords | find personnels even if I don’t remember their full details               |
+| `* *`    | S1 Branch Staff         | quickly access and update the duty dates of troops           | efficiently manage scheduling, deployments, and rotations without delays. |
+| `* *`    | user from the S1 Branch | have a filter feature                                         | so that I can filter the companies of personnel that I want to know about.      |
 
 _{More to be added}_
 
@@ -268,32 +268,32 @@ _{More to be added}_
 
 **Main Success Scenario (MSS):**
 
-1.  The branch staff request to add a new personnel’s entry.
-2.  The branch staff enters the details of the personnel.
-3.  The system adds the personnel’s entry with the entered details.
-4.  The system displays a success message to the branch staff and highlight the added personnel’s entry.
+1. The branch staff types a command to add a new personnel entry, including all required details.
 
+2. The system adds the personnel’s entry with the provided details.
+
+3. The system displays a success message to the branch staff.
     Use case ends.
 
 **Extensions:**
 
-- 2a. The branch staff provides insufficient input.
+- 1a. The branch staff provides insufficient input.
 
-  - 2a1. The system displays an error message indicating the required fields and correct format to enter.
+  - 1a1. The system displays an error message indicating the required fields and correct format to enter.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 2b. The system detects invalid information entered.
+- 1b. The system detects invalid information entered.
 
-  - 2b1. The system states the incorrect fields and provides the correct format to enter.
+  - 1b1. The system states one invalid field provides the correct format to enter.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 2c. The system detects a duplicate personnel.
+- 1c. The system detects a duplicate personnel.
 
-  - 2c1. The system displays an error message stating that the entry already exists.
+  - 1c1. The system displays an error message stating that the entry already exists.
 
-    Use case end.
+    Use case resumes at step 1.
 
 #### **Use Case: UC2 - View a personnel’s entry**
 
@@ -306,8 +306,7 @@ _{More to be added}_
 
 1.  The branch staff request to view a personnel’s entry.
 2.  The branch staff enters the details of the personnel.
-3.  The system shows the personnel’s entry
-    highlight the added personnel’s entry.
+3.  The system shows the personnel’s entry.
 
     Use case ends.
 
@@ -456,8 +455,8 @@ _{More to be added}_
 - **Branch Staff**: Personnel responsible for managing human resources within a battalion or across the army. They handle administrative tasks, maintain personnel entries, and coordinate manpower for military operations.
 - **Personnel**: Refers to all individuals serving in the military, including recruits, soldiers, and other service members in Singapore who are either fulfilling National Service requirements or serving voluntarily.
 - **National Service (NS)**: A mandatory service program for eligible Singaporean citizens and permanent residents, involving military training and service in the Singapore Armed Forces.
-- **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities.
-
+- **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities. Each soldier can only perform duty on a limited number of days within the same month, as regulated by SAF policies.
+- **Inet Laptops**: Official laptops provided by SAF for secure internet access in designated areas
 
 ---
 
@@ -506,7 +505,7 @@ testers are expected to do more _exploratory_ testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. `perferences.json`
+   1. `preferences.json`
       1. Move the `preferences.json` file to a different location.
       2. Relaunch the app.<br>
          Expected: A new `preferences.json` file is created with default preferences.
