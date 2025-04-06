@@ -269,9 +269,7 @@ _{More to be added}_
 **Main Success Scenario (MSS):**
 
 1. The branch staff types a command to add a new personnel entry, including all required details.
-
 2. The system adds the personnel’s entry with the provided details.
-
 3. The system displays a success message to the branch staff.
     Use case ends.
 
