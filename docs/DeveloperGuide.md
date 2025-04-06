@@ -207,11 +207,11 @@ This way, the feature is able to filter out entries that are not from the intend
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-- [Documentation guide](Documentation.md)
-- [Testing guide](Testing.md)
-- [Logging guide](Logging.md)
-- [Configuration guide](Configuration.md)
-- [DevOps guide](DevOps.md)
+- [Documentation guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Documentation.html)
+- [Testing guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Testing.html)
+- [Logging guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Logging.html)
+- [Configuration guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Configuration.html)
+- [DevOps guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/DevOps.html)
 
 ---
 
