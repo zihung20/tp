@@ -19,7 +19,7 @@ HRQuickAccess is based on the AddressBook-Level3 application. Learn more about t
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](https://ay2425s2-cs2103t-t15-1a.github.io/tp/SettingUp.html).
 
 ---
 
@@ -76,8 +76,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T15-1a/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T15-1a/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
-
+The `UI` component
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
@@ -183,7 +182,7 @@ The `Reassign` feature, allows the reassigning of personnel's duties.
 
 <puml src="diagrams/EditCommandObjectDiagram.puml" />
 
-The `Edit` feature, allows user to edit existing personnel's entry information.
+The `Edit` feature allows users to edit existing personnel's entry information.
 
 During the process of an edit command, a **personToEdit** `Person` object would be referenced to store the attributes of the target entry.
 Additionally, an **updatedPerson** `Person` object would be created which represents the new `Person` object to replace **personToEdit**.
@@ -198,7 +197,7 @@ In the given UML diagram example, it can be seen that the **updatedPerson**'s `D
 
 <puml src="diagrams/FilterCommand.puml" />
 
-The `Filter` feature, allows user to filter personnel's entry according to their `Company` attribute.
+The `Filter` feature allows users to filter personnel's entry according to their `Company` attribute.
 
 `FilterCommand` uses the class `CompanyContainsKeywordsPredicate` which in turn tests a given `Person` object to find out whether they fit the keyword given.
 
@@ -228,11 +227,11 @@ S1 Branch staff (i.e. Human resource) for an Army Battalion, responsible for man
 
 1. HRQuickAccess provides HR personnel with fast, keyboard-focused access to essential troop information, including contact details and duty dates
 
-   **Rational**: Singapore Armed Forces (SAF) primarily issue and utilize laptops with security cards within army camps; as such, tech accessories such as mouses and additional monitors are less common and applicable. Through, command line interface (CLI) interface, we can overcome this constraint
+   **Rational**: The Singapore Armed Forces (SAF) primarily issue and utilize laptops with security cards within army camps; as such, tech accessories such as mouses and additional monitors are less common and applicable. Through command line interface (CLI) interface, we can overcome this constraint
 
 2. HRQuickAccess does not require internet access to operate, as all its data is stored locally instead of remotely
 
-   **Rational**: SAF issued laptops cannot be connected to the internet (less INET laptops) for security reasons. By having a local database, we can work around this constraint
+   **Rational**: SAF-issued laptops cannot be connected to the internet (less INET laptops) for security reasons. By having a local database, we can work around this constraint
 
 3. HRQuickAccess offers a better alternative to the current system of using Microsoft Excel, which is prone to human errors, by offering ease of use, quick lookups, and smooth updates, as well as a clean interface
 
