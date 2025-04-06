@@ -19,19 +19,34 @@ public class AddressTest {
         assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
     }
 
+
     @Test
     public void isValidAddress() {
-        // null address
-        assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));
-
-        // invalid addresses
-        assertFalse(Address.isValidAddress("")); // empty string
-        assertFalse(Address.isValidAddress(" ")); // spaces only
-
-        // valid addresses
+        // valid addresses with #, although not appropriate
+        assertTrue(Address.isValidAddress("123 Main St ##"));
         assertTrue(Address.isValidAddress("Blk 456, Den Road, #01-355"));
+
+        //valid address with - only, although not appropriate
         assertTrue(Address.isValidAddress("-")); // one character
-        assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Address.isValidAddress("Apt (4B) #202")); // address with parentheses and hashtag
+        assertTrue(Address.isValidAddress("123 Main St, Apt 4B")); // address with alphanumeric and common symbols
+        assertTrue(Address.isValidAddress("42nd Ave, NYC (Unit 3)")); // address with numbers, spaces, parentheses
+        assertTrue(Address.isValidAddress("123 #Street Name, Building 2A")); // address with symbols and alphanumeric
+        assertTrue(Address.isValidAddress("123 Elm St. #10")); // address with period and hashtag
+    }
+
+    @Test
+    public void invalidAddressTest() {
+        // null address
+        assertFalse(Address.isValidAddress(null));
+        // empty string
+        assertFalse(Address.isValidAddress(""));
+        // spaces only
+        assertFalse(Address.isValidAddress(" "));
+        // invalid special characters
+        assertFalse(Address.isValidAddress("valid address invalid symbol @"));
+        // invalid special character ;
+        assertFalse(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879"));
     }
 
     @Test
@@ -52,5 +67,11 @@ public class AddressTest {
 
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address")));
+
+        // same address but with different case - address is case-sensitive
+        assertFalse(address.equals(new Address("valid address")));
+
+        // same address but with different whitespace -> returns false (if whitespace matters)
+        assertFalse(address.equals(new Address("  Valid Address ")));
     }
 }

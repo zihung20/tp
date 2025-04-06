@@ -11,11 +11,11 @@ public class Address {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    /**
+     * General address regex: alphanumeric characters, spaces,
+     * and symbols like commas, periods, hashtags, parentheses
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9,.'\\-\\s#()]+$";
 
     public final String value;
 
@@ -34,7 +34,7 @@ public class Address {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test != null && !test.trim().isEmpty() && test.matches(VALIDATION_REGEX);
     }
 
     @Override
