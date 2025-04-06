@@ -522,3 +522,8 @@ testers are expected to do more _exploratory_ testing.
          1. Corrupt the `addressbook.json` file by adding some random text.
          2. Relaunch the app.<br>
           Expected: Applications loads without any data.
+
+### Acknowledgement
+- The placeholder image was obtained from a third-party source and is allowed for free use. You can find it here: [Vecteezy - Man Empty Avatar](https://www.vecteezy.com/vector-art/36594092-man-empty-avatar-vector-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile).
+- **AI Tools and Usage**
+    - [ChatGPT](https://chat.openai.com/) for fixing documentation (DG, UG) phrases and grammar errors.
