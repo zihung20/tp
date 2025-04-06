@@ -408,13 +408,12 @@ _{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to handle a battalion-level number of people’s (500–800) entries without noticeable lag.
+1.  The system should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  The system should remain usable with a battalion-level number of entries (approximately 500–800 people).
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Error messages should avoid jargons that non-technical users may not understand, while omitting explanations of military jargon, as they are already familiar with them.
 5.  Entries’ data should be stored locally.
-6.  Given n is number of all data entries, search algorithm for looking up entries should be O(n) bounded.
-7.  The application should remain usable without internet access at all times.
+6. The application should remain usable without internet access at all times.
 
 _{More to be added}_
 
