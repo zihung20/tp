@@ -283,7 +283,7 @@ _{More to be added}_
 
 - 1b. The system detects invalid information entered.
 
-  - 1b1. The system states one invalid field provides the correct format to enter.
+  - 1b1. The system states one invalid field and provides the correct format to enter.
 
     Use case resumes at step 1.
 
