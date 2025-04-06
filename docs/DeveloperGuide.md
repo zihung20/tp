@@ -343,48 +343,25 @@ _{More to be added}_
 - The system must be able to connect to its local database without issues.
 
 **Main Success Scenario (MSS):**
-
-1.  The branch staff request to delete a personnel’s entry.
-2.  The branch staff enters the details of the personnel.
-3.  The system requests confirmation for deletion.
-4.  The branch staff select confirm.
-5.  The system deletes the entry from the database.
-6.  The system displays a success message to the branch staff.
-
+1. The branch staff types a command to delete a specify personnel.
+2. The system deletes the entry from the database.
+3. The system displays a success message and indicates the deleted person to the branch staff
     Use case ends.
 
 **Extensions:**
 
-- 2a. The branch staff provides insufficient input.
+- 1a. The branch staff provides insufficient input.
 
-  - 2a1. The system displays an error message indicating the required fields and correct format to enter.
-
-    Use case resumes at step 2.
-
-- 2b. The system detects invalid information in the provided details.
-
-  - 2b1. The system states the incorrect fields and provides the correct format to enter.
+  - 1a1. The system displays an error message indicating the required fields and correct format to enter.
 
     Use case resumes at step 2.
 
-- 2c. The system check that there isn’t such personnel.
+- 1b. The system check that there isn’t such personnel.
 
-  - 2c1. The system displays an error message stating that the personnel cannot be found.
-
-    Use case end.
-
-- 2d. The system found that there are multiple personnels’ entries.
-
-  - 2d1. The system displays a list of matching personnel and asks which entry to delete.
-  - 2d2. The branch staff selects the specific entry to delete.
-
-    Use case resumes at step 3.
-
-- 4a. The branch staff decides to not delete the personnel’s entry on second thought.
-
-  - 4a1. The branch staff denies the confirmation.
+  - 1b1. The system displays an error message stating that the personnel cannot be found.
 
     Use case end.
+
 
 #### **Use Case: UC4 - Assign a duty to a personnel’s entry**
 
