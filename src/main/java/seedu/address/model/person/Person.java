@@ -137,7 +137,6 @@ public class Person {
                 .add("phone", phone)
                 .add("address", address)
                 .add("nric", nric)
-                .add("duty", duty)
                 .add("salary", salary)
                 .add("company", company)
                 .add("rank", rank)
