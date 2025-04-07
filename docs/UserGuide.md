@@ -48,6 +48,9 @@ HRQuickAccess is a **desktop application** designed for **S1 Branch HR staff** t
    java -jar HRQuickAccess.jar
    ```
 5. A GUI similar to the one below should appear in a few seconds, with some **sample data preloaded**.
+    - The top bar is the **command box**. Type any command here and press Enter to execute it.
+    - The left panel displays a **list of personnel** and their details.
+    - The right panel will display the **duty dates** of a selected personnel when using commands like `view`.
    ![img.png](img.png)
 6. Type a **command** in the command box and press **Enter** to execute it.
 
@@ -67,7 +70,7 @@ Refer to the [Features](#features) section below for full command details.
 
 ### Notes about Command Format
 - Words in `UPPER_CASE` are parameters **you supply**.<br>
-  `Example: add n/NAME] p/[PHONE] a/[ADDRESS] nr/[MASKED NRIC] s/[SALARY] c/[COMPANY] r/[RANK]`
+  `Example: add n/[NAME] p/[PHONE] a/[ADDRESS] nr/[MASKED NRIC] s/[SALARY] c/[COMPANY] r/[RANK]`
 - **Parameters can appear in any order** (unless stated).
 - **Optional repeated fields** use `...`, e.g., `[INDEX]...`.
 - **Commands with incorrect formats** will return error messages with explanations.
@@ -107,13 +110,13 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 ```
 
 **Validation:**
-- **Name:** Alphabets & spaces only
+- **Name:** Name can contain alphabetical characters, spaces, and at most one of each special character (i.e. slashes (/), at symbol (@), hyphens (-)), and must not be blank; leading and trailing spaces are trimmed
 - **Phone:** 8-digit, starts with 8 or 9
-- **Address:** Alphanumeric & spaces
-- **Company:** HQ, Alpha, Bravo, Charlie, Support
-- **Rank:** Uppercase (e.g., CPL, 2LT)
+- **Address:** Alphanumeric characters, spaces, special characters (i.e., comma, period, hashtags, parentheses)
+- **Company:** Alphabetical characters
+- **Rank:** 2-4 Uppercase alphanumeric characters (e.g., CPL, 2LT)
 - **Salary:** 100–9999 SGD
-- **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., T1234Z)
+- **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., Txxxx1234Z)
 
 > **Important:**  
 > **Duplicate Entry:** You cannot add a duplicate person. A person is considered a duplicate if the **Name** and **Masked NRIC** are the same as an existing person.
@@ -170,7 +173,7 @@ find Corey
 ---
 
 ### Filtering by Company: `filter`
-Filters personnel by company name(s).
+Filters personnel by company name(s). You can use a substring of a company name.
 
 **Format:**
 ```
@@ -180,9 +183,10 @@ filter c/COMPANY [COMPANY]...
 ```
 filter c/ALPHA
 filter c/BRAVO CHARLIE
+filter c/BRA
 ```
 
-**Validation:** Alphabets and spaces only. Case-insensitive.
+**Validation:** Alphabetical characters and spaces only. Case-insensitive. Substrings allowed.
 
 ---
 
@@ -207,7 +211,7 @@ Assigns a duty date to one or more personnel. Ignores duplicate dates.
 
 **Format:**
 ```
-assign INDEX... d/YYYY-MM-DD
+assign INDEX... d/yyyy-MM-dd
 ```
 **Example:**
 ```
@@ -216,16 +220,16 @@ assign 1 2 3 d/2025-04-15
 
 **Validation:**
 - INDEX must be valid, the sequence need not be sorted.
-- Date must follow ISO format `YYYY-MM-DD`
+- Date must follow ISO format `yyyy-MM-dd`
 
 ---
 
 ### Unassigning Duty: `unassign`
-Removes a duty date from one or more personnel.
+Removes a duty date from one personnel.
 
 **Format:**
 ```
-unassign INDEX... d/YYYY-MM-DD
+unassign [INDEX] d/yyyy-MM-dd
 ```
 **Example:**
 ```
@@ -274,7 +278,7 @@ exit
 
 ## Saving and Editing Data
 - Data is saved automatically after each change.
-- Stored locally at: `[JAR folder]/data/hrquickaccess.json`
+- Stored locally at: `[JAR folder]/data/addressbook.json`
 
 > ⚠️ **Caution**: Manual edits to the JSON file may corrupt data. Always back up first.
 
@@ -301,26 +305,27 @@ exit
 1. Company and rank allows for alphabetical and alphanumeric characters respectively instead of using enumeration for flexibility, as different services and battalions have different naming styles.
 2. Masked NRICs are not unique, so unique personnel are determined by 2 features: Name and Masked NRIC. If they are unique to another personnel, they will be determined as separate entities.
 3. Mass assigning duty dates to multiple personnel results in the last index to be highlighted (e.g. if you "assign 3 1 2 d/2025-05-06", the personnel with index 2 is highlighted).
-4. To add a personnel profile photo, the photo will have to be renamed as `[NAME]_[NRIC].png/jpeg/jpg` (e.g. Corey Siah_Txxxx123A.png), and placed in `./docs/images/`.
+4. To add a personnel profile photo, the photo will have to be renamed as `[NAME]_[NRIC].png/jpeg/jpg` (e.g. Corey Siah_Txxxx123A.png), and placed in `./data/images/`.
 5. Do not attempt to manually amend `addressbook.json` as it may result in data corruption.
+6. `name` automatically trims leading and trailing spaces
 
 ---
 
 ## Command Summary
 
-| Action             | Format & Example                                                                 |
-|--------------------|----------------------------------------------------------------------------------|
-| **Help**           | `help`                                                                           |
-| **List**           | `list`                                                                           |
-| **Add**            | `add n/Corey p/91234567 a/... nr/... s/... c/... r/...`                          |
-| **Delete**         | `delete INDEX` <br> e.g., `delete 2`                                              |
-| **Edit**           | `edit INDEX [fields]` <br> e.g., `edit 1 n/Jane Doe p/91234567`                  |
-| **Find**           | `find NAME [NAME]...` <br> e.g., `find Corey`                                     |
-| **Filter**         | `filter c/COMPANY [COMPANY]...` <br> e.g., `filter c/ALPHA BRAVO`                |
-| **View**           | `view INDEX` <br> e.g., `view 3`                                                  |
-| **Assign**         | `assign INDEX... d/YYYY-MM-DD` <br> e.g., `assign 1 2 d/2025-04-15`               |
-| **Unassign**       | `unassign INDEX... d/YYYY-MM-DD` <br> e.g., `unassign 1 d/2025-04-15`             |
-| **Reassign**       | `reassign INDEX d/OLD nd/NEW` <br> e.g., `reassign 1 d/2025-04-15 nd/2025-04-25`  |
-| **Clear**          | `clear`                                                                          |
-| **Exit**           | `exit`                                                                           |
+| Action             | Format & Example                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------------|
+| **Help**           | `help`                                                                                                 |
+| **List**           | `list`                                                                                                 |
+| **Add**            | `add n/Corey p/91234567 a/263 River Valley Road #09-11 Aspen Heights nr/Txxxx345H s/800 c/ALPHA r/CPL` |
+| **Delete**         | `delete INDEX` <br> e.g., `delete 2`                                                                   |
+| **Edit**           | `edit INDEX [fields]` <br> e.g., `edit 1 n/Jane Doe p/91234567`                                        |
+| **Find**           | `find NAME [NAME]...` <br> e.g., `find Corey`                                                          |
+| **Filter**         | `filter c/COMPANY [COMPANY]...` <br> e.g., `filter c/ALPHA BRAVO`                                      |
+| **View**           | `view INDEX` <br> e.g., `view 3`                                                                       |
+| **Assign**         | `assign INDEX... d/yyyy-MM-dd` <br> e.g., `assign 1 2 d/2025-04-15`                                    |
+| **Unassign**       | `unassign INDEX... d/yyyy-MM-dd` <br> e.g., `unassign 1 d/2025-04-15`                                  |
+| **Reassign**       | `reassign INDEX d/OLD nd/NEW` <br> e.g., `reassign 1 d/2025-04-15 nd/2025-04-25`                       |
+| **Clear**          | `clear`                                                                                                |
+| **Exit**           | `exit`                                                                                                 |
 
