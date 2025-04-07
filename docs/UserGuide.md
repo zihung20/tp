@@ -48,6 +48,9 @@ HRQuickAccess is a **desktop application** designed for **S1 Branch HR staff** t
    java -jar HRQuickAccess.jar
    ```
 5. A GUI similar to the one below should appear in a few seconds, with some **sample data preloaded**.
+    - The top bar is the **command box**. Type any command here and press Enter to execute it.
+    - The left panel displays a **list of personnel** and their details.
+    - The right panel will display the **duty dates** of a selected personnel when using commands like `view`.
    ![img.png](img.png)
 6. Type a **command** in the command box and press **Enter** to execute it.
 
@@ -109,11 +112,11 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 **Validation:**
 - **Name:** Alphabets & spaces only
 - **Phone:** 8-digit, starts with 8 or 9
-- **Address:** Alphanumeric characters & spaces
+- **Address:** Alphanumeric characters, spaces, special characters (i.e., comma, period, hashtags, parentheses)
 - **Company:** Alphabetical characters
-- **Rank:** Uppercase (e.g., CPL, 2LT)
+- **Rank:** 3 Uppercase alphanumeric characters (e.g., CPL, 2LT)
 - **Salary:** 100–9999 SGD
-- **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., T1234Z)
+- **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., Txxxx1234Z)
 
 > **Important:**  
 > **Duplicate Entry:** You cannot add a duplicate person. A person is considered a duplicate if the **Name** and **Masked NRIC** are the same as an existing person.
@@ -222,11 +225,11 @@ assign 1 2 3 d/2025-04-15
 ---
 
 ### Unassigning Duty: `unassign`
-Removes a duty date from one or more personnel.
+Removes a duty date from one personnel.
 
 **Format:**
 ```
-unassign INDEX... d/yyyy-MM-dd
+unassign [INDEX] d/yyyy-MM-dd
 ```
 **Example:**
 ```
@@ -302,7 +305,7 @@ exit
 1. Company and rank allows for alphabetical and alphanumeric characters respectively instead of using enumeration for flexibility, as different services and battalions have different naming styles.
 2. Masked NRICs are not unique, so unique personnel are determined by 2 features: Name and Masked NRIC. If they are unique to another personnel, they will be determined as separate entities.
 3. Mass assigning duty dates to multiple personnel results in the last index to be highlighted (e.g. if you "assign 3 1 2 d/2025-05-06", the personnel with index 2 is highlighted).
-4. To add a personnel profile photo, the photo will have to be renamed as `[NAME]_[NRIC].png/jpeg/jpg` (e.g. Corey Siah_Txxxx123A.png), and placed in `./docs/images/`.
+4. To add a personnel profile photo, the photo will have to be renamed as `[NAME]_[NRIC].png/jpeg/jpg` (e.g. Corey Siah_Txxxx123A.png), and placed in `./data/images/`.
 5. Do not attempt to manually amend `addressbook.json` as it may result in data corruption.
 6. `name` automatically trims leading and trailing spaces
 
