@@ -19,7 +19,7 @@ HRQuickAccess is based on the AddressBook-Level3 application. Learn more about t
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](https://ay2425s2-cs2103t-t15-1a.github.io/tp/SettingUp.html).
 
 ---
 
@@ -76,8 +76,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103T-T15-1a/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103T-T15-1a/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
-
+The `UI` component
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
@@ -129,7 +128,7 @@ How the parsing works:
 The `Model` component,
 
 - stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -183,7 +182,7 @@ The `Reassign` feature, allows the reassigning of personnel's duties.
 
 <puml src="diagrams/EditCommandObjectDiagram.puml" />
 
-The `Edit` feature, allows user to edit existing personnel's entry information.
+The `Edit` feature allows users to edit existing personnel's entry information.
 
 During the process of an edit command, a **personToEdit** `Person` object would be referenced to store the attributes of the target entry.
 Additionally, an **updatedPerson** `Person` object would be created which represents the new `Person` object to replace **personToEdit**.
@@ -198,7 +197,7 @@ In the given UML diagram example, it can be seen that the **updatedPerson**'s `D
 
 <puml src="diagrams/FilterCommand.puml" />
 
-The `Filter` feature, allows user to filter personnel's entry according to their `Company` attribute.
+The `Filter` feature allows users to filter personnel's entry according to their `Company` attribute.
 
 `FilterCommand` uses the class `CompanyContainsKeywordsPredicate` which in turn tests a given `Person` object to find out whether they fit the keyword given.
 
@@ -208,11 +207,11 @@ This way, the feature is able to filter out entries that are not from the intend
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-- [Documentation guide](Documentation.md)
-- [Testing guide](Testing.md)
-- [Logging guide](Logging.md)
-- [Configuration guide](Configuration.md)
-- [DevOps guide](DevOps.md)
+- [Documentation guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Documentation.html)
+- [Testing guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Testing.html)
+- [Logging guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Logging.html)
+- [Configuration guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/Configuration.html)
+- [DevOps guide](https://ay2425s2-cs2103t-t15-1a.github.io/tp/DevOps.html)
 
 ---
 
@@ -228,31 +227,31 @@ S1 Branch staff (i.e. Human resource) for an Army Battalion, responsible for man
 
 1. HRQuickAccess provides HR personnel with fast, keyboard-focused access to essential troop information, including contact details and duty dates
 
-   **Rational**: Singapore Armed Forces (SAF) primarily issue and utilize laptops with security cards within army camps; as such, tech accessories such as mouses and additional monitors are less common and applicable. Through, command line interface (CLI) interface, we can overcome this constraint
+   **Rationale**: The Singapore Armed Forces (SAF) primarily issue and utilize laptops with security cards within army camps; as such, tech accessories such as mouses and additional monitors are less common and applicable. Through command line interface (CLI) interface, we can overcome this constraint
 
 2. HRQuickAccess does not require internet access to operate, as all its data is stored locally instead of remotely
 
-   **Rational**: SAF issued laptops cannot be connected to the internet (less INET laptops) for security reasons. By having a local database, we can work around this constraint
+   **Rationale**: SAF-issued laptops cannot be connected to the internet (less INET laptops) for security reasons. By having a local database, we can work around this constraint
 
 3. HRQuickAccess offers a better alternative to the current system of using Microsoft Excel, which is prone to human errors, by offering ease of use, quick lookups, and smooth updates, as well as a clean interface
 
-   **Rational**: There are currently no better alternatives for HR staff who prefer a fast, typing-focused workflow, leaving many to rely on Microsoft Excel. However, Excel is prone to human error, inefficient for quick lookups, and cumbersome for regular updates
+   **Rationale**: There are currently no better alternatives for HR staff who prefer a fast, typing-focused workflow, leaving many to rely on Microsoft Excel. However, Excel is prone to human error, inefficient for quick lookups, and cumbersome for regular updates
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​                            | I want to …​                                                 | So that I can…​                                                           |
-| -------- | ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------- |
-| `* * *`  | S1 Branch Staff                       | add entries                                                  | add contacts into the address book                                        |
-| `* * *`  | S1 Branch Staff                       | delete entries                                               | remove contacts into the address book                                     |
-| `* * *`  | S1 Branch Staff                       | view entries                                                 | see a personnel details                                                   |
-| `* * *`  | S1 Branch Staff                       | assign duties                                                | assign more duties to a personnel                                         |
-| `* *`    | S1 Branch Staff                       | have a cleaner GUI (i.e concise, minimalistic)               | not get tired looking at the app all day.                                 |
-| `* * *`  | S1 Branch Staff                       | be able to add pictures to profile entries                   | recognize the entries easily.                                             |
-| `* *`    | S1 Branch Staff                       | have a quick search function using partial names or keywords | find personnels even if I don’t remember their full details               |
-| `* *`    | S1 Branch Staff                       | quickly access and update the duty dates of troops           | efficiently manage scheduling, deployments, and rotations without delays. |
-| `* *`    | Expert S1 Branch Staff of the product | have a global filter feature                                 | so that I can execute commands while excluding unrelated entries.         |
+| Priority | As a/an …​              | I want to …​                                                 | So that I can…​                                                           |
+| -------- |-------------------------|--------------------------------------------------------------| ------------------------------------------------------------------------- |
+| `* * *`  | S1 Branch Staff         | add entries                                                  | add contacts into the address book                                        |
+| `* * *`  | S1 Branch Staff         | delete entries                                               | remove contacts into the address book                                     |
+| `* * *`  | S1 Branch Staff         | view entries                                                 | see a personnel details                                                   |
+| `* * *`  | S1 Branch Staff         | assign duties                                                | assign more duties to a personnel                                         |
+| `* *`    | S1 Branch Staff         | have a cleaner GUI (i.e concise, minimalistic)               | not get tired looking at the app all day.                                 |
+| `* * *`  | S1 Branch Staff         | be able to add pictures to profile entries                   | recognize the entries easily.                                             |
+| `* *`    | S1 Branch Staff         | have a quick search function using partial names or keywords | find personnels even if I don’t remember their full details               |
+| `* *`    | S1 Branch Staff         | quickly access and update the duty dates of troops           | efficiently manage scheduling, deployments, and rotations without delays. |
+| `* *`    | user from the S1 Branch | have a filter feature                                         | so that I can filter the companies of personnel that I want to know about.      |
 
 _{More to be added}_
 
@@ -269,32 +268,30 @@ _{More to be added}_
 
 **Main Success Scenario (MSS):**
 
-1.  The branch staff request to add a new personnel’s entry.
-2.  The branch staff enters the details of the personnel.
-3.  The system adds the personnel’s entry with the entered details.
-4.  The system displays a success message to the branch staff and highlight the added personnel’s entry.
-
+1. The branch staff types a command to add a new personnel entry, including all required details.
+2. The system adds the personnel’s entry with the provided details.
+3. The system displays a success message to the branch staff.
     Use case ends.
 
 **Extensions:**
 
-- 2a. The branch staff provides insufficient input.
+- 1a. The branch staff provides insufficient input.
 
-  - 2a1. The system displays an error message indicating the required fields and correct format to enter.
+  - 1a1. The system displays an error message indicating the required fields and correct format to enter.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 2b. The system detects invalid information entered.
+- 1b. The system detects invalid information entered.
 
-  - 2b1. The system states the incorrect fields and provides the correct format to enter.
+  - 1b1. The system states one invalid field and provides the correct format to enter.
 
-    Use case resumes at step 2.
+    Use case resumes at step 1.
 
-- 2c. The system detects a duplicate personnel.
+- 1c. The system detects a duplicate personnel.
 
-  - 2c1. The system displays an error message stating that the entry already exists.
+  - 1c1. The system displays an error message stating that the entry already exists.
 
-    Use case end.
+    Use case resumes at step 1.
 
 #### **Use Case: UC2 - View a personnel’s entry**
 
@@ -307,8 +304,7 @@ _{More to be added}_
 
 1.  The branch staff request to view a personnel’s entry.
 2.  The branch staff enters the details of the personnel.
-3.  The system shows the personnel’s entry
-    highlight the added personnel’s entry.
+3.  The system shows the personnel’s entry.
 
     Use case ends.
 
@@ -347,48 +343,25 @@ _{More to be added}_
 - The system must be able to connect to its local database without issues.
 
 **Main Success Scenario (MSS):**
-
-1.  The branch staff request to delete a personnel’s entry.
-2.  The branch staff enters the details of the personnel.
-3.  The system requests confirmation for deletion.
-4.  The branch staff select confirm.
-5.  The system deletes the entry from the database.
-6.  The system displays a success message to the branch staff.
-
+1. The branch staff types a command to delete a specify personnel.
+2. The system deletes the entry from the database.
+3. The system displays a success message and indicates the deleted person to the branch staff
     Use case ends.
 
 **Extensions:**
 
-- 2a. The branch staff provides insufficient input.
+- 1a. The branch staff provides insufficient input.
 
-  - 2a1. The system displays an error message indicating the required fields and correct format to enter.
-
-    Use case resumes at step 2.
-
-- 2b. The system detects invalid information in the provided details.
-
-  - 2b1. The system states the incorrect fields and provides the correct format to enter.
+  - 1a1. The system displays an error message indicating the required fields and correct format to enter.
 
     Use case resumes at step 2.
 
-- 2c. The system check that there isn’t such personnel.
+- 1b. The system check that there isn’t such personnel.
 
-  - 2c1. The system displays an error message stating that the personnel cannot be found.
-
-    Use case end.
-
-- 2d. The system found that there are multiple personnels’ entries.
-
-  - 2d1. The system displays a list of matching personnel and asks which entry to delete.
-  - 2d2. The branch staff selects the specific entry to delete.
-
-    Use case resumes at step 3.
-
-- 4a. The branch staff decides to not delete the personnel’s entry on second thought.
-
-  - 4a1. The branch staff denies the confirmation.
+  - 1b1. The system displays an error message stating that the personnel cannot be found.
 
     Use case end.
+
 
 #### **Use Case: UC4 - Assign a duty to a personnel’s entry**
 
@@ -435,13 +408,12 @@ _{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to handle a battalion-level number of people’s (500–800) entries without noticeable lag.
+1.  The system should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  The system should remain usable with a battalion-level number of entries (approximately 500–800 people).
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Error messages should avoid jargons that non-technical users may not understand, while omitting explanations of military jargon, as they are already familiar with them.
 5.  Entries’ data should be stored locally.
-6.  Given n is number of all data entries, search algorithm for looking up entries should be O(n) bounded.
-7.  The application should remain usable without internet access at all times.
+6. The application should remain usable without internet access at all times.
 
 _{More to be added}_
 
@@ -457,8 +429,8 @@ _{More to be added}_
 - **Branch Staff**: Personnel responsible for managing human resources within a battalion or across the army. They handle administrative tasks, maintain personnel entries, and coordinate manpower for military operations.
 - **Personnel**: Refers to all individuals serving in the military, including recruits, soldiers, and other service members in Singapore who are either fulfilling National Service requirements or serving voluntarily.
 - **National Service (NS)**: A mandatory service program for eligible Singaporean citizens and permanent residents, involving military training and service in the Singapore Armed Forces.
-- **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities.
-
+- **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities. Each soldier can only perform duty on a limited number of days within the same month, as regulated by SAF policies.
+- **INET Laptops**: Official laptops provided by SAF for secure internet access in designated areas.
 
 ---
 
@@ -507,7 +479,7 @@ testers are expected to do more _exploratory_ testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. `perferences.json`
+   1. `preferences.json`
       1. Move the `preferences.json` file to a different location.
       2. Relaunch the app.<br>
          Expected: A new `preferences.json` file is created with default preferences.
@@ -524,3 +496,8 @@ testers are expected to do more _exploratory_ testing.
          1. Corrupt the `addressbook.json` file by adding some random text.
          2. Relaunch the app.<br>
           Expected: Applications loads without any data.
+
+### Acknowledgement
+- The placeholder image was obtained from a third-party source and is allowed for free use. You can find it here: [Vecteezy - Man Empty Avatar](https://www.vecteezy.com/vector-art/36594092-man-empty-avatar-vector-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile).
+- **AI Tools and Usage**
+    - [ChatGPT](https://chat.openai.com/) for fixing documentation (DG, UG) phrases and grammar errors.
