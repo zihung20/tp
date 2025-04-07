@@ -11,10 +11,6 @@ public class Rank {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Rank should contain exactly 3 uppercase alphanumeric characters, and it should not be blank (e.g., CPL)";
-
-    /*
-     * The rank must contain 2-4 alphanumeric characters.
-     */
     public static final String VALIDATION_REGEX = "[A-Z0-9]{2,4}";
 
     public final String fullRank;

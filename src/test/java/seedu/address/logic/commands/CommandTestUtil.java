@@ -78,7 +78,7 @@ public class CommandTestUtil {
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "Axxxx123A"; // 'A' not allowed in NRIC starting
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "50"; // Salary must be at least 100
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "0123"; // Company cannot have numbers
-    public static final String INVALID_RANK_DESC = " " + PREFIX_RANK + "ABCD"; // Rank can only have 3 letters
+    public static final String INVALID_RANK_DESC = " " + PREFIX_RANK + "ABCDE"; // Rank can only have 2-4 letters
     public static final String INVALID_DUTY_DESC = " " + PREFIX_DUTY + "26/11/2025"; // valid format is yyyy-mm-dd
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

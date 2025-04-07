@@ -5,11 +5,14 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
+import seedu.address.model.person.Duty;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -21,9 +24,12 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_NRIC = "Axxxx123A";
+    private static final JsonAdaptedDuty INVALID_JSON_DUTY = new JsonAdaptedDuty(
+        Arrays.asList("2025-04--15", "2025-03-01", "2024-03-02", "2024-02-29", "2023-03-03")
+    );
     private static final String INVALID_SALARY = "10";
     private static final String INVALID_COMPANY = "123";
-    private static final String INVALID_RANK = "ABCD";
+    private static final String INVALID_RANK = "ABCDE";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -109,6 +115,24 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_ADDRESS, null, VALID_JSON_DUTY,
                 VALID_SALARY, VALID_COMPANY, VALID_RANK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDuty_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_NRIC, INVALID_JSON_DUTY,
+                VALID_SALARY, VALID_COMPANY, VALID_RANK);
+        String expectedMessage = Duty.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullDuty_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_ADDRESS, VALID_NRIC, null,
+                VALID_SALARY, VALID_COMPANY, VALID_RANK);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Duty.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
