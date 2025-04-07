@@ -23,7 +23,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_NRIC = "Axxxx123A";
     private static final String INVALID_SALARY = "10";
     private static final String INVALID_COMPANY = "123";
-    private static final String INVALID_RANK = "ABCD";
+    private static final String INVALID_RANK = "ABCDE";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
