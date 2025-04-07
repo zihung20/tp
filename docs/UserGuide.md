@@ -109,8 +109,8 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 **Validation:**
 - **Name:** Alphabets & spaces only
 - **Phone:** 8-digit, starts with 8 or 9
-- **Address:** Alphanumeric & spaces
-- **Company:** HQ, Alpha, Bravo, Charlie, Support
+- **Address:** Alphanumeric characters & spaces
+- **Company:** Alphabetical characters
 - **Rank:** Uppercase (e.g., CPL, 2LT)
 - **Salary:** 100–9999 SGD
 - **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., T1234Z)
@@ -183,7 +183,7 @@ filter c/BRAVO CHARLIE
 filter c/BRA
 ```
 
-**Validation:** Alphabets and spaces only. Case-insensitive.
+**Validation:** Alphabetical characters and spaces only. Case-insensitive. Substrings allowed.
 
 ---
 
@@ -208,7 +208,7 @@ Assigns a duty date to one or more personnel. Ignores duplicate dates.
 
 **Format:**
 ```
-assign INDEX... d/YYYY-MM-DD
+assign INDEX... d/yyyy-MM-dd
 ```
 **Example:**
 ```
@@ -217,7 +217,7 @@ assign 1 2 3 d/2025-04-15
 
 **Validation:**
 - INDEX must be valid, the sequence need not be sorted.
-- Date must follow ISO format `YYYY-MM-DD`
+- Date must follow ISO format `yyyy-MM-dd`
 
 ---
 
@@ -226,7 +226,7 @@ Removes a duty date from one or more personnel.
 
 **Format:**
 ```
-unassign INDEX... d/YYYY-MM-DD
+unassign INDEX... d/yyyy-MM-dd
 ```
 **Example:**
 ```
@@ -275,7 +275,7 @@ exit
 
 ## Saving and Editing Data
 - Data is saved automatically after each change.
-- Stored locally at: `[JAR folder]/data/hrquickaccess.json`
+- Stored locally at: `[JAR folder]/data/addressbook.json`
 
 > ⚠️ **Caution**: Manual edits to the JSON file may corrupt data. Always back up first.
 
@@ -310,19 +310,19 @@ exit
 
 ## Command Summary
 
-| Action             | Format & Example                                                                 |
-|--------------------|----------------------------------------------------------------------------------|
-| **Help**           | `help`                                                                           |
-| **List**           | `list`                                                                           |
-| **Add**            | `add n/Corey p/91234567 a/... nr/... s/... c/... r/...`                          |
-| **Delete**         | `delete INDEX` <br> e.g., `delete 2`                                              |
-| **Edit**           | `edit INDEX [fields]` <br> e.g., `edit 1 n/Jane Doe p/91234567`                  |
-| **Find**           | `find NAME [NAME]...` <br> e.g., `find Corey`                                     |
-| **Filter**         | `filter c/COMPANY [COMPANY]...` <br> e.g., `filter c/ALPHA BRAVO`                |
-| **View**           | `view INDEX` <br> e.g., `view 3`                                                  |
-| **Assign**         | `assign INDEX... d/YYYY-MM-DD` <br> e.g., `assign 1 2 d/2025-04-15`               |
-| **Unassign**       | `unassign INDEX... d/YYYY-MM-DD` <br> e.g., `unassign 1 d/2025-04-15`             |
-| **Reassign**       | `reassign INDEX d/OLD nd/NEW` <br> e.g., `reassign 1 d/2025-04-15 nd/2025-04-25`  |
-| **Clear**          | `clear`                                                                          |
-| **Exit**           | `exit`                                                                           |
+| Action             | Format & Example                                                                                       |
+|--------------------|--------------------------------------------------------------------------------------------------------|
+| **Help**           | `help`                                                                                                 |
+| **List**           | `list`                                                                                                 |
+| **Add**            | `add n/Corey p/91234567 a/263 River Valley Road #09-11 Aspen Heights nr/Txxxx345H s/800 c/ALPHA r/CPL` |
+| **Delete**         | `delete INDEX` <br> e.g., `delete 2`                                                                   |
+| **Edit**           | `edit INDEX [fields]` <br> e.g., `edit 1 n/Jane Doe p/91234567`                                        |
+| **Find**           | `find NAME [NAME]...` <br> e.g., `find Corey`                                                          |
+| **Filter**         | `filter c/COMPANY [COMPANY]...` <br> e.g., `filter c/ALPHA BRAVO`                                      |
+| **View**           | `view INDEX` <br> e.g., `view 3`                                                                       |
+| **Assign**         | `assign INDEX... d/yyyy-MM-dd` <br> e.g., `assign 1 2 d/2025-04-15`                                    |
+| **Unassign**       | `unassign INDEX... d/yyyy-MM-dd` <br> e.g., `unassign 1 d/2025-04-15`                                  |
+| **Reassign**       | `reassign INDEX d/OLD nd/NEW` <br> e.g., `reassign 1 d/2025-04-15 nd/2025-04-25`                       |
+| **Clear**          | `clear`                                                                                                |
+| **Exit**           | `exit`                                                                                                 |
 
