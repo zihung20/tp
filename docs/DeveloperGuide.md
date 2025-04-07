@@ -283,7 +283,7 @@ _{More to be added}_
 
 - 1b. The system detects invalid information entered.
 
-  - 1b1. The system states one invalid field provides the correct format to enter.
+  - 1b1. The system states one invalid field and provides the correct format to enter.
 
     Use case resumes at step 1.
 
@@ -343,48 +343,25 @@ _{More to be added}_
 - The system must be able to connect to its local database without issues.
 
 **Main Success Scenario (MSS):**
-
-1.  The branch staff request to delete a personnel’s entry.
-2.  The branch staff enters the details of the personnel.
-3.  The system requests confirmation for deletion.
-4.  The branch staff select confirm.
-5.  The system deletes the entry from the database.
-6.  The system displays a success message to the branch staff.
-
+1. The branch staff types a command to delete a specify personnel.
+2. The system deletes the entry from the database.
+3. The system displays a success message and indicates the deleted person to the branch staff
     Use case ends.
 
 **Extensions:**
 
-- 2a. The branch staff provides insufficient input.
+- 1a. The branch staff provides insufficient input.
 
-  - 2a1. The system displays an error message indicating the required fields and correct format to enter.
-
-    Use case resumes at step 2.
-
-- 2b. The system detects invalid information in the provided details.
-
-  - 2b1. The system states the incorrect fields and provides the correct format to enter.
+  - 1a1. The system displays an error message indicating the required fields and correct format to enter.
 
     Use case resumes at step 2.
 
-- 2c. The system check that there isn’t such personnel.
+- 1b. The system check that there isn’t such personnel.
 
-  - 2c1. The system displays an error message stating that the personnel cannot be found.
-
-    Use case end.
-
-- 2d. The system found that there are multiple personnels’ entries.
-
-  - 2d1. The system displays a list of matching personnel and asks which entry to delete.
-  - 2d2. The branch staff selects the specific entry to delete.
-
-    Use case resumes at step 3.
-
-- 4a. The branch staff decides to not delete the personnel’s entry on second thought.
-
-  - 4a1. The branch staff denies the confirmation.
+  - 1b1. The system displays an error message stating that the personnel cannot be found.
 
     Use case end.
+
 
 #### **Use Case: UC4 - Assign a duty to a personnel’s entry**
 
@@ -431,13 +408,12 @@ _{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to handle a battalion-level number of people’s (500–800) entries without noticeable lag.
+1.  The system should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2.  The system should remain usable with a battalion-level number of entries (approximately 500–800 people).
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Error messages should avoid jargons that non-technical users may not understand, while omitting explanations of military jargon, as they are already familiar with them.
 5.  Entries’ data should be stored locally.
-6.  Given n is number of all data entries, search algorithm for looking up entries should be O(n) bounded.
-7.  The application should remain usable without internet access at all times.
+6. The application should remain usable without internet access at all times.
 
 _{More to be added}_
 
@@ -454,7 +430,7 @@ _{More to be added}_
 - **Personnel**: Refers to all individuals serving in the military, including recruits, soldiers, and other service members in Singapore who are either fulfilling National Service requirements or serving voluntarily.
 - **National Service (NS)**: A mandatory service program for eligible Singaporean citizens and permanent residents, involving military training and service in the Singapore Armed Forces.
 - **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities. Each soldier can only perform duty on a limited number of days within the same month, as regulated by SAF policies.
-- **Inet Laptops**: Official laptops provided by SAF for secure internet access in designated areas
+- **INET Laptops**: Official laptops provided by SAF for secure internet access in designated areas.
 
 ---
 
