@@ -67,7 +67,7 @@ Refer to the [Features](#features) section below for full command details.
 
 ### Notes about Command Format
 - Words in `UPPER_CASE` are parameters **you supply**.<br>
-  `Example: add n/NAME] p/[PHONE] a/[ADDRESS] nr/[MASKED NRIC] s/[SALARY] c/[COMPANY] r/[RANK]`
+  `Example: add n/[NAME] p/[PHONE] a/[ADDRESS] nr/[MASKED NRIC] s/[SALARY] c/[COMPANY] r/[RANK]`
 - **Parameters can appear in any order** (unless stated).
 - **Optional repeated fields** use `...`, e.g., `[INDEX]...`.
 - **Commands with incorrect formats** will return error messages with explanations.
@@ -170,7 +170,7 @@ find Corey
 ---
 
 ### Filtering by Company: `filter`
-Filters personnel by company name(s).
+Filters personnel by company name(s). You can use a substring of a company name.
 
 **Format:**
 ```
@@ -180,6 +180,7 @@ filter c/COMPANY [COMPANY]...
 ```
 filter c/ALPHA
 filter c/BRAVO CHARLIE
+filter c/BRA
 ```
 
 **Validation:** Alphabets and spaces only. Case-insensitive.
