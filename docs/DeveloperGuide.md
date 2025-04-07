@@ -245,12 +245,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a/an …​              | I want to …​                                                 | So that I can…​                                                           |
 | -------- |-------------------------|--------------------------------------------------------------| ------------------------------------------------------------------------- |
 | `* * *`  | S1 Branch Staff         | add entries                                                  | add contacts into the address book                                        |
-| `* * *`  | S1 Branch Staff         | delete entries                                               | remove contacts into the address book                                     |
-| `* * *`  | S1 Branch Staff         | view entries                                                 | see a personnel details                                                   |
+| `* * *`  | S1 Branch Staff         | delete entries                                               | remove contacts from the address book                                     |
+| `* * *`  | S1 Branch Staff         | view entries                                                 | see a person's details                                                   |
 | `* * *`  | S1 Branch Staff         | assign duties                                                | assign more duties to a personnel                                         |
 | `* *`    | S1 Branch Staff         | have a cleaner GUI (i.e concise, minimalistic)               | not get tired looking at the app all day.                                 |
 | `* * *`  | S1 Branch Staff         | be able to add pictures to profile entries                   | recognize the entries easily.                                             |
-| `* *`    | S1 Branch Staff         | have a quick search function using partial names or keywords | find personnels even if I don’t remember their full details               |
+| `* *`    | S1 Branch Staff         | have a quick search function using partial names or keywords | find personnel even if I don’t remember their full details                |
 | `* *`    | S1 Branch Staff         | quickly access and update the duty dates of troops           | efficiently manage scheduling, deployments, and rotations without delays. |
 | `* *`    | user from the S1 Branch | have a filter feature                                         | so that I can filter the companies of personnel that I want to know about.      |
 
@@ -323,7 +323,7 @@ _{More to be added}_
 
     Use case resumes at step 2.
 
-- 2c. The system check that there isn’t such personnel.
+- 2c. The system identifies that there isn’t such personnel.
 
   - 2c1. The system displays an error message stating that the personnel cannot be found.
 
@@ -394,7 +394,7 @@ _{More to be added}_
 
     Use case resumes at step 2.
 
-- 2c. The system check that there isn’t such personnel.
+- 2c. The system identifies that there isn’t such personnel.
 
   - 2c1. The system displays an error message stating that the personnel cannot be found and thus cannot be assigned a duty.
 
@@ -432,6 +432,7 @@ _{More to be added}_
 - **National Service (NS)**: A mandatory service program for eligible Singaporean citizens and permanent residents, involving military training and service in the Singapore Armed Forces.
 - **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities. Each soldier can only perform duty on a limited number of days within the same month, as regulated by SAF policies.
 - **INET Laptops**: Official laptops provided by SAF for secure internet access in designated areas.
+- **S1 Branch**: A branch in the SAF which handles manpower and personnel matters.
 
 ---
 
