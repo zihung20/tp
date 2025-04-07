@@ -110,7 +110,7 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 ```
 
 **Validation:**
-- **Name:** Alphabets & spaces only
+- **Name:** Name can contain alphabetical characters, spaces, and at most one of each special character (i.e. slashes (/), at symbol (@), hyphens (-)), and must not be blank; leading and trailing spaces are trimmed
 - **Phone:** 8-digit, starts with 8 or 9
 - **Address:** Alphanumeric characters, spaces, special characters (i.e., comma, period, hashtags, parentheses)
 - **Company:** Alphabetical characters
