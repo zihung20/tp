@@ -119,7 +119,7 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 - **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., Txxxx1234Z)
 
 > **Important:**  
-> **Duplicate Entry:** You cannot add a duplicate person. A person is considered a duplicate if the **Name** and **Masked NRIC** are the same as an existing person.
+> **Duplicate Entry:** You cannot add a duplicate person. A person is considered a duplicate if the **Name**, **Masked NRIC** and **Phone** are the same as an existing person.
 
 [See considerations for more details](#considerations)
 
