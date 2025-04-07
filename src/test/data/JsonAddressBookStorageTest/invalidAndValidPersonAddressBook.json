@@ -1,7 +1,7 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "phone": "9482424",
+    "phone": "94892424",
     "address": "4th street",
     "nric": "Txxxx123A",
     "duty": ["2025-01-01"],
@@ -19,7 +19,7 @@
     "rank": "3SG"
   }, {
     "name": "Person With Invalid Address Field",
-    "phone": "9482424",
+    "phone": "94882424",
     "address": "",
     "nric": "Txxxx123A",
     "duty": ["2025-01-01"],
@@ -28,7 +28,7 @@
     "rank": "3SG"
   }, {
     "name": "Person With Invalid NRIC Field",
-    "phone": "9482424",
+    "phone": "94812424",
     "address": "4th street",
     "nric": "Axxxx123A",
     "duty": ["2025-01-01"],
@@ -37,7 +37,7 @@
     "rank": "3SG"
   }, {
     "name": "Person With Invalid Duty Field",
-    "phone": "9482424",
+    "phone": "94832424",
     "address": "4th street",
     "nric": "Txxxx123A",
     "duty": ["01-01-2025"],
@@ -46,7 +46,7 @@
     "rank": "3SG"
   }, {
     "name": "Person With Invalid Salary Field",
-    "phone": "9482424",
+    "phone": "94892424",
     "address": "4th street",
     "nric": "Txxxx123A",
     "duty": ["2025-01-01"],
@@ -55,7 +55,7 @@
     "rank": "3SG"
   }, {
     "name": "Person With Invalid Company Field",
-    "phone": "9482424",
+    "phone": "94872424",
     "address": "4th street",
     "nric": "Txxxx123A",
     "duty": ["2025-01-01"],
@@ -64,7 +64,7 @@
     "rank": "3SG"
   }, {
     "name": "Person With Invalid Rank Field",
-    "phone": "9482424",
+    "phone": "94852424",
     "address": "4th street",
     "nric": "Txxxx123A",
     "duty": ["2025-01-01"],
