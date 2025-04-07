@@ -43,8 +43,6 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Mask NRIC: ")
                 .append(person.getNric())
-                .append("; Duty: ")
-                .append(person.getDuty())
                 .append("; Salary: ")
                 .append(person.getSalary())
                 .append("; Company: ")
