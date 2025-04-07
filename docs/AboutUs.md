@@ -23,16 +23,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kong Zi Hung
 
-<img src="images/zihung20.png" width="200px"> <br>
+<img src="images/zihung20.png" width="200px"><br>
 
-Hi I am year 2 Computer Science student in NUS.
+Hi! I’m a Year 2 Computer Science student at the National University of Singapore (NUS), interest in  database and network system.
 
-[[homepage](https://www.linkedin.com/in/kong-zi-hung-a32ab8288/)]
-[[github](https://github.com/zihung20)]
-[[email](mailto:zihung20@gmail.com)]
-
-* Role: student
-* Responsibilities: technical support, integration, documentation
+[📄 Linkedin](https://www.linkedin.com/in/kong-zi-hung-a32ab8288/)  <br>
+[💻 GitHub](https://github.com/zihung20)  <br>
+[✉️ Email](mailto:zihung20@gmail.com)  <br>
+[🧾 Zi Hung's Project Portfolio Page](./team/zihung20.md)
+- **Role**: Student Developer
+- **Responsibilities**: Technical support, feature integration, and documentation
 
 ### Jun Heng
 
