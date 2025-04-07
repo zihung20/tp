@@ -23,7 +23,7 @@ public class ViewCommand extends Command {
                     + "Example: view 1",
             COMMAND_WORD);
     public static final String MESSAGE_VIEW_SUCCESS =
-            "Success! Personnel duty found! Their duty date(s) are located at the bottom right side!";
+            "Success! Personnel duty found! Their duty date(s) are located at the middle right side!";
 
     private final Index index;
 
