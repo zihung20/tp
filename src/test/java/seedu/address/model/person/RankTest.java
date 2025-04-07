@@ -29,11 +29,13 @@ public class RankTest {
         assertFalse(Rank.isValidRank(" ")); // spaces only
         assertFalse(Rank.isValidRank("^")); // only non-alphanumeric characters
         assertFalse(Rank.isValidRank("SG*")); // contains non-alphanumeric characters
-        assertFalse(Rank.isValidRank("3SGT")); // More than 3 characters (invalid)
+        assertFalse(Rank.isValidRank("SGTCR")); // More than 4 characters (invalid)
         assertFalse(Rank.isValidRank("S")); // Less than 3 characters (invalid)
 
         // valid rank
         assertTrue(Rank.isValidRank("CPL")); // alphabets only
+        assertTrue(Rank.isValidRank("BG")); // 2 letter alphabets only
+        assertTrue(Rank.isValidRank("SLTC")); // 4 letter alphabets only
         assertTrue(Rank.isValidRank("123")); // numbers only
         assertTrue(Rank.isValidRank("3SG")); // alphanumeric characters
     }
