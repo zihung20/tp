@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Rank {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Rank should contain exactly 3 uppercase alphanumeric characters, and it should not be blank (e.g., CPL)";
+            "Rank should contain exactly 2-4 uppercase alphanumeric characters, and it should not be blank (e.g., CPL)";
     public static final String VALIDATION_REGEX = "[A-Z0-9]{2,4}";
 
     public final String fullRank;
