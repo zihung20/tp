@@ -430,7 +430,7 @@ _{More to be added}_
 - **Personnel**: Refers to all individuals serving in the military, including recruits, soldiers, and other service members in Singapore who are either fulfilling National Service requirements or serving voluntarily.
 - **National Service (NS)**: A mandatory service program for eligible Singaporean citizens and permanent residents, involving military training and service in the Singapore Armed Forces.
 - **Duty Date**: A specific calendar day where a soldier is scheduled to perform assigned tasks or responsibilities. Each soldier can only perform duty on a limited number of days within the same month, as regulated by SAF policies.
-- **INET Laptops**: Official laptops provided by SAF for secure internet access in designated areas
+- **INET Laptops**: Official laptops provided by SAF for secure internet access in designated areas.
 
 ---
 
