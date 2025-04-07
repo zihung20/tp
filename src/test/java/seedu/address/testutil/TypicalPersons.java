@@ -55,19 +55,19 @@ public class TypicalPersons {
             .withSalary("2000").withCompany("Alpha").withRank("LTA")
             .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
-            .withPhone("9482224")
+            .withPhone("94821224")
             .withAddress("michegan ave").withNric("Txxxx123E")
             .withDuty(new ArrayList<>(Arrays.asList(LocalDate.of(2025, 1, 5))))
             .withSalary("1300").withCompany("Charlie").withRank("COL")
             .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
-            .withPhone("9482427")
+            .withPhone("94827427")
             .withAddress("little tokyo").withNric("Txxxx123F")
             .withDuty(new ArrayList<>(Arrays.asList(LocalDate.of(2025, 4, 3))))
             .withSalary("1700").withCompany("Charlie").withRank("CWO")
             .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
-            .withPhone("9482442")
+            .withPhone("94829442")
             .withAddress("4th street").withNric("Txxxx123G")
             .withDuty(new ArrayList<>(Arrays.asList(LocalDate.of(2025, 2, 5))))
             .withSalary("600").withCompany("Bravo").withRank("REC")
@@ -75,13 +75,13 @@ public class TypicalPersons {
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
-            .withPhone("8482424")
+            .withPhone("84842424")
             .withAddress("little india").withNric("Txxxx123H")
             .withDuty(new ArrayList<>(Arrays.asList(LocalDate.of(2025, 2, 1))))
             .withSalary("1300").withCompany("Charlie").withRank("3SG")
             .build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
-            .withPhone("8482131")
+            .withPhone("84821313")
             .withAddress("chicago ave").withNric("Txxxx123I")
             .withDuty(new ArrayList<>(Arrays.asList(LocalDate.of(2025, 2, 2))))
             .withSalary("1400").withCompany("HQ").withRank("LTA")

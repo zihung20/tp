@@ -73,7 +73,7 @@ public class CompanyContainsKeywordsPredicateTest {
         // Keywords match other fields but not company
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withCompany("Bravo")
-                .withPhone("12345").withAddress("Main Street").build()));
+                .withPhone("84588016").withAddress("Main Street").build()));
     }
 
     @Test
