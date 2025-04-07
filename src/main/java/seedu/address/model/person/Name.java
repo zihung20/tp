@@ -10,14 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names must not be blank and can contain at most one of each special character:\n"
-                + "hyphen (-), slash (/), or at symbol (@).";
+            "Names should only contain alphabetic characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z-/@][a-zA-Z\\s-/@]*$";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
 
     public final String fullName;
 
@@ -36,15 +35,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        if (!test.matches(VALIDATION_REGEX)) {
-            return false;
-        }
-        // Check for occurrences of special characters
-        int hyphenCount = test.split("-", -1).length - 1;
-        int slashCount = test.split("/", -1).length - 1;
-        int atCount = test.split("@", -1).length - 1;
-
-        return hyphenCount <= 1 && slashCount <= 1 && atCount <= 1;
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

@@ -17,12 +17,12 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "Rachel@@W@lker";
+    private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_NRIC = "Axxxx123A";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
 
-    private static final String VALID_NAME = "Rachel W@lker";
+    private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_NRIC = "Sxxxx567A";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
