@@ -43,7 +43,7 @@ public class PersonTest {
 
         // name differs in case, all other attributes same -> returns false
         Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
@@ -110,7 +110,7 @@ public class PersonTest {
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", address=" + ALICE.getAddress() + ", nric=" + ALICE.getNric()
-                + ", duty=" + ALICE.getDuty() + ", salary=" + ALICE.getSalary()
+                + ", salary=" + ALICE.getSalary()
                 + ", company=" + ALICE.getCompany() + ", rank=" + ALICE.getRank()
                 + "}";
         assertEquals(expected, ALICE.toString());

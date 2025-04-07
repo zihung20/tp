@@ -10,15 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should start with alphabet, "
-                    + "and can contain at most one of each special character: hyphen (-), slash (/), or at symbol (@). "
-                    + "Must not be blank";
+            "Names must not be blank and can contain at most one of each special character:\n"
+                + "hyphen (-), slash (/), or at symbol (@).";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z\\s-/@]*";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z-/@][a-zA-Z\\s-/@]*$";
 
     public final String fullName;
 
