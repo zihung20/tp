@@ -71,7 +71,7 @@ public class CompanyContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withCompany("Alpha").build()));
 
         // Keywords match other fields but not company
-        predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("12345", "Main", "Street"));
+        predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("84588016", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withCompany("Bravo")
                 .withPhone("84588016").withAddress("Main Street").build()));
     }
