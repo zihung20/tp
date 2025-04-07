@@ -114,7 +114,7 @@ add n/Corey p/91234567 a/123 Orchard Road nr/Txxxx123A s/800 c/Alpha r/PTE
 - **Phone:** 8-digit, starts with 8 or 9
 - **Address:** Alphanumeric characters, spaces, special characters (i.e., comma, period, hashtags, parentheses)
 - **Company:** Alphabetical characters
-- **Rank:** 3 Uppercase alphanumeric characters (e.g., CPL, 2LT)
+- **Rank:** 2-4 Uppercase alphanumeric characters (e.g., CPL, 2LT)
 - **Salary:** 100–9999 SGD
 - **NRIC:** `[S/T]xxxx[3-digits][A-Z]` (e.g., Txxxx1234Z)
 
