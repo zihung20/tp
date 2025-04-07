@@ -9,15 +9,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphabets, slashes (/), " +
-            "at symbols (@), hyphens (-), and spaces, and must not be blank.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Names should start with alphabet, "
+                    + "and can contain at most one of each special character: hyphen (-), slash (/), or at symbol (@). "
+                    + "Must not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[A-Za-z/@\\- ]+";
-
+    public static final String VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z\\s-/@]*";
 
     public final String fullName;
 
@@ -36,7 +37,15 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if(!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        // Check for occurrences of special characters
+        int hyphenCount = test.split("-", -1).length - 1;
+        int slashCount = test.split("/", -1).length - 1;
+        int atCount = test.split("@", -1).length - 1;
+
+        return hyphenCount <= 1 && slashCount <= 1 && atCount <= 1;
     }
 
     /**
