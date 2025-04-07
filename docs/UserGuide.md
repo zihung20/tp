@@ -307,7 +307,8 @@ exit
 3. Mass assigning duty dates to multiple personnel results in the last index to be highlighted (e.g. if you "assign 3 1 2 d/2025-05-06", the personnel with index 2 is highlighted).
 4. To add a personnel profile photo, the photo will have to be renamed as `[NAME]_[NRIC].png/jpeg/jpg` (e.g. Corey Siah_Txxxx123A.png), and placed in `./data/images/`.
 5. Do not attempt to manually amend `addressbook.json` as it may result in data corruption.
-6. `name` automatically trims leading and trailing spaces
+6. `name` automatically trims leading and trailing spaces.
+7. Personnel duty dates reflect the number of duty dates they are assigned in the current month.
 
 ---
 
