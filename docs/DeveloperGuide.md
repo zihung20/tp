@@ -346,10 +346,8 @@ _{More to be added}_
 
 1.  The branch staff request to delete a personnel’s entry.
 2.  The branch staff enters the details of the personnel.
-3.  The system requests confirmation for deletion.
-4.  The branch staff select confirm.
-5.  The system deletes the entry from the database.
-6.  The system displays a success message to the branch staff.
+3.  The system deletes the entry from the database.
+4.  The system displays a success message to the branch staff.
 
     Use case ends.
 
@@ -371,20 +369,7 @@ _{More to be added}_
 
   - 2c1. The system displays an error message stating that the personnel cannot be found.
 
-    Use case end.
-
-- 2d. The system found that there are multiple personnels’ entries.
-
-  - 2d1. The system displays a list of matching personnel and asks which entry to delete.
-  - 2d2. The branch staff selects the specific entry to delete.
-
-    Use case resumes at step 3.
-
-- 4a. The branch staff decides to not delete the personnel’s entry on second thought.
-
-  - 4a1. The branch staff denies the confirmation.
-
-    Use case end.
+    Use case resumes at step 2.
 
 #### **Use Case: UC4 - Assign a duty to a personnel’s entry**
 
